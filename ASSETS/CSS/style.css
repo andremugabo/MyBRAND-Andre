@@ -1,0 +1,794 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+button{
+    background-color: #1058C3;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+ul{
+    list-style-type: none;
+}
+ul>li{
+    margin-right: 30px;
+}
+.flex-between-center{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.flex-center-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flex-center{
+    display: flex;
+    justify-content:center;
+}
+.flex-center-items{
+    display: flex;
+    align-items: center;
+}
+
+
+
+.w-100{
+    width: 100%;
+}
+.w-50{
+    width: 50%;
+}
+.flex-column{
+    flex-direction: column;
+}
+
+
+body{
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* ==================================================
+                      HEADER CSS
+=====================================================*/
+header{
+   position: relative;
+   top: 0;
+   left: 0;
+   height: 500px;
+   overflow-x: hidden;
+}
+.round-bg{
+    background-color: #1058c337;
+    width: 680px;
+    height: 680px;
+    position: absolute;
+    right: -90px;
+    top: -250px;
+    border-radius: 50%;
+    z-index: -1;
+}
+.logo>a{
+    color: #1058C3;
+    font-weight: bold;
+    font-size: 20px;
+}
+.navbar{
+    padding:0px 25px;
+}
+.navbar>ul>li>a{
+ color: black;
+ font-weight: bold;
+ font-size: 20px;
+ transform: ease 1s;
+}
+.navbar>ul>li>a:hover{
+    color: rgb(86, 86, 86);
+}
+.menu{
+    display: none;
+}
+.profile-pic{
+    background: url("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMGF2YXRhciUyMGJsYWNrJTIwbWFufGVufDB8fDB8fHww");
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    background-position: 100% 100%;
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    right: 90px;
+    top:145px;
+    border-radius: 50%;
+}
+.profile-description{
+    position:absolute;
+    top:100px;
+    left:50px;
+    line-height: 90px;
+    width: 600px;
+    height: 270px;
+}
+.profile-description>h4,.profile-description>h1{
+    color: #1058C3;
+} 
+.profile-description>hr{
+    border: #1058C3 solid 1px;
+}
+.profile-description>h4{
+    font-size: 30px;
+}
+.profile-description>h4>span{
+    text-decoration: underline;
+}
+.profile-description>h1{
+    font-size: 70px;
+}
+.profile-description>h3{
+    font-size: 50px;
+    color: #1058c37f;
+}
+.header-contact{
+    position: absolute;
+    top: 400px;
+    left: 50px;
+    width: 210px;
+
+}
+.header-contact>ul>li>img{
+    width: 20px;
+}
+.header-contact>ul>li>{
+    width: 100%;
+}
+.header-contact>ul>li>a{
+    margin-left: 2px;
+    color: #1058C3;
+    font-weight: bold;
+}
+.hire_btn{
+    position: absolute;
+    top: 400px;
+    left:50%;
+    border:none;
+    outline: none;
+    width: 150px;
+    height: 40px;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+/* ==================================================
+                      MAIN CSS
+=====================================================*/
+
+main{
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+
+
+
+
+
+/* ==================================================
+                      FOOTER CSS
+=====================================================*/
+footer{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 350px;
+}
+.top-footer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: #1058C3;
+}
+.inner-footer{
+    width: 100%;
+    height: calc(100% - 50px);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    justify-content: space-between;
+}
+.footer-card{
+    width: 24%;
+    line-height: 30px;
+    flex-direction: column;
+}
+.footer-card>h3{
+    color: #1058C3;
+    font-weight: bold;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+}                   
+.footer-card>ul{
+    flex-direction: column;
+}
+.footer-card>ul>li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 10px);
+}
+.footer-card>ul>li>a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    width: 100%;
+}
+.footer-card>h5,.footer-card>h6{
+    color: #1058C3;
+    font-weight: bold;
+}
+.footer-card>p{
+    font-size: 12px;
+}
+.footer-card>hr{
+    background:#1058C3;
+    height: 5px;
+    margin-bottom: 2px;
+}
+.footer-card>form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px 0px;
+
+}
+.footer-card>form>input{
+    margin-bottom: 5px;
+    padding: 5px;
+    outline: none;
+    border: 2px solid #1058C3;
+    border-radius: 5px;
+}
+.footer-card>form>button{
+    padding: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 5px;
+}
+.social-media{
+    width: 100%;
+    margin-top: 40px;
+}
+.social-media>ul>li>a>img{
+    width: 25px;
+}
+.copyright{
+    width: calc(100%);
+    margin-bottom: 2px;
+    height:20px;
+    padding: 15px;
+    border-top: 2px solid #1058C3;
+}
+.copyright>p{
+    color: #1058C3;
+    font-weight: bold;
+}
+.copyright>button{
+    background: transparent;
+}
+.copyright>button>img{
+    width: 25px;
+}
+.bottom-footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: #1058C3;
+}
+
+
+
+
+/*==============================
+		RESPONSIVE
+================================*/
+/* Desktop styles */
+@media screen and (min-width: 1024px) and (max-width: 1150px){
+    /* header */
+
+    header{
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 500px;
+        overflow-x: hidden;
+         transition: all 1s;
+     }
+     .round-bg{
+         background-color: #1058c337;
+         width: 680px;
+         height: 680px;
+         position: absolute;
+         right: -90px;
+         top: -250px;
+         border-radius: 50%;
+         z-index: -1;
+     }
+     .logo>a{
+         color: #1058C3;
+         font-weight: bold;
+         font-size: 20px;
+     }
+     .navbar{
+         padding:0px 25px;
+     }
+     .navbar>ul>li>a{
+      color: black;
+      font-weight: bold;
+      font-size: 20px;
+      transform: ease 1s;
+     }
+     .navbar>ul>li>a:hover{
+         color: rgb(86, 86, 86);
+     }
+     .menu{
+         display: none;
+     }
+     .profile-pic{
+         background: url("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMGF2YXRhciUyMGJsYWNrJTIwbWFufGVufDB8fDB8fHww");
+         background-repeat: no-repeat;
+         background-size:100% 100%;
+         background-position: 100% 100%;
+         width: 380px;
+         height: 380px;
+         position: absolute;
+         right: 90px;
+         top:145px;
+         border-radius: 50%;
+     }
+    .profile-description{
+        position:absolute;
+        top:100px;
+        left:50px;
+        line-height: 70px;
+        width: 600px;
+        height: 270px;
+    }
+    .profile-description>h4,.profile-description>h1{
+        color: #1058C3;
+    } 
+    .profile-description>hr{
+        border: #1058C3 solid 1px;
+    }
+    .profile-description>h4{
+        font-size: 25px;
+    }
+    .profile-description>h4>span{
+        text-decoration: underline;
+    }
+    .profile-description>h1{
+        font-size: 50px;
+    }
+    .profile-description>h3{
+        font-size: 30px;
+        color: #1058c37f;
+    }
+    .header-contact{
+        position: absolute;
+        top: 400px;
+        left: 50px;
+        width: 210px;
+    
+    }
+    .header-contact>ul>li>img{
+        width: 20px;
+    }
+    .header-contact>ul>li>{
+        width: 100%;
+    }
+    .header-contact>ul>li>a{
+        margin-left: 2px;
+        color: #1058C3;
+        font-weight: bold;
+    }
+    .hire_btn{
+        position: absolute;
+        top: 400px;
+        left:30%;
+        border:none;
+        outline: none;
+        width: 150px;
+        height: 40px;
+        border-radius: 50px;
+        font-weight: bold;
+    }
+}
+
+/* Tablet styles */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+
+    /* header */
+
+    header{
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 390px;
+        overflow-x: hidden;
+     }
+     .round-bg{
+         background-color: #1058c337;
+         width: 580px;
+         height: 580px;
+         position: absolute;
+         right: -90px;
+         top: -250px;
+         border-radius: 50%;
+         z-index: -1;
+     }
+     .logo>a{
+         color: #1058C3;
+         font-weight: bold;
+         font-size: 20px;
+     }
+     .navbar{
+         padding:0px 25px;
+     }
+     .navbar>ul{
+        display: none;
+        flex-direction: column;
+     }
+     .navbar>ul>li>a{
+      color: black;
+      font-weight: bold;
+      font-size: 20px;
+      transform: ease 1s;
+     }
+     .navbar>ul>li>a:hover{
+         color: rgb(86, 86, 86);
+     }
+     .menu{
+         display: block;
+     }
+     .profile-pic{
+         background: url("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMGF2YXRhciUyMGJsYWNrJTIwbWFufGVufDB8fDB8fHww");
+         background-repeat: no-repeat;
+         background-size:100% 100%;
+         background-position: 100% 100%;
+         width: 300px;
+         height: 300px;
+         position: absolute;
+         right: 90px;
+         top:100px;
+         border-radius: 50%;
+     }
+    .profile-description{
+        position:absolute;
+        top:90px;
+        left:50px;
+        line-height: 50px;
+        width: 600px;
+        height: 270px;
+    }
+    .profile-description>h4,.profile-description>h1{
+        color: #1058C3;
+    } 
+    .profile-description>hr{
+        border: #1058C3 solid 1px;
+    }
+    .profile-description>h4{
+        font-size: 18px;
+    }
+    .profile-description>h4>span{
+        text-decoration: underline;
+    }
+    .profile-description>h1{
+        font-size: 25px;
+    }
+    .profile-description>h3{
+        font-size: 25px;
+        color: #1058c37f;
+    }
+    .header-contact{
+        position: absolute;
+        top: 300px;
+        left: 50px;
+        width: 150px;
+    
+    }
+    .header-contact>ul>li>img{
+        width: 15px;
+    }
+    .header-contact>ul>li>{
+        width: 100%;
+    }
+    .header-contact>ul>li>a{
+        margin-left: 2px;
+        color: #1058C3;
+        font-weight: bold;
+        font-size: 10px;
+    }
+    .hire_btn{
+        position: absolute;
+        top: 300px;
+        left:30%;
+        border:none;
+        outline: none;
+        width: 100px;
+        height: 30px;
+        border-radius: 50px;
+        font-weight: bold;
+    }
+    .footer-card{
+        width: 45%;
+    }
+    footer{
+        height: 740px;
+    }
+}
+
+/* Mobile styles */
+@media screen  and (min-width: 576px) and (max-width: 767px) {
+    /* header */
+    header{
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 800px;
+        overflow-x: hidden;
+     }
+     .round-bg{
+         background-color: #1058c337;
+         width: 780px;
+         height: 780px;
+         position: absolute;
+         right: -90px;
+         top: -250px;
+         border-radius: 50%;
+         z-index: -1;
+     }
+     .logo>a{
+         color: #1058C3;
+         font-weight: bold;
+         font-size: 20px;
+     }
+     .navbar{
+         padding:0px 25px;
+     }
+     .navbar>ul{
+        display: none;
+        flex-direction: column;
+     }
+     .navbar>ul>li>a{
+      color: black;
+      font-weight: bold;
+      font-size: 20px;
+      transform: ease 1s;
+     }
+     .navbar>ul>li>a:hover{
+         color: rgb(86, 86, 86);
+     }
+     .menu{
+         display: none;
+     }
+
+     .menu{
+        display: block;
+    }
+     .profile-pic{
+         background: url("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMGF2YXRhciUyMGJsYWNrJTIwbWFufGVufDB8fDB8fHww");
+         background-repeat: no-repeat;
+         background-size:100% 100%;
+         background-position: 100% 100%;
+         width: 350px;
+         height: 350px;
+         position: absolute;
+         right: 120px;
+         top:280px;
+         border-radius: 50%;
+     }
+     .profile-description{
+        position:absolute;
+        top:575px;
+        left:50px;
+        line-height: 50px;
+        width: 250px;
+        height: 160px;
+    }
+    .profile-description>h4,.profile-description>h1{
+        color: #1058C3;
+    } 
+    .profile-description>hr{
+        border: #1058C3 solid 1px;
+    }
+    .profile-description>h4{
+        font-size: 18px;
+    }
+    .profile-description>h4>span{
+        text-decoration: underline;
+    }
+    .profile-description>h1{
+        font-size: 25px;
+    }
+    .profile-description>h3{
+        font-size: 25px;
+        color: #1058c37f;
+    }
+    .header-contact{
+        position: absolute;
+        top: 750px;
+        left: 50px;
+        width: 150px;
+    
+    }
+    .header-contact>ul>li>img{
+        width: 15px;
+    }
+    .header-contact>ul>li>{
+        width: 100%;
+    }
+    .header-contact>ul>li>a{
+        margin-left: 2px;
+        color: #1058C3;
+        font-weight: bold;
+        font-size: 10px;
+    }
+    .hire_btn{
+        position: absolute;
+        top: 750px;
+        left:65%;
+        border:none;
+        outline: none;
+        width: 100px;
+        height: 30px;
+        border-radius: 50px;
+        font-weight: bold;
+    }
+    .footer-card{
+        width: 45%;
+    }
+    footer{
+        height: 740px;
+    }
+}
+    @media screen and (max-width: 575px) {
+        /* header */
+        header{
+            position: relative;
+            top: 0;
+            left: 0;
+            height: 800px;
+            overflow-x: hidden;
+         }
+         .round-bg{
+             background-color: #1058c337;
+             width: 650px;
+             height: 650px;
+             position: absolute;
+             right: -90px;
+             top: -250px;
+             border-radius: 50%;
+             z-index: -1;
+         }
+         .logo>a{
+             color: #1058C3;
+             font-weight: bold;
+             font-size: 20px;
+         }
+         .navbar{
+             padding:0px 25px;
+         }
+         .navbar>ul{
+            display: none;
+            flex-direction: column;
+         }
+         .navbar>ul>li>a{
+          color: black;
+          font-weight: bold;
+          font-size: 20px;
+          transform: ease 1s;
+         }
+         .navbar>ul>li>a:hover{
+             color: rgb(86, 86, 86);
+         }
+         .menu{
+             display: none;
+         }
+    
+         .menu{
+            display: block;
+        }
+         .profile-pic{
+             background: url("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMGF2YXRhciUyMGJsYWNrJTIwbWFufGVufDB8fDB8fHww");
+             background-repeat: no-repeat;
+             background-size:100% 100%;
+             background-position: 100% 100%;
+             width: 300px;
+             height: 300px;
+             position: absolute;
+             right: 30px;
+             top:150px;
+             border-radius: 50%;
+         }
+         .profile-description{
+            position:absolute;
+            top:500px;
+            left:50px;
+            line-height: 50px;
+            width: 250px;
+            height: 160px;
+        }
+        .profile-description>h4,.profile-description>h1{
+            color: #1058C3;
+        } 
+        .profile-description>hr{
+            border: #1058C3 solid 1px;
+        }
+        .profile-description>h4{
+            font-size: 18px;
+        }
+        .profile-description>h4>span{
+            text-decoration: underline;
+        }
+        .profile-description>h1{
+            font-size: 25px;
+        }
+        .profile-description>h3{
+            font-size: 25px;
+            color: #1058c37f;
+        }
+        .header-contact{
+            position: absolute;
+            top: 660px;
+            left: 50px;
+            width: 150px;
+        
+        }
+        .header-contact>ul>li>img{
+            width: 15px;
+        }
+        .header-contact>ul>li>{
+            width: 100%;
+        }
+        .header-contact>ul>li>a{
+            margin-left: 2px;
+            color: #1058C3;
+            font-weight: bold;
+            font-size: 10px;
+        }
+        .hire_btn{
+            position: absolute;
+            top: 660px;
+            left:65%;
+            border:none;
+            outline: none;
+            width: 100px;
+            height: 30px;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+        .footer-card{
+            width: 90%;
+        }
+        .copyright>p{
+            font-size: 10px;
+        }
+        footer{
+            height: 875px;
+        }
+}
