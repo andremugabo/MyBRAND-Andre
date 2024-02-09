@@ -1027,6 +1027,10 @@ main>h2{
     color: #1058C3;
     font-size: 12px;
 }
+.keepS>a{
+    color: #1058C3;
+    font-weight: bold;
+}
 .square{
     width: 10px;
     height: 10px;
@@ -1072,20 +1076,111 @@ main>h2{
     width: 20px;
     margin-right: 5px;
 }
+/* DASHBOARD */
+.inner_maind{
+    width: 100%;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.left_inner_main_d{
+    width: 20%;
+    min-height: 100vh;
+    border-right: 2px solid #1058C3;
+}
+.left_inner_main_d>.logo{
+padding: 20px;
+}
+.right_inner_main_d{
+    width: 80%;
+}
+.dash_title {
+    border-bottom: #1058C3 2px solid;
+    padding: 0px 5px;
+}
+.leftDash{
+    width: 50%;
+    padding: 10px;
+}
+.rightDash{
+    width: 50%;
+    padding: 10px;
+}
+.side_nav_btn{
+    width: 100%;
+    height: 100vh;
+}
+.side_nav_btn>ul{
+    width: 100%;
+    padding: 5px;
+}
+.side_nav_btn>ul>li{
+    width: calc(100% - 5px);
+}
+.side_nav_btn>ul>li>button{
+    width: 100%;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.user_logo>img{
+    width: 20px;
+    margin-right: 10px;
+}
+.user_logo{
+    color: #1058C3;
+    font-weight: bold;
+}
+.rightDash>button{
+    width: 70px;
+    padding: 5px;
+    border-radius: 5px;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
+.leftDash>span{
+    color: #1058C3;
+    font-weight: bold;
+}
+.filter{
+    margin: 30px;
+}
+.filter>form>label{
+    color: #1058C3;
+    font-weight: bold;
+}
+.table_dash{
+    width: 100%;
+}
+.table_dash>h6{
+    color: #1058C3;
+    font-weight: bold; 
+}
+.table_dash>table{
+    width: 100%;
+}
+.table_dash>table>thead{
+background-color: #1058C3;
+}
+.table_dash>table>thead>tr>th{
+    color: white;
+    padding: 10px;
+}
+.table_dash>table>tbody>tr>td{
+    text-align: center;
+    background: white;
+    color: black ;
+    font-weight: bold;           
+}
+.table_dash>table>tbody>tr>td>img{
+    width: 25px;
+}
+#logd{
+    display: none;
+}
+#menud{
+    display: none;
+}
 
 /* ==================================================
                       FOOTER CSS
@@ -1518,11 +1613,24 @@ footer{
     #inner_main_login{
         padding: 20px 60px;
     }
-
-
-
-
-
+    .left_inner_main_d{
+        display: none;
+    }
+    .right_inner_main_d{
+        width: 100%;
+    }
+    .leftDash{
+        display: none;
+    }
+    .rightDash{
+        display: none;
+    }
+    #logd{
+        display: block;
+    }
+    #menud{
+        display: block;
+    }
 
 
 
@@ -1765,9 +1873,27 @@ footer{
     .singup_link>a{
         font-size: small;
     }
-
-
-
+    .left_inner_main_d{
+        display: none;
+    }
+    .right_inner_main_d{
+        width: 100%;
+    }
+    .leftDash{
+        display: none;
+    }
+    .rightDash{
+        display: none;
+    }
+    /* .table_dash{
+        display: none;
+    } */
+    #logd{
+        display: block;
+    }
+    #menud{
+        display: block;
+    }
 
     .footer-card{
         width: 45%;
@@ -1914,8 +2040,21 @@ footer{
             width: 100%;
         }
 
-
-
+        .left_inner_main_d{
+            display: none;
+        }
+        .right_inner_main_d{
+            width: 100%;
+        }
+        .leftDash{
+            display: none;
+        }
+        .rightDash{
+            display: none;
+        }
+        .table_dash{
+            display: none;
+        }
 
 
 
@@ -2038,7 +2177,12 @@ footer{
             font-size: small;
         }
 
-
+        #logd{
+            display: block;
+        }
+        #menud{
+            display: block;
+        }
 
 
 
