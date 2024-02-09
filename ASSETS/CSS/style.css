@@ -826,6 +826,10 @@ main>h2{
 .message_input>.name_text{
     width: 45%;
 }
+.message_input>.name_text>label{
+    color:#1058C3;
+    font-weight: bold;
+}
 .message_input>.name_text>input{
     width: 100%;
     border:1px solid #1058C3;
@@ -835,6 +839,123 @@ main>h2{
     border-radius: 5px;
 
 }
+.mySkills{
+    width: 100%;
+    margin-top: 20px;
+}
+.mySkills>p{
+    width: 50%;
+}
+.mySkills_display{
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 450px;
+    background: url("https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y29tcHV0ZXJ8ZW58MHx8MHx8fDA%3D");
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    background-position: 100% 100%;
+    margin: 30px 0px;
+    position: relative;
+}
+.proper_skills{
+   background-color: #3c84f0;
+   width: 40%;
+   height: 380px;
+   border-radius: 5px;
+   flex-direction: column;
+   position: absolute;
+   top: 110px;
+   left: 610px;
+}
+.proper_skills>h5{
+    color: white;
+    margin-left:-230px;
+}
+.skils_container{
+    background-color: #63a2ff;
+    width: 80%;
+    height: 20px;
+    border-radius: 10px;
+}
+.self_skills1,.self_skills2,.self_skills3,.self_skills4,.self_skills5{
+    background-color: #1058C3;
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+}
+.self_skills1{
+    width: 95%;
+}
+.self_skills2{
+    width: 85%;
+}
+.self_skills3{
+    width: 90%;
+}
+.self_skills4{
+    width: 75%;
+}
+.self_skills5{
+    width: 88%;
+}
+.self_skills1,.self_skills2,.self_skills3,.self_skills4,.self_skills5>span{
+    color: white;
+    font-weight: bold;
+}
+.my_work{
+    width: 100%;
+    margin: 30px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 30px;
+}
+.work1{
+    background: url("../IMAGES/App-Landing-Page-Template-3.png");
+
+}
+.work2{
+    background: url("../IMAGES/App-Landing-Page-Template-3.png");
+
+}
+.work3{
+    background: url("../IMAGES/223c7a6929c1cd00e7a1e54b5f8c0235.jpg");
+
+}
+.work4{
+    background: url("../IMAGES/website-template-preview-14090.jpg");
+
+}
+.work5{
+    background: url("../IMAGES/images\ \(1\).jpg");
+
+}
+.work6{
+    background: url("../IMAGES/images.jpg");
+
+}
+.work7{
+    background: url("../IMAGES/images.jpg");
+
+}
+.work8{
+    background: url("../IMAGES/App-Landing-Page-Template-3.png");
+
+}
+.work1,.work2,.work3,.work4,.work5,.work6,.work7,.work8{
+    width: 20%;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    background-position: 100% 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 22px;
+}
+
 /* ==================================================
                       FOOTER CSS
 =====================================================*/
@@ -1233,9 +1354,31 @@ footer{
         width:100%;
         margin-left: 0px;
     }
-    /* .message_input>.name_text{
+    .mySkills>p{
         width: 100%;
-    } */
+        font-weight: bold;
+    }
+
+    .proper_skills{
+        background-color: #3c84f0ba;
+        width: 40%;
+        height: 380px;
+        border-radius: 5px;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        left: 310px;
+     }
+
+     .work1,.work2,.work3,.work4,.work5,.work6,.work7,.work8{
+        width: 30%;
+        height: 300px;
+        margin: 10px;
+        
+    }
+
+
+
 
 
 
@@ -1424,6 +1567,37 @@ footer{
     .message_input>.name_text{
         width: 100%;
     }
+    .mySkills>p{
+        width: 100%;
+        font-weight: bold;
+    }
+
+    .mySkills_display{
+        width: 100%;
+        height: 350px;
+    }
+
+
+
+
+    .proper_skills{
+        background-color: #3c84f0e3;
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        flex-direction: column;
+        position: absolute;
+        top:0;
+        left:0;
+     }
+     .work1,.work2,.work3,.work4,.work5,.work6,.work7,.work8{
+        width: 45%;
+        height: 300px;
+        margin: 10px;
+        
+    }
+
+
 
 
     .footer-card{
@@ -1654,6 +1828,38 @@ footer{
         .message_input>.name_text{
             width: 100%;
         }
+        .mySkills>p{
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .mySkills_display{
+            width: 100%;
+            height: 300px;
+        }
+        .proper_skills{
+            background-color: #3c84f0e3;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            flex-direction: column;
+            position: absolute;
+            top:0;
+            left:0;
+         }
+         .work1,.work2,.work3,.work4,.work5,.work6,.work7,.work8{
+            width: 100%;
+            height: 400px;
+            margin: 10px;
+            
+        }
+
+
+
+
+
+
+
 
 
         .footer-card{
