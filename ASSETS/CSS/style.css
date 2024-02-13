@@ -17,7 +17,7 @@ a{
 ul{
     list-style-type: none;
 }
-ul>li{
+.navbar>ul>li,.social-media>ul>li,.right_contact_title>ul>li{
     margin-right: 30px;
 }
 .flex-between-center{
@@ -54,7 +54,7 @@ ul>li{
 
 body{
     width: 100%;
-    min-height: 100vh;
+    /* min-height: 150px; */
 }
 
 /* ==================================================
@@ -265,17 +265,17 @@ main{
 }
 main>h4,main>h2{
     font-weight: bold;
-    font-size: 20px;
+    font-size: 25px;
     color: #1058C3;
 }
 main>h2{
     font-weight: bold;
-    font-size: 30px;
+    font-size: 25px;
     color: #1058C3;
 }
 main>p{
     font-weight: bold;
-    font-size: 40px;
+    font-size: 25px;
 }
 .design_prof{
     display: flex;
@@ -1300,7 +1300,13 @@ footer{
     height: 10px;
     background-color: #1058C3;
 }
-
+.footer-card>button{
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
 
 
 
@@ -1477,7 +1483,7 @@ footer{
      .menu{
          display: block;
      }
-     .profile-pic,.portfolio-pic,.about-pic,.contact-pic,.login-pic,.blog-pic{
+     .profile-pic,.portfolio-pic,.about-pic,.contact-pic,.login-pic,.blog-pic,.signup-pic{
          
          width: 300px;
          height: 300px;
@@ -1640,7 +1646,9 @@ footer{
     footer{
         height: 740px;
     }
-
+    ul>li {
+        margin-right: 0px;
+    }
 
 
 
@@ -1837,7 +1845,11 @@ footer{
         width: 100%;
         height: 350px;
     }
-
+    .design_text {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
 
 
 
@@ -1894,7 +1906,9 @@ footer{
     #menud{
         display: block;
     }
-
+    ul>li {
+        margin-right: 0px;
+    }
     .footer-card{
         width: 45%;
     }
@@ -1908,7 +1922,7 @@ footer{
             position: relative;
             top: 0;
             left: 0;
-            height: 800px;
+            height: 750px;
             overflow-x: hidden;
          }
          .round-bg{
@@ -1924,10 +1938,10 @@ footer{
          .logo>a{
              color: #1058C3;
              font-weight: bold;
-             font-size: 20px;
+             font-size: 15px;
          }
          .navbar{
-             padding:0px 25px;
+             padding:0px 15px;
          }
          .navbar>ul{
             display: none;
@@ -1949,21 +1963,21 @@ footer{
          .menu{
             display: block;
         }
-        .profile-pic,.portfolio-pic,.about-pic,.contact-pic,.login-pic,.blog-pic{
+        .profile-pic,.portfolio-pic,.about-pic,.contact-pic,.login-pic,.blog-pic,.signup-pic{
              
-             width: 300px;
-             height: 300px;
+             width: 200px;
+             height: 200px;
              position: absolute;
-             right: 18px;
-             top:150px;
+             right: 50px;
+             top:200px;
              border-radius: 50%;
          }
          
          .profile-description{
             position:absolute;
-            top:515px;
+            top:460px;
             left:50px;
-            line-height: 50px;
+            line-height: 30px;
             width: 250px;
             height: 140px;
         }
@@ -1980,7 +1994,7 @@ footer{
             text-decoration: underline;
         }
         .profile-description>h1{
-            font-size: 65px;
+            font-size:25px;
         }
         .profile-description>h3{
             font-size: 25px;
@@ -1988,10 +2002,13 @@ footer{
         }
         .header-contact{
             position: absolute;
-            top: 725px;
-            left: 50px;
+            top: 600px;
+            left: 53px;
             width: 180px;
         
+        }
+        ul>li {
+            margin-right: 0px;
         }
         .header-contact>ul>li>img{
             width: 20px;
@@ -2005,9 +2022,20 @@ footer{
             font-weight: bold;
             font-size: 13px;
         }
+
+        main {
+            width: 100%;
+            min-height: 100vh;
+            padding: 5px 10px;
+        }
         main>p{
             font-weight: bold;
             font-size: 15px;
+        }
+        main>h2 {
+            font-weight: bold;
+            font-size: 22px;
+            color: #1058C3;
         }
         .design_text{
             width: 100%;
@@ -2055,18 +2083,88 @@ footer{
         .table_dash{
             display: none;
         }
+        .right_main_comment {
+            width: 10%;
+            padding: 5px;
+        }
+        .right_main_comment>img, .left_reply>img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .bloger_name{
+            font-weight: bold;
+            font-size: 8px;
+        }
+        .comment_title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .comment_like>img {
+            width: 15px;
+            margin: 0px 5px;
+        }
+        .comment_like {
+            width: 44%;
+        }
+        .reply_btn {
+            width: 50px;
+            border-radius: 5px;
+            font-size: 10px;
+        }
+        .like_comm {
+            width: 15px;
+            height: 15px;
+            border: 1px solid #1058C3;
+            border-radius: 50%;
+            color: #1058C3;
+            font-size: 10px;
+        }
+        .reply_btn>img {
+            width: 10px;
+        }
+        .comment_date>img {
+            width: 15px;
+        }
+        .comment_date>span {
+            font-weight: bold;
+            font-size: 8px;
+            color: #535353;
+        }
+        .left_item_title>img, .right_item_title>img {
+            width: 20px;
+            margin-right: 5px;
+        }
+        .left_item_title>span, .right_item_title>span {
+            font-weight: 400;
+            color: #525456;
+            font-size: 12px;
+        }      
 
+        .individual_blog_category>h2 {
+            color: #1058C3;
+            font-size: 15px;
+        }
 
-
-
+        .reply_to_comment>h1{
+            font-size: 20px;
+        }
+        .left_main_comment {
+            width: 90%;
+        }
+        .left_inner_main>h2{
+            font-size: 15px;
+        }
 
 
 
 
         .hire_btn{
             position: absolute;
-            top: 725px;
-            left:65%;
+            top: 700px;
+            left:31%;
             border:none;
             outline: none;
             width: 100px;
@@ -2113,7 +2211,7 @@ footer{
             width: 95%;
         }
         .comment_date {
-           margin-left: 20px;
+           margin-left: 25px;
         }
         .comment_text{
             margin-left: 15px;
@@ -2167,10 +2265,10 @@ footer{
         }
     
         .right_login{
-            width: calc(100% - 30px);
+            width: calc(100% - 0px);
         }
         #inner_main_login{
-            padding: 20px 60px;
+            padding: 0px 0px;
             border: none;
         }
         .singup_link>a{
@@ -2184,13 +2282,44 @@ footer{
             display: block;
         }
 
-
-
-
+        .right_login {
+            border: #1058C3 1px solid;
+            border-radius: 5px;
+            padding: 20px;
+            height: 550px;
+        }
+        .right_login>h3 {
+            color: #1058C3;
+            font-weight: 900;
+            font-size: 20px;
+        }
+        .right_login>form>button {
+            height: 30px;
+            border-radius: 10px;
+            margin: 40px;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .right_login>form>.name_text {
+            width: 100%;
+            height: 30px;
+            margin: 10px 0px;
+            border: #1058C3 2px solid;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+        }
+        .right_login>form>label {
+            color: #1058C3;
+            font-weight: 900;
+            font-size: 22px;
+        }  
+        
 
 
         .footer-card{
-            width: 90%;
+            width: 100%;
         }
         .copyright>p{
             font-size: 10px;
