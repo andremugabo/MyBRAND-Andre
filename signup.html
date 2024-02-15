@@ -47,24 +47,30 @@
                 </div>
                 <div class="right_login">
                     <h3>Sign Up</h3>
-                    <form action="">
-                             <label for="">Username:</label>
-                            <div class="name_text">
-                                <input type="text" placeholder="Enter Username">
+                    <form action="" id="signUpForm">
+                            <label for="">Names:</label>
+                            <div class="name_text" id="names">
+                                <input type="text" placeholder="Enter Username" name="userName" id="setNames">
+                            </div>
+                            <label for="">Email:</label>
+                            <div class="name_text" id="userEmail">
+                                <input type="email" placeholder="Enter Email" name="userEmail" id="setUserEmail">
                             </div>
                             <label for="">Password:</label>
-                            <div class="name_text">
-                                <input type="email" placeholder="Enter Password"><img src="ASSETS/IMAGES/Hide_48px.png" alt="">
+                            <div class="name_text" id="userPassword">
+                                <input type="password" placeholder="Enter Password" id="setPassword"><img src="ASSETS/IMAGES/Hide_48px.png" alt="">
                             </div>
                             <label for="">Confirm Password:</label>
-                            <div class="name_text">
-                                <input type="email" placeholder="Confirm Password"><img src="ASSETS/IMAGES/Hide_48px.png" alt="">
+                            <div class="name_text" id="userCPassword">
+                                <input type="password" placeholder="Confirm Password" id="setCPassword"><img src="ASSETS/IMAGES/Hide_48px.png" alt="">
                             </div>
+                            <div class="hide msgSignup">
+                                
+                            </div>
+                            <button type="submit" >Sign In</button>
                             
-                            <button type="submit">Sign In</button>
-
                             <div class="singup_social_media">
-                                <button type="submit"><img src="ASSETS/IMAGES/Google_48px.png" alt="Google">Continue with Gmail</button>
+                                <button type="button"><img src="ASSETS/IMAGES/Google_48px.png" alt="Google">Continue with Gmail</button>
                             </div>
                             
                             

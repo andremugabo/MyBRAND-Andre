@@ -1078,6 +1078,39 @@ main>h2{
     width: 20px;
     margin-right: 5px;
 }
+.msgSignup,.msgLogin{
+    width: 100%;
+    padding: 5px;
+
+}
+.msgSignup>h6,.msgLogin>h6{
+    color:white;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* DASHBOARD */
 .inner_maind{
     width: 100%;
@@ -1640,7 +1673,7 @@ footer{
     #menud{
         display: block;
     }
-
+    
 
 
     .footer-card{
@@ -1912,6 +1945,20 @@ footer{
     ul>li {
         margin-right: 0px;
     }
+
+    .forgotP>a {
+        font-size: 8px;
+        text-decoration: underline;
+        color: #1058C3;
+        font-weight: bold;
+    }
+    
+    
+
+
+
+
+
     .footer-card{
         width: 45%;
     }
@@ -2317,11 +2364,12 @@ footer{
             font-size: 20px;
         }
         .right_login>form>button {
+            width: 100%;
             height: 30px;
             border-radius: 10px;
-            margin: 40px;
+            margin: 10px 0px;
             font-weight: bold;
-            font-size: 15px;
+            font-size: 12px;
         }
         .right_login>form>.name_text {
             width: 100%;
@@ -2336,8 +2384,21 @@ footer{
         .right_login>form>label {
             color: #1058C3;
             font-weight: 900;
-            font-size: 22px;
+            font-size: 12px;
         }  
+        .forgotP>a {
+            font-size: 8px;
+            text-decoration: underline;
+            color: #1058C3;
+            font-weight: bold;
+        }
+        .singup_link>a {
+            color: #1058C3;
+            text-decoration: underline;
+            font-weight: bold;
+            font-size: smaller;
+        }
+        
         
 
 

@@ -47,14 +47,14 @@
                 </div>
                 <div class="right_login">
                     <h3>Login</h3>
-                    <form action="">
+                    <form action="" id="loginForm">
                              <label for="">Username:</label>
-                            <div class="name_text">
-                                <input type="text" placeholder="Enter Username">
+                            <div class="name_text" id="lUserName">
+                                <input type="text" placeholder="Enter Username" id="userName">
                             </div>
                             <label for="">Password:</label>
-                            <div class="name_text">
-                                <input type="email" placeholder="Enter Password"><img src="ASSETS/IMAGES/Hide_48px.png" alt="">
+                            <div class="name_text" id="passwordL">
+                                <input type="password" placeholder="Enter Password" id="lPassword"><img src="ASSETS/IMAGES/Hide_48px.png" alt="">
                             </div>
                             <div class="forgotP flex-between-center">
                                 <div class="keepS flex-center-items">
@@ -62,14 +62,17 @@
                                 </div>
                                 <a href="#">Forgot password?</a>
                             </div>
-                            <button type="button" onclick="window.location.href='guestDashboard.html'">Sign In</button>
+                            <div class="msgLogin">
+                                
+                            </div>
+                            <button type="submit">Sign In</button>
 
                             <div class="singup_link">
                                 <span>Not a member yet? </span><a href="signup.html">Sign Up</a>
                             </div>
-                            <div class="keepS flex-center-items">
+                            <!-- <div class="keepS flex-center-items">
                                 <div class="square"></div><a href="adminDashboard.html">Admin</a>
-                            </div>
+                            </div> -->
                             
                 </div>
         </div>
