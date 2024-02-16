@@ -243,7 +243,7 @@ function ifLoginExit(email, password) {
         user.userAccount.password === password
       ) {
         displaySuccessMsg(
-          document.querySelector(".msgSignup"),
+          document.querySelector(".msgLogin"),
           "YOU ARE WELCOME AGAIN !! "
         );
         setTimeout(() => {
