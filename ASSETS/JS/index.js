@@ -190,7 +190,6 @@ const signUpFormEvent = (e) => {
       } else {
         dataBase = userData;
         let user = createUser(fullName, SEmail, SPassword);
-        // dataBase.push(user);
         updateLocalStorage(user);
         displaySuccessMsg(
           document.querySelector(".msgSignup"),
