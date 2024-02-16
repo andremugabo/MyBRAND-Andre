@@ -1,6 +1,11 @@
 let dataBase = [];
 let loginUser = null;
 let blogCategory = [];
+const signUpForm = document.getElementById("signUpForm");
+const fullName = document.getElementById("setNames");
+const SEmail = document.getElementById("setUserEmail");
+const SPassword = document.getElementById("setPassword");
+const CSpassword = document.getElementById("setCPassword");
 
 /* ==============================================================
                       NAVBAR MODAL
@@ -38,173 +43,234 @@ document.querySelector(".close_modal").addEventListener("click", function (e) {
 /* ================================================================
                                FUNCTIONS 
 ===================================================================*/
-// display a component
-const displayElement = (element) => {
-  element.classList.remove("hide");
+const setError = (idError, message) => {
+  document.getElementById(idError).classList.remove("hide");
+  document.getElementById(idError).innerText = message;
+};
+const resetError = (idError) => {
+  document.getElementById(idError).classList.add("hide");
 };
 
-// hide a component
-const hideElement = (element) => {
-  setTimeout(function () {
-    element.classList.add("hide");
-  }, 3000);
-};
-
-// change input border
-const borderSuccess = (element) => {
-  element.style.border = "2px solid green";
-};
-
-const borderFail = (element) => {
-  element.style.border = "3px solid red";
-};
-
+// const resetError = (element, idError) => {
+//   document.getElementById(idError).innerText = "";
+//   element.parentElement.style.border = "1px solid #1058C3";
+//   document.getElementById(idError).classList.toggle("hide");
+// };
 // display msg
 const displaySuccessMsg = (element, message) => {
   const header6 = document.createElement("h6");
-  display(element);
-  element.style.background = "#008000b5";
+  element.classList.remove("hide");
+  element.style.background = "#4cb54cb5";
   element.appendChild(header6).innerText = `${message}`;
+  setTimeout(() => {
+    element.classList.add("hide");
+  }, 2000);
 };
 
 const displayFailMessage = (element, message) => {
   const header6 = document.createElement("h6");
-  display(element);
-  element.style.background = "#910000";
+  element.classList.remove("hide");
+  element.style.background = "#770a0afc";
   element.appendChild(header6).innerText = `${message}`;
+  setTimeout(() => {
+    element.classList.add("hide");
+  }, 2000);
 };
-
-// check signup input errors
-
-const signUpUserError = () => {
+const validateSignUpInput = () => {
   if (document.querySelector("#setNames").value.trim() === "") {
-    displayFailMessage(
-      document.querySelector(".msgSignup"),
-      "Fill out your Names !!!"
-    );
-    borderFail(document.querySelector("#names"));
+    setError("name_error", "Your full name is require");
   } else {
-    borderSuccess(document.querySelector("#names"));
-    hideElement(document.querySelector(".msgSignup"));
+    resetError("name_error");
   }
 
   if (document.querySelector("#setUserEmail").value.trim() === "") {
-    displayFailMessage(
-      document.querySelector(".msgSignup"),
-      "Fill out your Email !!"
-    );
-    borderFail(document.querySelector("#userEmail"));
+    setError("userEmail_error", "Your Email is require");
   } else {
-    borderSuccess(document.querySelector("#userEmail"));
-    hideElement(document.querySelector(".msgSignup"));
+    document.querySelector(".error2").classList.add("hide");
   }
 
   if (document.querySelector("#setPassword").value.trim() === "") {
-    displayFailMessage(
-      document.querySelector(".msgSignup"),
-      "Set a password !!!"
-    );
-    borderFail(document.querySelector("#userPassword"));
+    setError("pass_error", "Set a Password");
   } else {
-    borderSuccess(document.querySelector("#userPassword"));
-    hideElement(document.querySelector(".msgSignup"));
+    document.querySelector(".error3").classList.add("hide");
   }
 
   if (document.querySelector("#setCPassword").value.trim() === "") {
-    displayFailMessage(
-      document.querySelector(".msgSignup"),
-      "Fill out your Email !!"
-    );
-    borderFail(document.querySelector("#userCPassword"));
+    setError("cpass_error", "Confirm your Password");
   } else {
-    borderSuccess(document.querySelector("#userCPassword"));
-    hideElement(document.querySelector(".msgSignup"));
+    document.querySelector(".error4").classList.add("hide");
   }
 };
 
-/*----------------------------------------------------
-                      SIGNUP 
-------------------------------------------------------*/
-//signup form event
+//validate login
+const validateLoginInput = () => {
+  if (document.querySelector("#userName").value.trim() === "") {
+    setError("usernameL_error", "Your Username is require");
+  } else {
+    document.querySelector(".error6").classList.add("hide");
+  }
+
+  if (document.querySelector("#lPassword").value.trim() === "") {
+    setError("passwordL_error", "Your Password require");
+  } else {
+    document.querySelector(".error7").classList.add("hide");
+  }
+};
+//validate contact form
+
+const validateContactInput = () => {
+  if (document.querySelector("#contact_name").value.trim() === "") {
+    setError("contact_name_error", "Your name is require");
+  } else {
+    document.querySelector(".error8").classList.add("hide");
+  }
+
+  if (document.querySelector("#contact_email").value.trim() === "") {
+    setError("contact_email_error", "Your Email require");
+  } else {
+    document.querySelector(".error9").classList.add("hide");
+  }
+
+  if (document.querySelector("#contact_msg").value.trim() === "") {
+    setError("contact_msg_error", "Your Message require");
+  } else {
+    document.querySelector(".error10").classList.add("hide");
+  }
+};
+
+//validate blog comment
+
+const validateCommentInput = () => {
+  if (document.querySelector("#comment_msg").value.trim() === "") {
+    setError("comment_msg_error", "Your Comment is require");
+  } else {
+    document.querySelector(".error11").classList.add("hide");
+  }
+};
+// SIGNUP EVENT
 const signUpFormEvent = (e) => {
   e.preventDefault();
   document.querySelector(".msgSignup").innerHTML = "";
-  signUpUserError();
-  signUP();
-};
-
-// login form event
-const loginFormEvent = (e) => {
-  e.preventDefault();
-  document.querySelector(".msgLogin").innerHTML = "";
-  let username = document.querySelector("#userName").value;
-  let password = document.querySelector("#lPassword").value;
-
-  loginUserError();
-  checkIfUserExistForLogin(username, password);
-};
-
-//signup
-const signUP = () => {
-  let fullName = document.querySelector("#setNames").value;
-  let email = document.querySelector("#setUserEmail").value;
-  let password = document.querySelector("#setPassword").value;
-  let cPassword = document.querySelector("#setCPassword").value;
+  validateSignUpInput();
+  const fullName = document.querySelector("#setNames").value;
+  const SEmail = document.querySelector("#setUserEmail").value;
+  const SPassword = document.querySelector("#setPassword").value;
+  const CSpassword = document.querySelector("#setCPassword").value;
 
   if (
-    fullName.length >= 3 &&
-    email.length >= 3 &&
-    password.length >= 3 &&
-    cPassword.length >= 3
+    document.getElementById("setNames").value.length >= 3 &&
+    document.querySelector("#setUserEmail").value.length >= 3 &&
+    document.querySelector("#setPassword").value.length >= 3 &&
+    document.querySelector("#setCPassword").value.length >= 3
   ) {
-    if (password === cPassword) {
-      loginUser = email;
-      let user = createUser(fullName, email, password);
-      checkIfUserExist(user, loginUser);
+    if (SPassword === CSpassword) {
+      const userData = readLocalStorage();
+      if (userData !== null) {
+        for (let userIn of userData) {
+          // console.log(userIn.userAccount.email);
+          if (userIn.userAccount.email === SEmail) {
+            displayFailMessage(
+              document.querySelector(".msgSignup"),
+              "THIS EMAIL IS REGISTERED !!!"
+            );
+            return;
+          }
+        }
+        dataBase = userData;
+        let user = createUser(fullName, SEmail, SPassword);
+        dataBase.push(user);
+        updateLocalStorage(dataBase);
+        displaySuccessMsg(
+          document.querySelector(".msgSignup"),
+          "YOU ARE REGISTERED SUCCESSFULLY!! YOU CAN LOGIN "
+        );
+        setTimeout(() => {
+          window.location.href = "login.html";
+        }, 2000);
+      } else {
+        dataBase = userData;
+        let user = createUser(fullName, SEmail, SPassword);
+        dataBase.push(user);
+        updateLocalStorage(dataBase);
+        displaySuccessMsg(
+          document.querySelector(".msgSignup"),
+          "YOU ARE REGISTERED SUCCESSFULLY!! YOU CAN LOGIN "
+        );
+        setTimeout(() => {
+          window.location.href = "login.html";
+        }, 2000);
+      }
     } else {
       displayFailMessage(
         document.querySelector(".msgSignup"),
-        "PASSWORD DON'T MATCH !!!!"
+        "PASSWORD DON'T MATCH !!!"
       );
     }
   } else {
     displayFailMessage(
       document.querySelector(".msgSignup"),
-      "SOME OF THE ENTERED TEXT ARE TOO SHORT !!!!"
+      "TEXT FILL ARE EMPTY OR TOO SHORT TEXT"
     );
   }
 };
 
-// check login  input errors
+//LOGIN EVENT
+const loginFormEvent = (e) => {
+  e.preventDefault();
+  document.querySelector(".msgLogin").innerHTML = "";
 
-const loginUserError = () => {
-  if (document.querySelector("#userName").value.trim() === "") {
-    displayFailMessage(
-      document.querySelector(".msgLogin"),
-      "Enter a userName !!!"
-    );
-    borderFail(document.querySelector("#lUserName"));
-  } else {
-    borderSuccess(document.querySelector("#lUserName"));
-    hideElement(document.querySelector(".msgLogin"));
-  }
+  validateLoginInput();
+  const userEmail = document.querySelector("#userName").value;
+  const userPassword = document.querySelector("#lPassword").value;
+  ifLoginExit(userEmail, userPassword);
+};
 
-  if (document.querySelector("#lPassword").value.trim() === "") {
+function ifLoginExit(email, password) {
+  let array = readLocalStorage();
+
+  if (array === null) {
     displayFailMessage(
-      document.querySelector(".msgLogin"),
-      "Enter your password !!!"
+      document.querySelector(".msgSignup"),
+      "REGISTER FIRST !!"
     );
-    borderFail(document.querySelector("#passwordL"));
     return;
   } else {
-    borderSuccess(document.querySelector("#passwordL"));
-    hideElement(document.querySelector(".msgLogin"));
+    console.log(email);
+    console.log(password);
+    for (let user of array) {
+      if (
+        user.userAccount.email === email &&
+        user.userAccount.password === password
+      ) {
+        displaySuccessMsg(
+          document.querySelector(".msgSignup"),
+          "YOU ARE WELCOME AGAIN !! "
+        );
+        setTimeout(() => {
+          window.location.href = "guestDashboard.html";
+        }, 2000);
+      } else {
+      }
+    }
   }
+}
+
+//CONTACT EVENT
+const contactFormEvent = (e) => {
+  e.preventDefault();
+  validateContactInput();
 };
 
-/*=====================================================
-                      create user
-=======================================================*/
+//COMMENT EVENT
+const commentFormEvent = (e) => {
+  e.preventDefault();
+  validateCommentInput();
+};
+
+/*#######################################################################
+                          LOCALHOST FUNCTIONALITY
+#########################################################################*/
+//CREATE A USER
 const createUser = (fullName, email, password) => {
   data = {
     userAccount: {
@@ -219,121 +285,19 @@ const createUser = (fullName, email, password) => {
   return data;
 };
 
-const pushUser2Db = (user) => {
-  dataBase.push(user);
+//UPDATE LOCAL STORAGE
+
+const updateLocalStorage = (db) => {
+  let dataBaseText = JSON.stringify(db);
+  window.localStorage.setItem("myBrandAndre", dataBaseText);
 };
 
-const updateLocalStorage = () => {
-  let dataBaseText = JSON.stringify(dataBase);
-  localStorage.setItem("myBrandAndre", dataBaseText);
-};
+// READ LOCAL STORAGE
 
 const readLocalStorage = () => {
-  let getData = localStorage.getItem("myBrandAndre");
+  let getData = window.localStorage.getItem("myBrandAndre");
   let db = JSON.parse(getData);
   return db;
-};
-
-/*====================================================================
-                          SIGNUP PROCESS
-======================================================================*/
-
-const checkIfUserExist = (user, userEmail) => {
-  dataBase = readLocalStorage();
-  if (dataBase === null) {
-    pushUser2Db(user);
-    updateLocalStorage();
-    setTimeout(function () {
-      displaySuccessMsg(
-        document.querySelector(".msgSignup"),
-        "USER REGISTERED SUCCESSFULLY !!!"
-      );
-    }, 3000);
-    window.location.href = "login.html";
-  } else {
-    for (let userIn of dataBase) {
-      if (userIn.userAccount.email === userEmail) {
-        displayFailMessage(
-          document.querySelector(".msgSignup"),
-          "USER EXIST, LOGIN !!!!"
-        );
-        document.getElementById("#signUpForm").reset();
-        document
-          .querySelector(".right_login")
-          .querySelectorAll("input")
-          .forEach(function (d) {
-            d.style.border = "1px solid #1058C3";
-          });
-        return;
-      }
-    }
-
-    pushUser2Db(user);
-    updateLocalStorage();
-    document.getElementById("signUpForm").reset();
-    document
-      .querySelector(".right_login")
-      .querySelectorAll("input")
-      .forEach(function (d) {
-        d.style.border = "1px solid #1058C3";
-      });
-    setTimeout(function () {
-      displaySuccessMsg(
-        document.querySelector(".msgSignup"),
-        "USER REGISTERED SUCCESSFULLY !!!"
-      );
-    }, 3000);
-    window.location.href = "login.html";
-  }
-};
-
-/*=======================================================================
-                         LOGIN PROCESS 
-=========================================================================*/
-
-const checkIfUserExistForLogin = (userEmail, userPassword) => {
-  dataBase = readLocalStorage();
-  if (dataBase !== null) {
-    // console.log(dataBase[0]);
-    for (let lUser of dataBase) {
-      if (lUser.userAccount.email === userEmail) {
-        // console.log(lUser);
-        if (
-          lUser.userAccount.email === userEmail &&
-          lUser.userAccount.password === userPassword
-        ) {
-          if (lUser.userAccount.role === "Admin") {
-            window.location.href = "adminDashboard.html";
-          } else if (lUser.userAccount.role === "Guest") {
-            window.location.href = "guestDashboard.html";
-          } else {
-            displayFailMessage(
-              document.querySelector(".msgLogin"),
-              "  WRONG CREDENTIAL  !!!! "
-            );
-            return;
-          }
-        } else {
-          displayFailMessage(
-            document.querySelector(".msgLogin"),
-            "  WRONG CREDENTIAL  !!!! "
-          );
-        }
-      } else {
-        displayFailMessage(
-          document.querySelector(".msgLogin"),
-          "  THERE IS NO USER WITH THIS EMAIL  !!!! "
-        );
-        return;
-      }
-    }
-  } else {
-    displayFailMessage(
-      document.querySelector(".msgLogin"),
-      "  FIRST REGISTER  !!!! "
-    );
-    return;
-  }
 };
 
 /* =======================================================================
@@ -350,6 +314,18 @@ const eventFunction = () => {
     document
       .getElementById("loginForm")
       .addEventListener("submit", loginFormEvent);
+  }
+
+  if (document.getElementById("contactForm")) {
+    document
+      .getElementById("contactForm")
+      .addEventListener("submit", contactFormEvent);
+  }
+
+  if (document.getElementById("commentForm")) {
+    document
+      .getElementById("commentForm")
+      .addEventListener("submit", commentFormEvent);
   }
 };
 eventFunction();

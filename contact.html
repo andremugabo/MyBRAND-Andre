@@ -91,19 +91,22 @@
                 </div>
                 <h4>Send Us Message</h4>
                 <div class="write_comment">
-                    <form action="">
+                    <form action=""  id="contactForm">
                         <div class="message_input flex-center-items">
                             <div class="name_text">
                                 <label for="">Name:</label>
-                                <input type="text" placeholder="Enter Name">
+                                <input type="text" placeholder="Enter Name" id="contact_name">
+                                <h6 class="error error8 hide" id="contact_name_error"></h6>
                             </div>
                             <div class="name_text">
                                 <label for="">Email:</label>
-                                <input type="email" placeholder="Enter Email">
+                                <input type="email" placeholder="Enter Email" id="contact_email">
+                                <h6 class="error error9 hide" id="contact_email_error"></h6>
                             </div>
                             
                         </div>
-                        <textarea name="" id="" cols="30" rows="10" placeholder="Write a Message"></textarea>
+                        <textarea name=""  cols="30" rows="10" placeholder="Write a Message" id="contact_msg"></textarea>
+                        <h6 class="error error10 hide" id="contact_msg_error"></h6>
                         <button type="submit">SUBMIT NOW</button>
                     </form>
                 </div>
