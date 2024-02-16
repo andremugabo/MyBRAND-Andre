@@ -230,7 +230,7 @@ function ifLoginExit(email, password) {
 
   if (array === null) {
     displayFailMessage(
-      document.querySelector(".msgSignup"),
+      document.querySelector(".msgLogin"),
       "REGISTER FIRST !!"
     );
     return;
