@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Double Line Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="doubleLineChart" width="300" height="200"></canvas>
+
+    <script>
+        // Sample data for two datasets
+        const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+        const dataset1 = [65, 59, 80, 81, 56, 55, 40];
+        const dataset2 = [28, 48, 40, 19, 86, 27, 90];
+
+        // Create the chart
+        var ctx = document.getElementById('doubleLineChart').getContext('2d');
+        var doubleLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Dataset 1',
+                    data: dataset1,
+                    borderColor: 'rgb(255, 99, 132)',
+                    tension: 0.1,
+                    fill: false
+                }, {
+                    label: 'Dataset 2',
+                    data: dataset2,
+                    borderColor: 'rgb(54, 162, 235)',
+                    tension: 0.1,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Month'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Value'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

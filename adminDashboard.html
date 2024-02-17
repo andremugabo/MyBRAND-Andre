@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin DashBoard</title>
     <link rel="stylesheet" href="ASSETS/CSS/style.css">
+
 </head>
 <body>
         <div class="inner_maind">
@@ -12,7 +13,12 @@
                 <div class="logo flex-center-center"><a href="index.html">My&nbsp;Brand&nbsp;Andre</a></div>
                 <div class="side_nav_btn flex-center-center">
                     <ul>
-                        <li><button type="button">Guest</button></li>
+                        <li><button type="button" onclick="window.location.href='adminDashboard.html'">Dashbord</button></li>
+                        <li><button type="button" onclick="window.location.href='blogsCategory.html'">Blog&nbsp;Categories</button></li>
+                        <li><button type="button" onclick="window.location.href='myBlogs.html'">My&nbsp;Blogs</button></li>
+                        <li><button type="button" onclick="window.location.href='blogger.html'">Bloggers</button></li>
+                        <li><button type="button" onclick="window.location.href='profile.html'">Profile</button></li>
+                        <li><button type="button" class="logout_btn flex-center-center"><img src="ASSETS/IMAGES/Shutdown_52px.png" alt="shutdown">Logout</button></li>
                     </ul>
                 </div>
             </div>
@@ -33,84 +39,150 @@
                     <div class="menu" id="menud"><img src="ASSETS/IMAGES/Menu_50px.png" alt="menuPic"></div>
 
                 </div>
-                <div class="filter">
-                    <form action="">
-                        <label for="">Filter:</label>
-                    <select name="filter" id="">
-                        <option value="" selected disabled>Last & Days</option>
-                        <option value="1">Last 7 Days</option>
-                        <option value="2">Last 1 Week</option>
-                        <option value="2">Last 2 Week</option>
-                    </select>
-                    </form>
-                    
-                </div>
-                <div class="table_dash">
-                    <h6>Recent Blogs</h6>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Guest</th>
-                                <th>Blog</th>
-                                <th>Date</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>TH Brand</td>
-                                <td>Designing</td>
-                                <td>2023-Nov-11</td>
-                                <td><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></td>
-                            </tr>
-                            <tr>
-                                <td>TH Brand</td>
-                                <td>Designing</td>
-                                <td>2023-Nov-11</td>
-                                <td><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></td>
-                            </tr>
-                            <tr>
-                                <td>TH Brand</td>
-                                <td>Designing</td>
-                                <td>2023-Nov-11</td>
-                                <td><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></td>
-                            </tr>
-                            <tr>
-                                <td>TH Brand</td>
-                                <td>Designing</td>
-                                <td>2023-Nov-11</td>
-                                <td><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
                 <!-- =================== -->
+                <div class="innerDashboard_title">
+                    <h3>Dashboard</h3>
+                </div>
                 <div class="button_dash">
                     <div class="contact_details flex-center-center">
-                        <div class="contact_item flex-center-center">
-                            <div class="item_image flex-center-center">
-                                <img src="ASSETS/IMAGES/Delete_52px.png" alt="phone">
+
+                        <div class="dashboardBtn flex-center-center">
+                            <div class="itemDash_img flex-center-center">
+                                <img src="ASSETS/IMAGES/Blog_50px.png" alt="phone">
                             </div>
-                            <p>deleted Blog</p>
-                            <p>0</p>
-    
+                            <p>My Blogs</p>
+                            <p>10</p>
                         </div>
-    
-                        <div class="contact_item flex-center-center">
-                            <div class="item_image flex-center-center">
+                        <div class="dashboardBtn flex-center-center">
+                            <div class="itemDash_img flex-center-center">
                                 <img src="ASSETS/IMAGES/New_50px.png" alt="phone">
                             </div>
                             <p>Recent Blog</p>
                             <p>20</p>
-    
                         </div>
+                        <div class="dashboardBtn flex-center-center">
+                            <div class="itemDash_img flex-center-center">
+                                <img src="ASSETS/IMAGES/Check In Desk_50px.png" alt="phone">
+                            </div>
+                            <p>Blogger</p>
+                            <p>5</p>
+                        </div>
+                        <div class="dashboardBtn flex-center-center">
+                            <div class="itemDash_img flex-center-center">
+                                <img src="ASSETS/IMAGES/Comment Discussion_50px.png" alt="phone">
+                            </div>
+                            <p>Comments</p>
+                            <p>60</p>
+                        </div>
+                       
     
                        
-                    </div>
                 </div>
                 <!-- ======== -->
+                <div class="graph_msg">
+                    <div class="dash_graph canvas_graph">
+                        <h4>Line Chart </h4>
+                        <canvas id="doubleLineChart"></canvas>
+                    </div>
+                    <div class="dash_contact_msg table_dashboard">
+                        <h4>Messages From Guests</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Names</th>
+                                    <th>Email</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>TH Brand</td>
+                                    <td>Designing</td>
+                                    <td>2023-Nov-11</td>
+                                    <td><img src="ASSETS/IMAGES/Reading Confirmation_52px_1.png" alt="delete"></td>
+                                </tr>
+                                <tr>
+                                    <td>TH Brand</td>
+                                    <td>Designing</td>
+                                    <td>2023-Nov-11</td>
+                                    <td><img src="ASSETS/IMAGES/Reading Confirmation_52px_1.png" alt="delete"></td>
+                                </tr>
+                                <tr>
+                                    <td>TH Brand</td>
+                                    <td>Designing</td>
+                                    <td>2023-Nov-11</td>
+                                    <td><img src="ASSETS/IMAGES/Reading Confirmation_52px_1.png" alt="delete"></td>
+                                </tr>
+                                <tr>
+                                    <td>TH Brand</td>
+                                    <td>Designing</td>
+                                    <td>2023-Nov-11</td>
+                                    <td><img src="ASSETS/IMAGES/Reading Confirmation_52px_1.png" alt="delete"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    
+                </div>
+                <!-- <div class="innerDashboard_footer">
+                         <h3>Dashboard</h3>
+                </div> -->
             </div>
         </div>
-        <script src="ASSETS/JS/index.js"></script>
+        <script src="ASSETS/JS/chart.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+            // Sample data for two datasets
+            const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+            const dataset1 = [65, 59, 80, 81, 56, 55, 40];
+            const dataset2 = [28, 48, 40, 19, 86, 27, 90];
+    
+            // Create the chart
+            var ctx = document.getElementById('doubleLineChart').getContext('2d');
+            var doubleLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Registered Bloggers',
+                        data: dataset1,
+                        borderColor: 'rgb(255, 99, 132)',
+                        tension: 0.1,
+                        fill: false
+                    }, {
+                        label: 'New Bloggers',
+                        data: dataset2,
+                        borderColor: 'rgb(54, 162, 235)',
+                        tension: 0.1,
+                        fill: false
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Month'
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Blogger Per Month'
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+        <!-- <script src="ASSETS/JS/index.js"></script> -->
+
+
 </body>
 </html>

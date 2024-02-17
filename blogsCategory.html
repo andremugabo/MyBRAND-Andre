@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin DashBoard</title>
+    <link rel="stylesheet" href="ASSETS/CSS/style.css">
+</head>
+<body>
+        <div class="inner_maind">
+            <div class="left_inner_main_d">
+                <div class="logo flex-center-center"><a href="index.html">My&nbsp;Brand&nbsp;Andre</a></div>
+                <div class="side_nav_btn flex-center-center">
+                    <ul>
+                        <li><button type="button" onclick="window.location.href='adminDashboard.html'">Dashbord</button></li>
+                        <li><button type="button" onclick="window.location.href='blogsCategory.html'">Blog&nbsp;Categories</button></li>
+
+                        <li><button type="button" onclick="window.location.href='myBlogs.html'">My&nbsp;Blogs</button></li>
+                        <li><button type="button" onclick="window.location.href='blogger.html'">Bloggers</button></li>
+                        <li><button type="button" onclick="window.location.href='profile.html'">Profile</button></li>
+                        <li><button type="button" class="logout_btn flex-center-center"><img src="ASSETS/IMAGES/Shutdown_52px.png" alt="shutdown">Logout</button></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right_inner_main_d">
+                <div class="dash_title flex-between-center">
+                    <div class="logo flex-center-center" id="logd"><a href="index.html">My&nbsp;Brand&nbsp;Andre</a></div>
+
+                    <div class="leftDash flex-between-center">
+                        <span class="dashboardT">DASHBOARD</span>
+                        <span class="dashboardUser">Admin</span>
+                    </div>
+                    <div class="rightDash flex-between-center">
+                        <div class="user_logo flex-center-center">
+                            <img src="ASSETS/IMAGES/Circled User Male_50px.png" alt="user"><span>Andre</span>
+                        </div>
+                        <button type="button" onclick="window.location.href='login.html'">Logout</button>
+                    </div>
+                    <div class="menu" id="menud"><img src="ASSETS/IMAGES/Menu_50px.png" alt="menuPic"></div>
+
+                </div>
+                <div class="innerDashboard_title">
+                    <h3>Blog&nbsp;Categories</h3>
+                </div>
+                <div class="filter">
+                    <form action="">
+                        <label for="filter">Filter:</label>
+                    <select name="filter" id="filter">
+                        <option value="" selected disabled>Last & Days</option>
+                        <option value="1">Last 7 Days</option>
+                        <option value="2">Last 1 Week</option>
+                        <option value="2">Last 2 Week</option>
+                    </select>
+                    </form>
+                    <Button>New&nbsp;Category</Button>
+                    
+                </div>
+                <div class="table_dash">
+                    <h6>Recent Blogs</h6>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Guest</th>
+                                <th>Blog</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>TH Brand</td>
+                                <td>Designing</td>
+                                <td>2023-Nov-11</td>
+                                <td><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></td>
+                            </tr>
+                            <tr>
+                                <td>TH Brand</td>
+                                <td>Designing</td>
+                                <td>2023-Nov-11</td>
+                                <td><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></td>
+                            </tr>
+                            <tr>
+                                <td>TH Brand</td>
+                                <td>Designing</td>
+                                <td>2023-Nov-11</td>
+                                <td><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></td>
+                            </tr>
+                            <tr>
+                                <td>TH Brand</td>
+                                <td>Designing</td>
+                                <td>2023-Nov-11</td>
+                                <td><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+              
+            </div>
+        </div>
+        <script src="ASSETS/JS/index.js"></script>
+</body>
+</html>
