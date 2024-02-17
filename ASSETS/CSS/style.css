@@ -1231,6 +1231,10 @@ padding: 20px;
     font-weight: bold;
     border-radius: 5px;
 }
+.side_nav_btn>ul>li>button:hover{
+    background-color: #1058c3cb;
+    color: #c1c1c192;
+}
 .user_logo>img{
     width: 20px;
     margin-right: 10px;
@@ -1411,6 +1415,7 @@ background-color: #1058C3;
     background-color: rgba(255, 255, 255, 0.662);
     border-radius: 5px;
     display: flex;
+    flex-wrap: wrap;
 }
 .left_real_profile{
     width: 20%;
@@ -1452,7 +1457,7 @@ background-color: #1058C3;
     border-radius: 2px;
 }
 .edit_notification>button>img{
-    width: 20px;
+    width: 15px;
     margin-right: 5px;
 }
 .notifocation{
@@ -1967,7 +1972,9 @@ footer{
     .table_dashboard {
         width: 100%;
     }  
-
+    .dash_graph{
+        width: 100%;
+    }
 
     .footer-card{
         width: 45%;
