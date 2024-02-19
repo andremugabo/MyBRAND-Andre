@@ -12,12 +12,9 @@
                 <div class="logo flex-center-center"><a href="index.html">My&nbsp;Brand&nbsp;Andre</a></div>
                 <div class="side_nav_btn flex-center-center">
                     <ul>
-                        <li><button type="button" onclick="window.location.href='adminDashboard.html'">Dashboard</button></li>
-                        <li><button type="button" onclick="window.location.href='blogsCategory.html'">Blog&nbsp;Categories</button></li>
-
-                        <li><button type="button" onclick="window.location.href='myBlogs.html'">My&nbsp;Blogs</button></li>
-                        <li><button type="button" onclick="window.location.href='blogger.html'">Bloggers</button></li>
-                        <li><button type="button" onclick="window.location.href='profile.html'">Profile</button></li>
+                        
+                        <li><button type="button" onclick="window.location.href='guestDashboard.html'">My&nbsp;Blogs</button></li>
+                        <li><button type="button" onclick="window.location.href='guestProfile.html'">Profile</button></li>
                         <li><button type="button" class="logout_btn flex-center-center logoutDash"><img src="ASSETS/IMAGES/Shutdown_52px.png" alt="shutdown">Logout</button></li>
                     </ul>
                 </div>
@@ -28,7 +25,7 @@
 
                     <div class="leftDash flex-between-center">
                         <span class="dashboardT">DASHBOARD</span>
-                        <span class="dashboardUser">Admin</span>
+                        <span class="dashboardUser">Guest</span>
                     </div>
                     <div class="rightDash flex-between-center">
                         <div class="user_logo flex-center-center">
@@ -44,7 +41,35 @@
                 </div>
                 <div class="profile_section">
                     <div class="inner_profile_section flex-center-center">
-                        
+                        <!-- <div class="real_profile">
+                            <div class="left_real_profile flex-center-items">
+                                <h5>Blogger&nbsp;Profile</h5>
+                                <div class="profile_pic">
+                                </div>
+                            </div>
+                            <div class="right_real_profile">
+                                <div class="edit_notification">
+                                    <button><img src="ASSETS/IMAGES/Edit_52px.png" alt="edit">Edit&nbsp;Profile</button>
+                                    <div class="notifocation flex-center-items">
+                                        <img src="ASSETS/IMAGES/Bell_52px.png" alt="notifocation"><span class="flex-center-center">3</span> <h6>New&nbsp;Comment</h6>
+                                    </div>
+                                </div>
+                                <div class="profile_details">
+                                    <div class="inner_profile_details">
+                                        <span>FullName : </span><span>Mugabo Andre</span>
+                                    </div>
+                                    <div class="inner_profile_details">
+                                        <span>Email : </span><span>andre@gmail.com</span>
+                                    </div>
+                                    <div class="inner_profile_details">
+                                        <span>Description : </span><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis cumque quos voluptate, natus ut molestiae velit maiores maxime iure quasi non veritatis ad sapiente magnam, facere recusandae laudantium neque eligendi!</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                       </div> -->
                     </div>
 
                 </div>
@@ -61,15 +86,14 @@
             </div>
             <div class="side_nav_btn flex-center-center">
                 <ul>
-                    <li><button type="button" onclick="window.location.href='adminDashboard.html'">Dashboard</button></li>
-                    <li><button type="button" onclick="window.location.href='blogsCategory.html'">Blog&nbsp;Categories</button></li>
-                    <li><button type="button" onclick="window.location.href='myBlogs.html'">My&nbsp;Blogs</button></li>
-                    <li><button type="button" onclick="window.location.href='blogger.html'">Bloggers</button></li>
-                    <li><button type="button" onclick="window.location.href='profile.html'">Profile</button></li>
-                    <li><button type="button" class="logout_btn flex-center-center logoutDash"><img src="ASSETS/IMAGES/Shutdown_52px.png" alt="shutdown">Logout</button></li>
+                    <li><button type="button" onclick="window.location.href='guestDashboard.html'">My&nbsp;Blogs</button></li>
+                        <li><button type="button" onclick="window.location.href='guestProfile.html'">Profile</button></li>
+                        <li><button type="button" class="logout_btn flex-center-center logoutDash"><img src="ASSETS/IMAGES/Shutdown_52px.png" alt="shutdown">Logout</button></li>
                 </ul>
             </div>
         </div>
+
+        <!-- MODAL  -->
         <div class="modal_disp flex-center-center hide">
             <div class="close_button">
                 <button class="close_modal"><img src="ASSETS/IMAGES/Cancel_52px.png" alt="close"></button>
@@ -101,8 +125,9 @@
             </div>
 
         </div>
-        <script src="ASSETS/JS/profile.js"></script>
 
+        <!-- MODAL  -->
+        <script src="ASSETS/JS/guestProfile.js"></script>
         <script>
             // DASHBOARD MENU
             function display(element) {
@@ -136,11 +161,13 @@
                     e.preventDefault();
                     hide(document.querySelector(".dashboard_modal"));
                 });
-                
+
+
+
                 /** ========================================================
                  *                        LOGOUT
                  ========================================================== */
-                 const logoutFunction = (e) => {
+                const logoutFunction = (e) => {
                 e.preventDefault();
                 window.localStorage.removeItem("loggedUser");
                 window.location.href = "login.html";
@@ -151,7 +178,8 @@
                     btn.addEventListener("click", logoutFunction);
                 });
                 }
-                /*===================================================
+
+                 /*===================================================
                                     MODAL
                 ====================================================*/ 
                 document.querySelector(".edit_model").addEventListener("click",(e)=>{
@@ -162,6 +190,7 @@
                     e.preventDefault();
                     hide(document.querySelector(".modal_disp"));
                 })
+
 
         </script>
 </body>

@@ -1133,12 +1133,12 @@ main>h2{
     width: 20px;
     margin-right: 5px;
 }
-.msgSignup,.msgLogin{
+.msgSignup,.msgLogin,.msgEditProfile{
     width: 100%;
     padding: 5px;
 
 }
-.msgSignup>h6,.msgLogin>h6{
+.msgSignup>h6,.msgLogin>h6,.msgEditProfile>h6{
     color:white;
     font-weight: bold;
     text-align: center;
@@ -1394,6 +1394,7 @@ background-color: #1058C3;
 }
 .blogSelf{
     width:100%;
+    min-height: 150px;
     margin-bottom: 20px;
 }
 .profile_section{
@@ -1448,6 +1449,7 @@ background-color: #1058C3;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 .edit_notification>button{
     display: flex;
@@ -1485,6 +1487,168 @@ background-color: #1058C3;
     font-weight: bold;
     margin-left: 20px;
 }
+.profile_details{
+    width: 100%;
+    padding: 10px;
+}
+.inner_profile_details{
+    width: 80%;
+    padding: 10px;
+}
+.inner_profile_details>span{
+    color: #1058C3;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+/* ============================================
+                dashboard menu
+==============================================*/
+
+.dashboard_modal{
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-height: 100vh;
+    background:#1058c327;
+    border-radius: 10px;
+   
+}
+/* ==========================================
+                    MODAL DASHBOARD
+============================================*/
+
+.modal_disp{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 110vh;
+    background:#1058c380;
+    display: flex;
+    flex-direction: column;
+}
+.card{
+    width: 100%;
+    height: 90vh;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+}
+.card>h4{
+    color:white;
+    font-weight: bold;
+    font-size: 15px;
+
+}
+.card_body{
+    width: 40%;
+    background: rgba(255, 255, 255, 0.603);
+    border-radius: 5px;
+}
+.card_body>form{
+    width: 100%;
+
+}
+.card_body>form>label{
+    color: #1058C3;
+    font-weight: bold;
+}
+.input_textProfile{
+    width: 95%;
+    margin-bottom: 5px;
+
+}
+.input_textProfile>input{
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    border-bottom: #1058C3 solid 2px;
+}
+.input_textProfile>button{
+    width: 100%;
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 2px;
+}
+.close_button>button{
+    background-color: transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.dashMenu_Close{
+    background-color: rgba(255, 255, 255, 0.907);
+    width: 100%;
+    height: 60px;
+}
+.dashMenu_Close>button{
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+
+
+
+
+
+
 
 
 
@@ -2251,6 +2415,34 @@ footer{
     .table_dashboard {
         width: 100%;
     }
+    .left_real_profile{
+        width: 100%;
+    }
+    .right_real_profile{
+        width: 100%;
+    }
+    .profile_pic{
+        width: 150px;
+        height: 150px;
+    }
+    .left_selfBlog{
+        width: 100%;
+    }
+    .right_selfBlog{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 20px;
+    justify-content: space-around;
+    align-items: center;
+    }
+
+
+
+
+
+
+
 
 
 
@@ -2260,13 +2452,6 @@ footer{
         color: #1058C3;
         font-weight: bold;
     }
-    
-    
-
-
-
-
-
     .footer-card{
         width: 45%;
     }
@@ -2439,7 +2624,7 @@ footer{
             display: none;
         }
         .table_dash{
-            display: none;
+            /* display: none; */
         }
         .right_main_comment {
             width: 10%;
@@ -2712,7 +2897,82 @@ footer{
         .table_dashboard {
             width: 100%;
         }
-        
+        .left_real_profile{
+            width: 100%;
+        }
+        .right_real_profile{
+            width: 100%;
+        }
+        .notifocation{
+            width: 100%;
+        }
+        .inner_profile_details>span{
+            font-size: 12px;
+        }
+        .edit_notification{
+            padding: 0px 20px;
+        }
+        .edit_notification>button{
+            width: 95%;
+        }
+        .notifocation{
+            display: flex;
+            align-items: center;
+        }
+        .table_dash>table>thead>tr>th {
+            color: white;
+            padding: 5px;
+        }
+        .table_dash>table>tbody>tr>td {
+            font-size: 12px;
+        }
+        .dash_title {
+            border-bottom: #1058C3 2px solid;
+            padding: 0px 40px;
+        }
+        .left_selfBlog{
+        width: 100%;
+        min-height: 150px;
+        display: flex;
+        flex-direction: row;
+        padding: 10px 20px;
+        justify-content: space-around;
+        align-items: center;
+
+        }
+        .right_selfBlog{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        padding: 10px 20px;
+        justify-content: space-around;
+        align-items: center;
+        }
+        .blog_img{
+            width: 100%;
+            min-height: 150px;
+        }
+        .blog_desciption{
+            width: 100%;
+        }
+        .blog_desciption{
+            border: none;
+        }
+        .innerBlogSelf{
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+        }
+        .right_selfBlog>button {
+            width: 50px;
+            font-size: 8px;
+        }
+
+
+
+
+
+
 
 
         .footer-card{
