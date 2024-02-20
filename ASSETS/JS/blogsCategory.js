@@ -125,7 +125,6 @@ const insertBlogCategory = (e) => {
 
 let displayCategory = readLocalStorageCategory();
 if (displayCategory !== null) {
-  git;
   let num = 0;
   for (const items of displayCategory) {
     num += 1;
