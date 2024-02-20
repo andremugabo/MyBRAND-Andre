@@ -151,7 +151,17 @@
                     btn.addEventListener("click", logoutFunction);
                 });
                 }
-                
+                /*===================================================
+                                    MODAL
+                ====================================================*/ 
+                document.querySelector(".edit_model").addEventListener("click",(e)=>{
+                    e.preventDefault();
+                    display(document.querySelector(".modal_disp"));
+                })
+                document.querySelector(".close_modal").addEventListener("click",(e)=>{
+                    e.preventDefault();
+                    hide(document.querySelector(".modal_disp"));
+                })
 
         </script>
 </body>
