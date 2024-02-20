@@ -84,9 +84,9 @@
                         </div>
                         <h6 class="error error13 hide" id="admim_desc_error">4</h6>
 
-                        <label for="admin_pic">Picture:</label>
+                        <label for="admin_pic">Picture link:</label>
                         <div class="input_textProfile">
-                            <input type="file" value="" id="admin_pic">
+                            <input type="text" value="" id="admin_pic">
                         </div>
                         <h6 class="error error14 hide" id="admin_pic_error">4</h6>
                         <div class="msgEditProfile">
@@ -151,17 +151,7 @@
                     btn.addEventListener("click", logoutFunction);
                 });
                 }
-                /*===================================================
-                                    MODAL
-                ====================================================*/ 
-                document.querySelector(".edit_model").addEventListener("click",(e)=>{
-                    e.preventDefault();
-                    display(document.querySelector(".modal_disp"));
-                })
-                document.querySelector(".close_modal").addEventListener("click",(e)=>{
-                    e.preventDefault();
-                    hide(document.querySelector(".modal_disp"));
-                })
+                
 
         </script>
 </body>

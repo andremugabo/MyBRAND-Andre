@@ -52,7 +52,7 @@
                         <option value="2">Last 2 Week</option>
                     </select>
                     </form>
-                    <Button>New&nbsp;Category</Button>
+                    <Button class="edit_model">New&nbsp;Category</Button>
                     
                 </div>
                 <div class="table_dash">
@@ -60,37 +60,13 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Guest</th>
-                                <th>Blog</th>
-                                <th>Date</th>
+                                <th>#</th>
+                                <th>Category&nbsp;Name</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>TH Brand</td>
-                                <td>Designing</td>
-                                <td>2023-Nov-11</td>
-                                <td><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></td>
-                            </tr>
-                            <tr>
-                                <td>TH Brand</td>
-                                <td>Designing</td>
-                                <td>2023-Nov-11</td>
-                                <td><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></td>
-                            </tr>
-                            <tr>
-                                <td>TH Brand</td>
-                                <td>Designing</td>
-                                <td>2023-Nov-11</td>
-                                <td><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></td>
-                            </tr>
-                            <tr>
-                                <td>TH Brand</td>
-                                <td>Designing</td>
-                                <td>2023-Nov-11</td>
-                                <td><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></td>
-                            </tr>
+                        <tbody class="category_body">
+                           
                         </tbody>
                     </table>
                 </div>
@@ -113,6 +89,42 @@
                 </ul>
             </div>
         </div>
+
+
+         <!-- MODAL  -->
+         <div class="modal_disp flex-center-center hide">
+            <div class="close_button">
+                <button class="close_modal"><img src="ASSETS/IMAGES/Cancel_52px.png" alt="close"></button>
+            </div>
+            <div class="card  flex-center-center">
+                <h4>Edit&nbsp;Profile</h4>
+                <div class="card_body">
+                    <form action="" enctype="multipart/form-data" id="insertBolgC">
+                        <label for="admin_CategoryB">Blog&nbsp;Category:</label>
+                        <div class="input_textProfile">
+                            <input type="text" value="" id="admin_Category" placeholder="Enter Blog Category">
+                        </div>
+                        <h6 class="error error15 hide" id="admim_CBlog_error">4</h6>
+
+                        
+                        <div class="msgInsertBlog">
+
+                        </div>
+
+                        <div class="input_textProfile">
+                            <button type="submit">EDIT</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- MODAL  -->
+
+
+
+        <script src="ASSETS/JS/blogsCategory.js"></script>
         <script>
              function display(element) {
                                         element.classList.remove("hide");
@@ -160,6 +172,36 @@
                     btn.addEventListener("click", logoutFunction);
                 });
                 }
+
+                const readLocalStorage = () => {
+                let getData = window.localStorage.getItem("users");
+                let db = JSON.parse(getData);
+                return db;
+                };
+
+                                let logged = "";
+                logged = window.localStorage.getItem("loggedUser");
+                let id = JSON.parse(logged);
+                userData = readLocalStorage();
+                // console.log(id);
+                // console.log(userData);
+                let userObject = userData.find((rec) => rec.u_id === id);
+                // console.log(userObject.u_name);
+                document.querySelector(".user_logo").innerHTML = `
+                <img src="${userObject.u_pic}" alt="user"><span>${userObject.u_name}</span>
+                `;
+                 /*===================================================
+                                    MODAL
+                ====================================================*/ 
+                document.querySelector(".edit_model").addEventListener("click",(e)=>{
+                    e.preventDefault();
+                    display(document.querySelector(".modal_disp"));
+                })
+                document.querySelector(".close_modal").addEventListener("click",(e)=>{
+                    e.preventDefault();
+                    hide(document.querySelector(".modal_disp"));
+                })
+
 
 
         </script>

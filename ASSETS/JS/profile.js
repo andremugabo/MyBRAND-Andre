@@ -11,16 +11,19 @@ const setLogged = (userId) => {
   window.localStorage.setItem("loggedUser", userIdText);
 };
 
-let upLoaded_image = "";
+var image_link = "";
 let userData;
 let logged = "";
 logged = window.localStorage.getItem("loggedUser");
 let id = JSON.parse(logged);
 userData = readLocalStorage();
-console.log(id);
-console.log(userData);
+// console.log(id);
+// console.log(userData);
 let userObject = userData.find((rec) => rec.u_id === id);
-console.log(userObject.u_name);
+// console.log(userObject.u_name);
+document.querySelector(".user_logo").innerHTML = `
+<img src="${userObject.u_pic}" alt="user"><span>${userObject.u_name}</span>
+`;
 document.querySelector(".inner_profile_section").innerHTML = `
         <div class="real_profile">
         <div class="left_real_profile flex-center-items">
@@ -53,14 +56,6 @@ document.querySelector(".inner_profile_section").innerHTML = `
 
 `;
 
-document.querySelector("#admin_pic").addEventListener("change", () => {
-  let fReader = new FileReader();
-  fReader.addEventListener("load", () => {
-    upLoaded_image = fReader.result;
-  });
-  fReader.readAsDataURL(this.files[0]);
-});
-console.log(upLoaded_image);
 const setError = (idError, message) => {
   document.getElementById(idError).classList.remove("hide");
   document.getElementById(idError).innerText = message;
@@ -112,14 +107,35 @@ const editProfile = (e) => {
     );
     return;
   } else {
-    let despt = document.querySelector("#admin_desc").value;
-    let pic = upLoaded_image;
-    let user = userData.findIndex((rec) => rec.u_id === id);
-    console.log(userData[user].u_dec);
-    userData[user].u_dec = despt;
+    const description = document.querySelector("#admin_desc").value;
+    const pic = document.querySelector("#admin_pic").value;
+    let user = userData.find((rec) => rec.u_id === id);
+    user.u_dec = description;
+    user.u_pic = pic;
+    window.localStorage.setItem("users", JSON.stringify(userData));
+    window.location.href = "profile.html";
   }
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+  const userD = userData.find((rec) => rec.u_id === id);
+  if (userD) {
+    const profilePic = document.querySelector(".profile_pic");
+
+    // Check if u_pic contains a valid URL
+    if (userD.u_pic && userD.u_pic.startsWith("http")) {
+      const img = new Image();
+      img.src = userD.u_pic;
+      img.onload = () => {
+        profilePic.style.backgroundImage = `url(${img.src})`;
+      };
+    } else {
+      // Handle invalid URL or missing image
+      console.error("Invalid image URL:", userD.u_pic);
+      // Set a default image or display an error message
+    }
+  }
+});
 document.querySelector("#edit_adminP").addEventListener("submit", editProfile);
 
 /* ==================================================================

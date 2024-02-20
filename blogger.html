@@ -56,41 +56,24 @@
                     
                 </div>
                 <div class="table_dash">
-                    <h6>Recent Blogs</h6>
+                    <h6>Registered Bloggers</h6>
                     <table>
                         <thead>
                             <tr>
-                                <th>Guest</th>
-                                <th>Blog</th>
-                                <th>Date</th>
+                                <th>#</th>
+                                <th>Picture</th>
+                                <th>FullName</th>
+                                <th>Email</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>TH Brand</td>
+                        <tbody class="blogger_tbody">
+                            <!-- <tr>
+                                <td><div class="profile_image"></div></td>
                                 <td>Designing</td>
                                 <td>2023-Nov-11</td>
-                                <td><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></td>
-                            </tr>
-                            <tr>
-                                <td>TH Brand</td>
-                                <td>Designing</td>
-                                <td>2023-Nov-11</td>
-                                <td><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></td>
-                            </tr>
-                            <tr>
-                                <td>TH Brand</td>
-                                <td>Designing</td>
-                                <td>2023-Nov-11</td>
-                                <td><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></td>
-                            </tr>
-                            <tr>
-                                <td>TH Brand</td>
-                                <td>Designing</td>
-                                <td>2023-Nov-11</td>
-                                <td><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></td>
-                            </tr>
+                                <td><img src="ASSETS/IMAGEs/Visible_48px.png" alt="view"></td>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -114,6 +97,7 @@
                 </ul>
             </div>
         </div>
+        <script src="ASSETS/JS/blogger.js"></script>
         <script>
             // DASHBOARD MENU
             function display(element) {
@@ -162,6 +146,20 @@
                     btn.addEventListener("click", logoutFunction);
                 });
                 }
+
+                
+
+                                let logged = "";
+                logged = window.localStorage.getItem("loggedUser");
+                let id = JSON.parse(logged);
+                userData = readLocalStorage();
+                // console.log(id);
+                // console.log(userData);
+                let userObject = userData.find((rec) => rec.u_id === id);
+                // console.log(userObject.u_name);
+                document.querySelector(".user_logo").innerHTML = `
+                <img src="${userObject.u_pic}" alt="user"><span>${userObject.u_name}</span>
+                `;
 
         </script>
 </body>

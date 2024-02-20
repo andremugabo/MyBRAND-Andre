@@ -1133,12 +1133,12 @@ main>h2{
     width: 20px;
     margin-right: 5px;
 }
-.msgSignup,.msgLogin,.msgEditProfile{
+.msgSignup,.msgLogin,.msgEditProfile,.msgInsertBlog{
     width: 100%;
     padding: 5px;
 
 }
-.msgSignup>h6,.msgLogin>h6,.msgEditProfile>h6{
+.msgSignup>h6,.msgLogin>h6,.msgEditProfile>h6,.msgInsertBlog>h6{
     color:white;
     font-weight: bold;
     text-align: center;
@@ -1237,7 +1237,9 @@ padding: 20px;
 }
 .user_logo>img{
     width: 20px;
+    height: 20px;
     margin-right: 10px;
+    border-radius: 50%;
 }
 .user_logo{
     color: #1058C3;
@@ -1291,10 +1293,22 @@ background-color: #1058C3;
     color: black ;
     font-weight: bold;           
 }
-.table_dash>table>tbody>tr>td>img{
-    width: 25px;
+.table_dash>table>tbody>tr>td>button{
+    background:transparent;
 }
+.table_dash>table>tbody>tr>td>button>img{
+    width: 30px;
+}
+.profile_image{
+    width: 50px;
+    height: 50px;
+}
+.profile_image>img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 
+}
 
 .table_dashboard{
     width: 50%;
@@ -1400,7 +1414,7 @@ background-color: #1058C3;
 .profile_section{
     width: 100%;
     min-height: 85vh;
-    background: url("https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxvZ3xlbnwwfHwwfHx8MA%3D%3D");
+    /* background: url("https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxvZ3xlbnwwfHwwfHx8MA%3D%3D"); */
     background-repeat: no-repeat;
     background-size:100% 100%;
     background-position: 100% 100%;
@@ -1435,7 +1449,7 @@ background-color: #1058C3;
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background: url("https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D");
+    /* background: url("https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"); */
     background-repeat: no-repeat;
     background-size:100% 100%;
     background-position: 100% 100%;
