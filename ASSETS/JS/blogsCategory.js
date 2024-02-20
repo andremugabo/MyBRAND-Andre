@@ -124,34 +124,36 @@ const insertBlogCategory = (e) => {
 };
 
 let displayCategory = readLocalStorageCategory();
-let num = 0;
-for (const items of displayCategory) {
-  num += 1;
-  console.log(items);
-  document.querySelector(".category_body").innerHTML += `
-    <tr>
-    <td>${num}</td>
-    <td>${items.c_name}</td>
-    <td><button type="button" onClick="remove(${items.c_id})"><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></button></td>
-    </tr>
-    
-    `;
+if (displayCategory !== null) {
+  let num = 0;
+  for (const items of displayCategory) {
+    num += 1;
+    console.log(items);
+    document.querySelector(".category_body").innerHTML += `
+        <tr>
+        <td>${num}</td>
+        <td>${items.c_name}</td>
+        <td><button type="button" onClick="remove(${items.c_id})"><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></button></td>
+        </tr>
+        
+        `;
+  }
+
+  const filter = (c_id) => {
+    displayCategory = displayCategory.filter((rec) => rec.c_id === c_id);
+    console.log(displayCategory);
+  };
+
+  const remove = (c_id) => {
+    const categoryToDelete = displayCategory.find((rec) => rec.c_id === c_id);
+    console.log(categoryToDelete);
+    const index = displayCategory.indexOf(categoryToDelete);
+    console.log(index);
+    displayCategory.splice(index, 1);
+    updateLocalStorage(displayCategory);
+    location.reload();
+  };
 }
-
-const filter = (c_id) => {
-  displayCategory = displayCategory.filter((rec) => rec.c_id === c_id);
-  console.log(displayCategory);
-};
-
-const remove = (c_id) => {
-  const categoryToDelete = displayCategory.find((rec) => rec.c_id === c_id);
-  console.log(categoryToDelete);
-  const index = displayCategory.indexOf(categoryToDelete);
-  console.log(index);
-  displayCategory.splice(index, 1);
-  updateLocalStorage(displayCategory);
-  location.reload();
-};
 
 /*================================================================
                                 EVENT 
