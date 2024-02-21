@@ -178,6 +178,76 @@
         <div class="bottom-footer"></div>
     </footer>
     <script src="ASSETS/JS/index.js"></script>
+    <script>
+        const setError = (idError, message) => {
+  document.getElementById(idError).classList.remove("hide");
+  document.getElementById(idError).innerText = message;
+};
+const resetError = (idError) => {
+  document.getElementById(idError).classList.add("hide");
+};
+const displaySuccessMsg = (element, message) => {
+  const header6 = document.createElement("h6");
+  element.classList.remove("hide");
+  element.style.background = "#4cb54cb5";
+  element.appendChild(header6).innerText = `${message}`;
+  setTimeout(() => {
+    element.classList.add("hide");
+  }, 2000);
+};
+
+const displayFailMessage = (element, message) => {
+  const header6 = document.createElement("h6");
+  element.classList.remove("hide");
+  element.style.background = "#770a0afc";
+  element.appendChild(header6).innerText = `${message}`;
+  setTimeout(() => {
+    element.classList.add("hide");
+  }, 2000);
+};
+
+// const validateCommentInput = () => {
+//   if (document.querySelector("#comment_msg").value.trim() === "") {
+//     setError("comment_msg_error", "Your Comment is require");
+//   } else {
+//     document.querySelector(".error11").classList.add("hide");
+//   }
+// };
+const validateContactInput = () => {
+  if (document.querySelector("#contact_name").value.trim() === "") {
+    setError("contact_name_error", "Your name is require");
+  } else {
+    document.querySelector(".error8").classList.add("hide");
+  }
+
+  if (document.querySelector("#contact_email").value.trim() === "") {
+    setError("contact_email_error", "Your Email require");
+  } else {
+    document.querySelector(".error9").classList.add("hide");
+  }
+  if (document.querySelector("#contact_msg").value.trim() === "") {
+    setError("contact_msg_error", "Your Message require");
+  } else {
+    document.querySelector(".error10").classList.add("hide");
+  }
+};
+//CONTACT EVENT
+const contactFormEvent = (e) => {
+  e.preventDefault();
+  validateContactInput();
+};
+
+
+
+if (document.getElementById("contactForm")) {
+  document
+    .getElementById("contactForm")
+    .addEventListener("submit", contactFormEvent);
+}
+
+
+
+    </script>
     
 </body>
 </html>

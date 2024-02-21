@@ -16,6 +16,9 @@ let userData;
 let logged = "";
 logged = window.localStorage.getItem("loggedUser");
 let id = JSON.parse(logged);
+if (logged === null) {
+  window.location.href = "login.html";
+}
 userData = readLocalStorage();
 // console.log(id);
 // console.log(userData);

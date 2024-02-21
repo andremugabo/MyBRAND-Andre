@@ -52,72 +52,11 @@
                         <option value="2">Last 2 Week</option>
                     </select>
                     </form>
-                    <Button>New&nbsp;Blog</Button>
+                    <Button type="button" class="edit_model">New&nbsp;Blog</Button>
                 </div>
                 <div class="blog_creation">
 
-                    <div class="blogSelf">
-                        <h4>Title: UI/UX Design&nbsp;|&nbsp;Category: Design</h4> 
-                        <div class="innerBlogSelf">
-                            <div class="left_selfBlog">
-                            <div class="blog_img"></div>
-                            <div class="blog_desciption">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum tenetur non odio obcaecati? Illum ut laudantium veritatis, velit quisquam nihil, illo porro quibusdam sapiente, ex praesentium necessitatibus iusto nemo? Non!</p>
-                                <h5 class="blog_author">Author : Mugabo Andre</h5>
-                                <h6>Published : 2024/Feb/14</h6>
-                            </div>
-                            </div>
-                            <div class="right_selfBlog">
-                                <button>Edit</button>
-                                <span  class="flex-center-center">Comments :&nbsp; 20</span>
-                                <button>View&nbsp;Blog</button>
-                                <span  class="flex-center-center"><img src="ASSETS/IMAGES/Thumb Up_52px.png" alt="like">&nbsp;10</span>
-                                <span  class="flex-center-center"><img src="ASSETS/IMAGES/Thumbs Down_48px.png" alt="like">&nbsp;0</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="blogSelf">
-                        <h4>Title: UI/UX Design&nbsp;|&nbsp;Category: Design</h4> 
-                        <div class="innerBlogSelf">
-                            <div class="left_selfBlog">
-                            <div class="blog_img"></div>
-                            <div class="blog_desciption">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum tenetur non odio obcaecati? Illum ut laudantium veritatis, velit quisquam nihil, illo porro quibusdam sapiente, ex praesentium necessitatibus iusto nemo? Non!</p>
-                                <h5 class="blog_author">Author : Mugabo Andre</h5>
-                                <h6>Published : 2024/Feb/14</h6>
-                            </div>
-                            </div>
-                            <div class="right_selfBlog">
-                                <button>Edit</button>
-                                <span  class="flex-center-center">Comments :&nbsp; 20</span>
-                                <button>View&nbsp;Blog</button>
-                                <span  class="flex-center-center"><img src="ASSETS/IMAGES/Thumb Up_52px.png" alt="like">&nbsp;10</span>
-                                <span  class="flex-center-center"><img src="ASSETS/IMAGES/Thumbs Down_48px.png" alt="like">&nbsp;0</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="blogSelf">
-                        <h4>Title: UI/UX Design&nbsp;|&nbsp;Category: Design</h4> 
-                        <div class="innerBlogSelf">
-                            <div class="left_selfBlog">
-                            <div class="blog_img"></div>
-                            <div class="blog_desciption">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum tenetur non odio obcaecati? Illum ut laudantium veritatis, velit quisquam nihil, illo porro quibusdam sapiente, ex praesentium necessitatibus iusto nemo? Non!</p>
-                                <h5 class="blog_author">Author : Mugabo Andre</h5>
-                                <h6>Published : 2024/Feb/14</h6>
-                            </div>
-                            </div>
-                            <div class="right_selfBlog">
-                                <button>Edit</button>
-                                <span  class="flex-center-center">Comments :&nbsp; 20</span>
-                                <button>View&nbsp;Blog</button>
-                                <span  class="flex-center-center"><img src="ASSETS/IMAGES/Thumb Up_52px.png" alt="like">&nbsp;10</span>
-                                <span  class="flex-center-center"><img src="ASSETS/IMAGES/Thumbs Down_48px.png" alt="like">&nbsp;0</span>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                 </div>
 
@@ -144,6 +83,64 @@
                 </ul>
             </div>
         </div>
+
+
+        <!-- MODAL  -->
+        <div class="modal_disp flex-center-center hide ">
+            <div class="close_button">
+                <button class="close_modal"><img src="ASSETS/IMAGES/Cancel_52px.png" alt="close"></button>
+            </div>
+            <div class="cardProfile  flex-center-center">
+                <h4>My&nbsp;Blog</h4>
+                <div class="card_bodyProfile">
+                    <form action="" enctype="multipart/form-data" id="createBlog">
+                        <label for="admin_Blog">Blog&nbsp;Title:</label>
+                        <div class="input_textProfile">
+                            <input type="text" value="" id="admin_BloTitle" placeholder="Enter Blog Title">
+                        </div>
+                        <h6 class="error error20 hide" id="admin_BlogTitle_error">4</h6>
+
+                        <label for="admin_Category">Blog&nbsp;Category:</label>
+                        <div class="input_textProfile">
+                            <select name="" id="admin_Category">
+                                <option value="" selected disabled>Select&nbsp;Category</option>
+                                
+                            </select>
+                        </div>
+                        <h6 class="error error21 hide" id="admin_BlogCategory_error">4</h6>
+
+                        <label for="admin_BlogDescription">Blog&nbsp;Description:</label>
+                        <div class="input_textProfile">
+                            <input type="text"  value="" id="admin_BlogDescription" placeholder="Enter a Short Description">
+                        </div>
+                        <h6 class="error error22 hide" id="admin_BlogDesc_error">4</h6>
+
+                        <label for="admin_BlogContainer">Blog&nbsp;Container:</label>
+                        <div class="input_textProfile">
+                            <textarea cols="65" rows="10"  value="" id="admin_BlogContainer" placeholder="Write your Blog"></textarea>
+                        </div>
+                        <h6 class="error error23 hide" id="admin_BlogContainer_error">4</h6>
+
+                        <label for="admin_BlogPicture">Blog&nbsp;Picture:</label>
+                        <div class="input_textProfile">
+                            <input type="text"  value="" id="admin_BlogPicture" placeholder="Enter a Short Description">
+                        </div>
+                        <h6 class="error error24 hide" id="admin_BlogPic_error">4</h6>
+                        <div class="msgBlog">
+
+                        </div>
+
+                        <div class="input_textProfile">
+                            <button type="submit">Create&nbsp;Blog</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- MODAL  -->
+        <script src="ASSETS/JS/myBlog.js"></script>
         <script>
 // DASHBOARD MENU
                     function display(element) {
@@ -203,6 +200,9 @@
                                 let logged = "";
                 logged = window.localStorage.getItem("loggedUser");
                 let id = JSON.parse(logged);
+                if(logged === null){
+                    window.location.href="login.html";
+                }
                 userData = readLocalStorage();
                 // console.log(id);
                 // console.log(userData);
@@ -211,6 +211,45 @@
                 document.querySelector(".user_logo").innerHTML = `
                 <img src="${userObject.u_pic}" alt="user"><span>${userObject.u_name}</span>
                 `;
+                /*===================================================
+                                    MODAL
+                ====================================================*/ 
+                document.querySelector(".edit_model").addEventListener("click",(e)=>{
+                    e.preventDefault();
+                    display(document.querySelector(".modal_disp"));
+                })
+                console.log(document.querySelector(".edit_model"));
+                document.querySelector(".close_modal").addEventListener("click",(e)=>{
+                    e.preventDefault();
+                    hide(document.querySelector(".modal_disp"));
+                })
+                /*=============================================
+                                CATEGORY
+                ===============================================*/ 
+                let categoryData = [];
+                const readLocalStorageCategory = () => {
+                let getData = window.localStorage.getItem("category");
+                let db = JSON.parse(getData);
+                return db;
+                };
+
+                categoryData = readLocalStorageCategory();
+                if(categoryData !== null){
+                    for(const keys of categoryData){
+                console.log(keys);
+
+                            document.querySelector("#admin_Category").innerHTML +=`
+                                        <option value="${keys.c_name}">${keys.c_name}</option>
+                                       
+                        `;
+                    }
+                        
+                }
+                
+
+
+
+
 
 
         </script>

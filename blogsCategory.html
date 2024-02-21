@@ -96,9 +96,9 @@
             <div class="close_button">
                 <button class="close_modal"><img src="ASSETS/IMAGES/Cancel_52px.png" alt="close"></button>
             </div>
-            <div class="card  flex-center-center">
-                <h4>Edit&nbsp;Profile</h4>
-                <div class="card_body">
+            <div class="cardProfile  flex-center-center">
+                <h4>Blog&nbsp;Category</h4>
+                <div class="card_bodyProfile">
                     <form action="" enctype="multipart/form-data" id="insertBolgC">
                         <label for="admin_CategoryB">Blog&nbsp;Category:</label>
                         <div class="input_textProfile">
@@ -112,7 +112,7 @@
                         </div>
 
                         <div class="input_textProfile">
-                            <button type="submit">EDIT</button>
+                            <button type="submit">CREATE&nbsp;CATEGORY</button>
                         </div>
                     </form>
                 </div>
@@ -182,6 +182,9 @@
                                 let logged = "";
                 logged = window.localStorage.getItem("loggedUser");
                 let id = JSON.parse(logged);
+                if(logged === null){
+                    window.location.href="login.html";
+                }
                 userData = readLocalStorage();
                 // console.log(id);
                 // console.log(userData);

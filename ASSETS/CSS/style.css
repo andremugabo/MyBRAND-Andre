@@ -463,6 +463,11 @@ main>h2{
     background-size:100% 100%;
     background-position: 100% 100%;
 }
+#blog_picture>img{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
 .blog1_items_img,.blog2_items_img,.blog3_items_img{
     width: 40%;
     height: 80%;
@@ -486,8 +491,12 @@ main>h2{
     align-items: center;
     width: 50%;
 }
+#user_pic{
+    border-radius: 50%;
+}
 .left_item_title>img,.right_item_title>img{
-    width: 40px;
+    width: 50px;
+    height: 50px;
     margin-right: 5px;
 }
 .left_item_title>span,.right_item_title>span{
@@ -1133,12 +1142,12 @@ main>h2{
     width: 20px;
     margin-right: 5px;
 }
-.msgSignup,.msgLogin,.msgEditProfile,.msgInsertBlog{
+.msgSignup,.msgLogin,.msgEditProfile,.msgInsertBlog,.msgBlog{
     width: 100%;
     padding: 5px;
 
 }
-.msgSignup>h6,.msgLogin>h6,.msgEditProfile>h6,.msgInsertBlog>h6{
+.msgSignup>h6,.msgLogin>h6,.msgEditProfile>h6,.msgInsertBlog>h6,.msgBlog>h6{
     color:white;
     font-weight: bold;
     text-align: center;
@@ -1371,11 +1380,14 @@ background-color: #1058C3;
 
 
 }
-.blog_img{
-    background: url("https://images.unsplash.com/photo-1485988412941-77a35537dae4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGJsb2d8ZW58MHx8MHx8fDA%3D");
+.blog_img>img{
+    /* background: url("https://images.unsplash.com/photo-1485988412941-77a35537dae4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGJsb2d8ZW58MHx8MHx8fDA%3D");
     background-repeat: no-repeat;
     background-size:100% 100%;
-    background-position: 100% 100%;
+    background-position: 100% 100%; */
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
 }
 .blog_desciption>p{
     margin-bottom: 5px;
@@ -1543,29 +1555,32 @@ background-color: #1058C3;
     display: flex;
     flex-direction: column;
 }
-.card{
+.cardProfile{
     width: 100%;
     height: 90vh;
     background: transparent;
     display: flex;
     flex-direction: column;
 }
-.card>h4{
+.cardProfile>h4{
     color:white;
     font-weight: bold;
     font-size: 15px;
 
 }
-.card_body{
+.card_bodyProfile{
     width: 40%;
     background: rgba(255, 255, 255, 0.603);
     border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.card_body>form{
+.card_bodyProfile>form{
     width: 100%;
-
 }
-.card_body>form>label{
+.card_bodyProfile>form>label{
     color: #1058C3;
     font-weight: bold;
 }
@@ -2324,6 +2339,7 @@ footer{
         width: 100%;
         height: 50%;
     }
+    
     .left_inner_main,.right_inner_main{
         width: 100%;
     }

@@ -74,6 +74,7 @@ const insertBlogCategory = (e) => {
       document.querySelector(".msgInsertBlog"),
       "FILL OUT CATEGORY NAME"
     );
+    return;
   } else {
     let categoryObject = readLocalStorageCategory();
     if (categoryObject === null) {
