@@ -134,7 +134,7 @@ if (displayCategory !== null) {
         <tr>
         <td>${num}</td>
         <td>${items.c_name}</td>
-        <td><button type="button" onClick="remove(${items.c_id})"><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></button></td>
+        <td><button type="button" onclick="remove(${items.c_id})"><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></button></td>
         </tr>
         
         `;
