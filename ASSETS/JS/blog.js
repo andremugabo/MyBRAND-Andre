@@ -53,7 +53,7 @@ if (displayBlog !== null) {
 }
 
 let loggedId = window.localStorage.getItem("loggedUser");
-if (loggedId !== null) {
+if (logged !== null) {
   console.log(loggedId);
   viewBlog = (b_id) => {
     window.sessionStorage.setItem("blogDetails", b_id);
