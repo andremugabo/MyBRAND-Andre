@@ -42,7 +42,7 @@ if (displayBlog !== null) {
                 </div>
                 <h1>${items.b_title}</h1>
                 <p>${items.b_desc}</p>
-                <button class="blog_btn"  onclick="window.location.href='blogDetail.html'">Learn More</button>
+                <button class="blog_btn"  onclick="viewBlog(${items.b_id})">Learn More</button>
             </div>
         </div>
     `;
@@ -50,4 +50,13 @@ if (displayBlog !== null) {
     //   ".blog_img"
     // ).style.backgroundImage = `url(${items.b_pic})`;
   }
+}
+
+let loggedId = window.localStorage.getItem("loggedUser");
+if (loggedId !== null) {
+  console.log(loggedId);
+  viewBlog = (b_id) => {
+    window.sessionStorage.setItem("blogDetails", b_id);
+    window.location.href = "blogDetail.html";
+  };
 }

@@ -194,10 +194,22 @@ const createBlog = (e) => {
     }
   }
 };
+displayBlog = readLocalStorageBlog();
+
+if (displayBlog !== null) {
+  deleteBlog = (b_id) => {
+    let currentBlog = displayBlog.find((rec) => rec.b_id === b_id);
+    let index = displayBlog.indexOf(currentBlog);
+    window.sessionStorage.setItem("blogEdit", b_id);
+    console.log(index);
+    displayBlog.splice(index, 1);
+    updateLocalStorage(displayBlog);
+    window.sessionStorage.clear();
+    location.reload();
+  };
+}
 
 // display blog
-
-const displayBlog = readLocalStorageBlog();
 
 if (displayBlog !== null) {
   let displayUser = readLocalStorageUser();
@@ -218,12 +230,10 @@ if (displayBlog !== null) {
                 </div>
                 </div>
                 <div class="right_selfBlog">
-                    <button>Edit</button>
-                    <span  class="flex-center-center">Comments :&nbsp; 20</span>
-                    <button>View&nbsp;Blog</button>
-                    <span  class="flex-center-center"><img src="ASSETS/IMAGES/Thumb Up_52px.png" alt="like">&nbsp;10</span>
-                    <span  class="flex-center-center"><img src="ASSETS/IMAGES/Thumbs Down_48px.png" alt="like">&nbsp;0</span>
+                    <button type="button"  onclick="deleteBlog(${items.b_id})">Delete</button>
+                    
                 </div>
+               
              </div>
              </div>
     `;
@@ -237,3 +247,4 @@ if (displayBlog !== null) {
                                 EVENT 
 ==================================================================*/
 document.querySelector("#createBlog").addEventListener("submit", createBlog);
+document.querySelector("#createBlog").addEventListener("submit", editBlog);

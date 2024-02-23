@@ -68,12 +68,14 @@ const loginFormEvent = (e) => {
           if (document.querySelector("#userName").value === "andre@gmail.com") {
             loggedId = items.u_id;
             setLogged(loggedId);
+            hide_login();
             window.location.href = "adminDashboard.html";
             return;
           } else {
             loggedId = items.u_id;
             setLogged(loggedId);
-            window.location.href = "guestDashboard.html";
+            hide_login();
+            window.location.href = "index.html";
             return;
           }
         } else {
@@ -93,7 +95,10 @@ const loginFormEvent = (e) => {
     }
   }
 };
-
+hide_login = () => {
+  document.querySelector(".btn_login").classList.add("hide");
+  document.querySelector(".btn_logout").classList.remove("hide");
+};
 /*#######################################################################
                           LOCALHOST FUNCTIONALITY
 #########################################################################*/

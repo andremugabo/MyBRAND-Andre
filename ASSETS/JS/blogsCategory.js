@@ -140,12 +140,12 @@ if (displayCategory !== null) {
         `;
   }
 
-  const filter = (c_id) => {
+  filter = (c_id) => {
     displayCategory = displayCategory.filter((rec) => rec.c_id === c_id);
     console.log(displayCategory);
   };
 
-  const remove = (c_id) => {
+  remove = (c_id) => {
     const categoryToDelete = displayCategory.find((rec) => rec.c_id === c_id);
     console.log(categoryToDelete);
     const index = displayCategory.indexOf(categoryToDelete);
