@@ -79,7 +79,7 @@
                         <p>Holisticly coordinate user-centric resources through client centric content. Completely embrace intermandated mode for pandemic supply chains.</p>
                     </div>
                     <div class="right_contact_title flex-center-center">
-                        
+
                             <ul class="flex-center">
                                 <li><a href="#" class="flex-center-center"><img src="ASSETS/IMAGES/Facebook_50px.png" alt="socialMedia"></a></li>
                                 <li><a href="#" class="flex-center-center"><img src="ASSETS/IMAGES/Twitter_50px.png" alt="socialMedia"></a></li>
@@ -105,10 +105,13 @@
                                 <input type="email" placeholder="Enter Email" id="contact_email">
                                 <h6 class="error error9 hide" id="contact_email_error"></h6>
                             </div>
-                            
+
                         </div>
                         <textarea name=""  cols="30" rows="10" placeholder="Write a Message" id="contact_msg"></textarea>
                         <h6 class="error error10 hide" id="contact_msg_error"></h6>
+                        <div class="msgContact">
+
+                        </div>
                         <button type="submit">SUBMIT NOW</button>
                     </form>
                 </div>
@@ -131,7 +134,7 @@
                 </ul>
             </div>
 
-                   
+
             <div class="flex-center-items footer-card">
                 <h3>Follow&nbsp;Me</h3>
                 <ul class="flex-center-items w-100">
@@ -180,9 +183,9 @@
         <div class="bottom-footer"></div>
     </footer>
     <script src="ASSETS/JS/index.js"></script>
-    <script src="ASSETS/JS/contact.js"></script>
     <script>
-        const setError = (idError, message) => {
+  let contactDb = [];
+  const setError = (idError, message) => {
   document.getElementById(idError).classList.remove("hide");
   document.getElementById(idError).innerText = message;
 };
@@ -238,8 +241,57 @@ const validateContactInput = () => {
 const contactFormEvent = (e) => {
   e.preventDefault();
   validateContactInput();
+  document.querySelector(".msgContact").innerHTML = "";
+  if(document.querySelector("#contact_name").value.length >=3 &&
+  document.querySelector("#contact_email").value.length >=3 &&
+  document.querySelector("#contact_msg").value.length >= 3){
+    let getMsg = readLocalStorageContact();
+    if(getMsg === null){
+        let msgID = 1;
+        let name = document.querySelector("#contact_name").value;
+        let email = document.querySelector("#contact_email").value;
+        let msg = document.querySelector("#contact_msg").value;
+        const today = new Date();
+        const formattedDate = today.toLocaleDateString();
+        let date = formattedDate;
+        let newMsg = createMsg(msgID,name,email,msg,date);
+        contactDb.push(newMsg);
+        updateLocalStorageContact(contactDb);
+        resetInput();
+        displaySuccessMsg(
+          document.querySelector(".msgContact"),
+          "YOUR MESSAGE SENT SUCCESS THANK YOU !! "
+        );
+
+    }else{
+        let getMsg = readLocalStorageContact();
+        let count = getMsg.length;
+        contactDb = getMsg;
+        let msgID = count + 1;
+        let name = document.querySelector("#contact_name").value;
+        let email = document.querySelector("#contact_email").value;
+        let msg = document.querySelector("#contact_msg").value;
+        const today = new Date();
+        const formattedDate = today.toLocaleDateString();
+        let date = formattedDate;
+        let newMsg = createMsg(msgID,name,email,msg,date);
+        contactDb.push(newMsg);
+        updateLocalStorageContact(contactDb);
+        resetInput();
+        displaySuccessMsg(
+          document.querySelector(".msgContact"),
+          "YOUR MESSAGE SENT SUCCESS THANK YOU !! "
+        );
+    }
+
+  }
 };
 
+const resetInput = ()=>{
+document.querySelector("#contact_name").value = "";
+document.querySelector("#contact_email").value = "";
+document.querySelector("#contact_msg").value = "";
+}
 
 
 if (document.getElementById("contactForm")) {
@@ -248,9 +300,29 @@ if (document.getElementById("contactForm")) {
     .addEventListener("submit", contactFormEvent);
 }
 
+const createMsg = (msgID,name,email,msg,date) =>{
+    message = {
+        msgID:msgID,
+        name:name,
+        email:email,
+        msg:msg,
+        date:date,
+        readStatus:0,
+    }
+    return message;
+}
 
+const readLocalStorageContact = () => {
+  let getData = window.localStorage.getItem("contacts");
+  let db = JSON.parse(getData);
+  return db;
+};
+const updateLocalStorageContact = (data) => {
+  let dataBaseText = JSON.stringify(data);
+  window.localStorage.setItem("contacts", dataBaseText);
+};
 
     </script>
-    
+
 </body>
 </html>

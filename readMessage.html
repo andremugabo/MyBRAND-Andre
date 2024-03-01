@@ -51,41 +51,17 @@
 
                 </div>
                 <div class="innerDashboard_title">
-                    <h3>Bloggers</h3>
+                    <h3>Message</h3>
                 </div>
                 <div class="filter">
-                    <form action="">
-                        <label for="filter">Filter:</label>
-                    <select name="filter" id="filter">
-                        <option value="" selected disabled>Last & Days</option>
-                        <option value="1">Last 7 Days</option>
-                        <option value="2">Last 1 Week</option>
-                        <option value="2">Last 2 Week</option>
-                    </select>
-                    </form>
-                    <!-- <Button>New&nbsp;Category</Button> -->
+                   
+                    <Button onclick="window.location.href='adminDashboard.html'">Back</Button>
                     
                 </div>
                 <div class="table_dash">
-                    <h6>Registered Bloggers</h6>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Picture</th>
-                                <th>FullName</th>
-                                <th>Email</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class="blogger_tbody">
-                            <!-- <tr>
-                                <td><div class="profile_image"></div></td>
-                                <td>Designing</td>
-                                <td>2023-Nov-11</td>
-                                <td><img src="ASSETS/IMAGEs/Visible_48px.png" alt="view"></td>
-                            </tr> -->
-                        </tbody>
+                    <h6>Contact Message</h6>
+                    <table class="displayMsg_tbody">
+                        
                     </table>
                 </div>
                
@@ -111,37 +87,50 @@
         <script src="ASSETS/JS/blogger.js"></script>
         <script>
             // DASHBOARD MENU
-            function display(element) {
-                                        element.classList.remove("hide");
-                                        // openMenu();
-                                        }
+                const readLocalStorageContact = () => {
+                let getData = window.localStorage.getItem("contacts");
+                let db = JSON.parse(getData);
+                return db;
+                };
 
-                function hide(element) {
-                                        element.classList.add("hide");
-                                        // closeMenu();
-                    }
-                                            const openMenu = () => {
-                            const modal = document.querySelector(".dashboard_modal");
-                            modal.style.width = "50%"; // Set the width to 50%
-                            modal.style.transition = "width 2s"; // Set the transition duration
-                        };
+                const updateLocalStorageContact = (data) => {
+                let dataBaseText = JSON.stringify(data);
+                window.localStorage.setItem("contacts", dataBaseText);
+                };
 
-                        const closeMenu = () => {
-                            const modal = document.querySelector(".dashboard_modal");
-                            modal.style.width = "0%"; // Set the width to 0%
-                            modal.style.transition = "width 2s"; // Set the transition duration
-                        };
-                document.querySelector(".dashMenu").addEventListener("click", function (e) {
-                e.preventDefault();
-                display(document.querySelector(".dashboard_modal"));
-                });
+                let msgId = window.sessionStorage.getItem("messageID");
+                let idMsg = JSON.parse(msgId);
+                console.log(idMsg);
+                let messages = readLocalStorageContact();
+                console.log(messages);
+                if(messages !== null){
+                   let currentMessage = messages.find(rec => rec.msgID === idMsg);
+                   console.log(currentMessage);
+                   currentMessage.readStatus = 1;
+                   updateLocalStorageContact(messages);
 
-                document
-                .querySelector(".close_dashMenu")
-                .addEventListener("click", function (e) {
-                    e.preventDefault();
-                    hide(document.querySelector(".dashboard_modal"));
-                });
+                   document.querySelector(".displayMsg_tbody").innerHTML = `
+                        <thead>
+                            <tr>
+                                <th>Sender:</th>
+                                <th>${currentMessage.name}</th>
+                            </tr>
+                                <th>Email:</th>
+                                <th>${currentMessage.email}</th>
+                            </tr>    
+                            <tr>
+                                <th>Sent on:</th>
+                                <th>${currentMessage.date}</th>
+                            </tr>                                
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="4"><p>${currentMessage.msg}</p></td>
+                            </tr>
+                        </tbody>
+                   `;
+
+                }
                 
                 /** ========================================================
                  *                        LOGOUT

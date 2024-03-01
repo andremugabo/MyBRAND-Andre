@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="ASSETS/CSS/style.css">
     <title>Login&nbsp;Page</title>
+    <script>
+        let loggedID = window.localStorage.getItem("loggedUser");
+        if(loggedID === null){
+            window.location.href = "index.html";
+        }
+
+    </script>
 </head>
 <body>
     <header class="w-100">
@@ -174,7 +181,7 @@
                 </div>
                 <div class="comment_section">
                    <!-- comment section -->
-                    
+
                 </div>
 
                 <div class="leave_comment">
@@ -206,7 +213,7 @@
                 </ul>
             </div>
 
-                   
+
             <div class="flex-center-items footer-card">
                 <h3>Follow&nbsp;Me</h3>
                 <ul class="flex-center-items w-100">
@@ -293,7 +300,7 @@ const validateCommentInput = () => {
   }
 };
 
-// create comment 
+// create comment
 const createComment = (c_id,u_id,b_id,c_msg,c_date)=>{
     comment = {
         c_id: c_id,
@@ -326,7 +333,6 @@ const commentFormEvent = (e) => {
         let c_id = 1;
         const today = new Date();
         const formattedDate = today.toLocaleDateString();
-        console.log(formattedDate);
         let c_date = formattedDate;
         let c_message = document.querySelector("#comment_msg").value;
         let createC = createComment(c_id,u_id,bIdI,c_message,c_date);
@@ -370,6 +376,6 @@ const updateLocalStorage = (data) => {
 };
 
     </script>
-    
+
 </body>
 </html>

@@ -5,7 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin DashBoard</title>
     <link rel="stylesheet" href="ASSETS/CSS/style.css">
+    <script>
+        let loggedID = window.localStorage.getItem("loggedUser");
+        let userId = JSON.parse(loggedID);
+        let users = window.localStorage.getItem("users");
+        let getUsers = JSON.parse(users);
+        let oneUsers = getUsers.find(rec=> rec.u_id === userId);
+        if(oneUsers.u_email !== "andre@gmail.com"){
+            window.location.href = "index.html";
+        }
 
+    </script>
 </head>
 <body>
         <div class="inner_maind">
@@ -95,8 +105,9 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody class="contactTableBody">
+                                
+                                <!-- <tr>
                                     <td>TH Brand</td>
                                     <td>Designing</td>
                                     <td>2023-Nov-11</td>
@@ -113,13 +124,7 @@
                                     <td>Designing</td>
                                     <td>2023-Nov-11</td>
                                     <td><img src="ASSETS/IMAGES/Reading Confirmation_52px_1.png" alt="delete"></td>
-                                </tr>
-                                <tr>
-                                    <td>TH Brand</td>
-                                    <td>Designing</td>
-                                    <td>2023-Nov-11</td>
-                                    <td><img src="ASSETS/IMAGES/Reading Confirmation_52px_1.png" alt="delete"></td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
 
@@ -264,6 +269,47 @@
                 document.querySelector(".user_logo").innerHTML = `
                 <img src="${userObject.u_pic}" alt="user"><span>${userObject.u_name}</span>
                 `;
+
+                
+
+                const readLocalStorageContact = () => {
+                let getData = window.localStorage.getItem("contacts");
+                let db = JSON.parse(getData);
+                return db;
+                };
+
+                const readMessage = (id)=>{
+                    let idText = JSON.stringify(id);
+                    const setMessageId = window.sessionStorage.setItem("messageID",idText);
+                    window.location.href = "readMessage.html";
+                }
+                let getMassages = readLocalStorageContact();
+                if(getMassages !== null){
+                        for(const key of getMassages){
+                        console.log(key);
+                        if(key.readStatus === 0){
+                            document.querySelector('.contactTableBody').innerHTML +=`
+                            <tr>
+                                <td>${key.name}</td>
+                                <td>${key.email}</td>
+                                <td>${key.date}</td>
+                                <td><button onclick="readMessage(${key.msgID})"><img src="ASSETS/IMAGES/Reading Confirmation_52px_1.png" alt="readMsg"></button></td>
+                            </tr>
+                            `;
+                        }
+                        
+                    }
+                    
+                }else{
+                    document.querySelector('.contactTableBody').innerHTML =`
+                                 <tr><td colspan="4" id="noMsg">NO NEW MESSAGES TO DISPLAY</td></tr>
+                    `;
+                       
+                    
+                }
+                
+
+
 
         </script>
         <!-- <script src="ASSETS/JS/index.js"></script> -->

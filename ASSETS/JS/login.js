@@ -76,7 +76,6 @@ const loginFormEvent = (e) => {
             setLogged(loggedId);
             hide_login();
             window.location.href = "index.html";
-            location.reload();
             return;
           }
         } else {
