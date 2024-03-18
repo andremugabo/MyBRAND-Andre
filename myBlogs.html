@@ -6,14 +6,13 @@
     <title>Admin DashBoard</title>
     <link rel="stylesheet" href="ASSETS/CSS/style.css">
     <script>
-        let loggedID = window.localStorage.getItem("loggedUser");
-        let userId = JSON.parse(loggedID);
-        let users = window.localStorage.getItem("users");
-        let getUsers = JSON.parse(users);
-        let oneUsers = getUsers.find(rec=> rec.u_id === userId);
-        if(oneUsers.u_email !== "andre@gmail.com"){
-            window.location.href = "index.html";
+        let logged = "";
+        logged = window.localStorage.getItem("current_user");
+        const theLoggedUser = JSON.parse(logged);
+        if(logged === null || theLoggedUser.isAdmin === false){
+            window.location.href="login.html";
         }
+        let id = theLoggedUser._id;
 
     </script>
 </head>
@@ -216,20 +215,10 @@
                 return db;
                 };
 
-                                let logged = "";
-                logged = window.localStorage.getItem("loggedUser");
-                let id = JSON.parse(logged);
-                if(logged === null){
-                    window.location.href="login.html";
-                }
-                userData = readLocalStorage();
-                // console.log(id);
-                // console.log(userData);
-                let userObject = userData.find((rec) => rec.u_id === id);
-                // console.log(userObject.u_name);
+                
                 document.querySelector(".user_logo").innerHTML = `
-                <img src="${userObject.u_pic}" alt="user"><span>${userObject.u_name}</span>
-                `;
+                    <img src="${theLoggedUser.picture}" alt="user"><span>${theLoggedUser.FullName}</span>
+                    `;
                 /*===================================================
                                     MODAL
                 ====================================================*/ 
@@ -258,7 +247,7 @@
                 console.log(keys);
 
                             document.querySelector("#admin_Category").innerHTML +=`
-                                        <option value="${keys.c_name}">${keys.c_name}</option>
+                                        <option value="${keys._id}">${keys.category}</option>
                                        
                         `;
                     }

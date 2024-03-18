@@ -6,14 +6,14 @@
     <title>Admin DashBoard</title>
     <link rel="stylesheet" href="ASSETS/CSS/style.css">
     <script>
-        let loggedID = window.localStorage.getItem("loggedUser");
-        let userId = JSON.parse(loggedID);
-        let users = window.localStorage.getItem("users");
-        let getUsers = JSON.parse(users);
-        let oneUsers = getUsers.find(rec=> rec.u_id === userId);
-        if(oneUsers.u_email !== "andre@gmail.com"){
-            window.location.href = "index.html";
+        let currentLogged = "";
+        currentLogged = window.localStorage.getItem("current_user");
+        const theCurrentLoggedUser = JSON.parse(currentLogged);
+        if(currentLogged === null || theCurrentLoggedUser.isAdmin === false){
+            window.location.href="login.html";
         }
+        let id = theCurrentLoggedUser._id;
+        
 
     </script>
 </head>

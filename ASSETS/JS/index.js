@@ -39,7 +39,7 @@ if (document.querySelector(".menu") || document.querySelector(".close_modal")) {
 }
 
 let logged = window.localStorage.getItem("loggedUser");
-console.log(logged);
+// console.log(logged);
 if (logged !== null) {
   hide_login = () => {
     document.querySelector(".btn_login").classList.add("hide");

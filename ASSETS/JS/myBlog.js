@@ -1,4 +1,5 @@
 let blogData = [];
+const getToken = JSON.parse(window.localStorage.getItem("auth_token"));
 /*#######################################################################
                           LOCALHOST FUNCTIONALITY
 #########################################################################*/
@@ -9,14 +10,9 @@ const readLocalStorageBlog = () => {
 };
 
 const readLocalStorageUser = () => {
-  let getData = window.localStorage.getItem("users");
+  let getData = window.localStorage.getItem("current_user");
   let db = JSON.parse(getData);
   return db;
-};
-
-const updateLocalStorage = (data) => {
-  let dataBaseText = JSON.stringify(data);
-  window.localStorage.setItem("blog", dataBaseText);
 };
 
 /*#####################################################################
@@ -51,30 +47,6 @@ const displayFailMessage = (element, message) => {
     element.classList.add("hide");
   }, 2000);
 };
-
-const createBlogContent = (
-  b_id,
-  u_id,
-  b_title,
-  b_category,
-  b_desc,
-  b_container,
-  b_pic,
-  b_date
-) => {
-  blog = {
-    b_id: b_id,
-    u_id: u_id,
-    b_title: b_title,
-    b_category: b_category,
-    b_desc: b_desc,
-    b_container: b_container,
-    b_pic: b_pic,
-    b_date: b_date,
-  };
-  return blog;
-};
-// validate blog form
 
 const validateInsertBlogForm = () => {
   if (document.querySelector("#admin_BloTitle").value.trim() === "") {
@@ -126,72 +98,36 @@ const createBlog = (e) => {
     );
     return;
   } else {
-    let u_idText = window.localStorage.getItem("loggedUser");
-    let u_id = JSON.parse(u_idText);
-    console.log(u_id);
-    let objectBlog = readLocalStorageBlog();
-    if (objectBlog === null) {
-      let b_id = 1;
-      let b_title = document.querySelector("#admin_BloTitle").value;
-      let b_category = document.querySelector("#admin_Category").value;
-      let b_desc = document.querySelector("#admin_BlogDescription").value;
-      let b_container = document.querySelector("#admin_BlogContainer").value;
-      let b_pic = document.querySelector("#admin_BlogPicture").value;
-      const today = new Date();
-      const formattedDate = today.toLocaleDateString();
-      console.log(formattedDate);
-      let b_date = formattedDate;
-      let getBlog = createBlogContent(
-        b_id,
-        u_id,
-        b_title,
-        b_category,
-        b_desc,
-        b_container,
-        b_pic,
-        b_date
-      );
-      blogData.push(getBlog);
-      updateLocalStorage(blogData);
-      displaySuccessMsg(
-        document.querySelector(".msgBlog"),
-        "BLOG REGISTERED !!!"
-      );
-      setTimeout(() => {
-        window.location.href = "myBlogs.html";
-      }, 2000);
-    } else {
-      blogData = objectBlog;
-      let blogDataLength = blogData.length;
-      let b_id = blogDataLength + 1;
-      let b_title = document.querySelector("#admin_BloTitle").value;
-      let b_category = document.querySelector("#admin_Category").value;
-      let b_desc = document.querySelector("#admin_BlogDescription").value;
-      let b_container = document.querySelector("#admin_BlogContainer").value;
-      let b_pic = document.querySelector("#admin_BlogPicture").value;
-      const today = new Date();
-      const formattedDate = today.toLocaleDateString();
-      let b_date = formattedDate;
-      let getBlog = createBlogContent(
-        b_id,
-        u_id,
-        b_title,
-        b_category,
-        b_desc,
-        b_container,
-        b_pic,
-        b_date
-      );
-      blogData.push(getBlog);
-      updateLocalStorage(blogData);
-      displaySuccessMsg(
-        document.querySelector(".msgBlog"),
-        "BLOG REGISTERED !!!"
-      );
-      setTimeout(() => {
-        window.location.href = "myBlogs.html";
-      }, 2000);
-    }
+    const userData = readLocalStorageUser();
+    let userId = `'${userData._id}'`;
+    console.log(userId);
+    let blogTitle = document.querySelector("#admin_BloTitle").value;
+    let blogCategoryId = document.querySelector("#admin_Category").value;
+    let blogDescription = document.querySelector(
+      "#admin_BlogDescription"
+    ).value;
+    let blogContent = document.querySelector("#admin_BlogContainer").value;
+    let blogImg = document.querySelector("#admin_BlogPicture").value;
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString();
+    let blogDate = formattedDate;
+    fetch("https://my-brand-andre-be.onrender.com/createBlogs", {
+      method: "POST",
+      headers: {
+        Authorization: `bearer ${getToken}`,
+      },
+      body: JSON.stringify({
+        userId,
+        blogCategoryId,
+        blogTitle,
+        blogDescription,
+        blogContent,
+        blogImg,
+        blogDate,
+      }),
+    })
+      .then((Response) => Response.json())
+      .then((data) => console.log(data));
   }
 };
 displayBlog = readLocalStorageBlog();

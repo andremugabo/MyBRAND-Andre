@@ -49,50 +49,49 @@ const loginFormEvent = (e) => {
   document.querySelector(".msgLogin").innerHTML = "";
 
   validateLoginInput();
-  const userEmail = document.querySelector("#userName").value;
-  const userPassword = document.querySelector("#lPassword").value;
-  let getData = readLocalStorage();
-  if (getData === null) {
+  const email = document.querySelector("#userName").value;
+  const password = document.querySelector("#lPassword").value;
+
+  if (
+    document.querySelector("#userName").value.length >= 4 &&
+    document.querySelector("#lPassword").value.length >= 4
+  ) {
+    fetch("https://my-brand-andre-be.onrender.com/user", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((Response) => Response.json())
+      .then((data) => {
+        const token = data.token;
+        window.localStorage.setItem("auth_token", JSON.stringify(token));
+        window.localStorage.setItem(
+          "current_user",
+          JSON.stringify(data.loginUser)
+        );
+        if (data.loggedUser === true) {
+          hide_login();
+          window.location.href = "adminDashboard.html";
+        } else if (data.loggedUser === false) {
+          hide_login();
+          window.location.href = "index.html";
+        } else {
+          displayFailMessage(document.querySelector(".msgLogin"), data.message);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  } else {
     displayFailMessage(
       document.querySelector(".msgLogin"),
-      "REGISTER FIRST !!"
+      " NOT ENOUGH CHARACTER !!! "
     );
-  } else {
-    for (const items of getData) {
-      console.log(items);
-      if (items.u_email === document.querySelector("#userName").value) {
-        if (
-          items.u_email === document.querySelector("#userName").value &&
-          items.u_password === document.querySelector("#lPassword").value
-        ) {
-          if (document.querySelector("#userName").value === "andre@gmail.com") {
-            loggedId = items.u_id;
-            setLogged(loggedId);
-            hide_login();
-            window.location.href = "adminDashboard.html";
-            return;
-          } else {
-            loggedId = items.u_id;
-            setLogged(loggedId);
-            hide_login();
-            window.location.href = "index.html";
-            return;
-          }
-        } else {
-          displayFailMessage(
-            document.querySelector(".msgLogin"),
-            "WRONG CREDENTIAL !!!"
-          );
-          return;
-        }
-      } else {
-        document.querySelector(".msgLogin").innerHTML = "";
-        displayFailMessage(
-          document.querySelector(".msgLogin"),
-          "YOUR ARE NOT REGISTERED !!!"
-        );
-      }
-    }
   }
 };
 hide_login = () => {

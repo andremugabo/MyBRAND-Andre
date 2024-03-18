@@ -76,53 +76,49 @@ const signUpFormEvent = (e) => {
       document.querySelector("#setPassword").value ===
       document.querySelector("#setCPassword").value
     ) {
-      let getData = readLocalStorage();
-      if (getData === null) {
-        let id = 1;
-        let user = createUser(
-          id,
-          document.getElementById("setNames").value,
-          document.querySelector("#setUserEmail").value,
-          document.querySelector("#setPassword").value
-        );
-        userDB.push(user);
-        updateLocalStorage(userDB);
-        displaySuccessMsg(
-          document.querySelector(".msgSignup"),
-          "YOU ARE REGISTERED SUCCESSFULLY!! YOU CAN LOGIN "
-        );
-        setTimeout(() => {
-          window.location.href = "login.html";
-        }, 2000);
-      } else {
-        userDB = getData;
-        for (const items of userDB) {
-          if (items.u_email === document.querySelector("#setUserEmail").value) {
+      const FullName = document.getElementById("setNames").value;
+      const email = document.querySelector("#setUserEmail").value;
+      const password = document.querySelector("#setPassword").value;
+      fetch("https://my-brand-andre-be.onrender.com/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          FullName,
+          email,
+          password,
+        }),
+      })
+        .then((Response) => Response.json())
+        .then((data) => {
+          console.log(data);
+          if (data.status === 200) {
+            displaySuccessMsg(
+              document.querySelector(".msgSignup"),
+              "YOU ARE REGISTERED SUCCESSFULLY!! YOU CAN LOGIN "
+            );
+            setTimeout(() => {
+              window.location.href = "login.html";
+            }, 2000);
+          } else if (data.status === 400) {
+            displayFailMessage(
+              document.querySelector(".msgSignup"),
+              "VALIDATION ERROR CHECK YOUR INPUT !!"
+            );
+            setTimeout(() => {
+              window.location.href = "signup.html";
+            }, 2000);
+          } else if (data.status === 422) {
             displayFailMessage(
               document.querySelector(".msgSignup"),
               "THIS EMAIL IS ALREADY REGISTERED !!"
             );
-            return;
+            setTimeout(() => {
+              window.location.href = "login.html";
+            }, 2000);
           }
-        }
-        let currentDbLength = userDB.length;
-        let id = currentDbLength + 1;
-        let user = createUser(
-          id,
-          document.getElementById("setNames").value,
-          document.querySelector("#setUserEmail").value,
-          document.querySelector("#setPassword").value
-        );
-        userDB.push(user);
-        updateLocalStorage(userDB);
-        displaySuccessMsg(
-          document.querySelector(".msgSignup"),
-          "YOU ARE REGISTERED SUCCESSFULLY!! YOU CAN LOGIN "
-        );
-        setTimeout(() => {
-          window.location.href = "login.html";
-        }, 2000);
-      }
+        });
     } else {
       displayFailMessage(
         document.querySelector(".msgSignup"),
@@ -141,29 +137,3 @@ if (document.getElementById("signUpForm")) {
     .getElementById("signUpForm")
     .addEventListener("submit", signUpFormEvent);
 }
-/*#######################################################################
-                          LOCALHOST FUNCTIONALITY
-#########################################################################*/
-const createUser = (u_id, u_name, u_email, u_password) => {
-  userAccount = {
-    u_id: u_id,
-    u_name: u_name,
-    u_email: u_email,
-    u_password: u_password,
-    u_pic: "",
-    u_dec: "",
-  };
-
-  return userAccount;
-};
-
-const readLocalStorage = () => {
-  let getData = window.localStorage.getItem("users");
-  let db = JSON.parse(getData);
-  return db;
-};
-
-const updateLocalStorage = (data) => {
-  let dataBaseText = JSON.stringify(data);
-  window.localStorage.setItem("users", dataBaseText);
-};

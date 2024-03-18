@@ -2,31 +2,24 @@
                           LOCALHOST FUNCTIONALITY
 #########################################################################*/
 const readLocalStorage = () => {
-  let getData = window.localStorage.getItem("users");
+  let getData = window.localStorage.getItem("current_user");
   let db = JSON.parse(getData);
   return db;
-};
-const setLogged = (userId) => {
-  let userIdText = JSON.stringify(userId);
-  window.localStorage.setItem("loggedUser", userIdText);
 };
 
 var image_link = "";
 let userData;
 let logged = "";
-logged = window.localStorage.getItem("loggedUser");
-let id = JSON.parse(logged);
-if (logged === null) {
-  window.location.href = "login.html";
-}
+logged = window.localStorage.getItem("current_user");
+let theLoggedUser = JSON.parse(logged);
+
 userData = readLocalStorage();
-// console.log(id);
-// console.log(userData);
-let userObject = userData.find((rec) => rec.u_id === id);
-// console.log(userObject.u_name);
+// userData.picture = "";
+console.log(userData.picture);
 document.querySelector(".user_logo").innerHTML = `
-<img src="${userObject.u_pic}" alt="user"><span>${userObject.u_name}</span>
+<img src="${userData.picture}" alt="user"><span>${userData.FullName}</span>
 `;
+// userData.description = "";
 document.querySelector(".inner_profile_section").innerHTML = `
         <div class="real_profile">
         <div class="left_real_profile flex-center-items">
@@ -43,13 +36,13 @@ document.querySelector(".inner_profile_section").innerHTML = `
             </div>
             <div class="profile_details">
                 <div class="inner_profile_details">
-                    <span>FullName : </span><span>${userObject.u_name}</span>
+                    <span>FullName : </span><span>${userData.FullName}</span>
                 </div>
                 <div class="inner_profile_details">
-                    <span>Email : </span><span>${userObject.u_email}</span>
+                    <span>Email : </span><span>${userData.email}</span>
                 </div>
                 <div class="inner_profile_details">
-                    <span>Description : </span><span>${userObject.u_dec}</span>
+                    <span>Description : </span><span>${userData.description}</span>
                 </div>
 
             </div>
@@ -111,30 +104,53 @@ const editProfile = (e) => {
     return;
   } else {
     const description = document.querySelector("#admin_desc").value;
-    const pic = document.querySelector("#admin_pic").value;
-    let user = userData.find((rec) => rec.u_id === id);
-    user.u_dec = description;
-    user.u_pic = pic;
-    window.localStorage.setItem("users", JSON.stringify(userData));
-    window.location.href = "profile.html";
+    const picture = document.querySelector("#admin_pic").value;
+    const getToken = JSON.parse(window.localStorage.getItem("auth_token"));
+    const url = `https://my-brand-andre-be.onrender.com/user/${userData._id}`;
+    fetch(url, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `bearer ${getToken}`,
+      },
+      body: JSON.stringify({
+        description,
+        picture,
+      }),
+    })
+      .then((Response) => Response.json())
+      .then((data) => {
+        if (data.status === 200) {
+          window.localStorage.setItem(
+            "current_user",
+            JSON.stringify(data.getUser)
+          );
+          window.location.href = "profile.html";
+        } else {
+          displayFailMessage(document.querySelector(".msgLogin"), data.message);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  const userD = userData.find((rec) => rec.u_id === id);
-  if (userD) {
+  const getAdmin = JSON.parse(window.localStorage.getItem("current_user"));
+  if (getAdmin) {
     const profilePic = document.querySelector(".profile_pic");
 
     // Check if u_pic contains a valid URL
-    if (userD.u_pic && userD.u_pic.startsWith("http")) {
+    if (getAdmin.picture && getAdmin.picture.startsWith("http")) {
       const img = new Image();
-      img.src = userD.u_pic;
+      img.src = getAdmin.picture;
       img.onload = () => {
         profilePic.style.backgroundImage = `url(${img.src})`;
       };
     } else {
       // Handle invalid URL or missing image
-      console.error("Invalid image URL:", userD.u_pic);
+      console.error("Invalid image URL:", getAdmin.picture);
       // Set a default image or display an error message
     }
   }

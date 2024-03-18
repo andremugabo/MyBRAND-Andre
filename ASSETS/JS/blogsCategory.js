@@ -1,4 +1,5 @@
 let categoryData = [];
+const getToken = JSON.parse(window.localStorage.getItem("auth_token"));
 /*#######################################################################
                           LOCALHOST FUNCTIONALITY
 #########################################################################*/
@@ -76,85 +77,90 @@ const insertBlogCategory = (e) => {
     );
     return;
   } else {
-    let categoryObject = readLocalStorageCategory();
-    if (categoryObject === null) {
-      let id = 1;
-      let name = document.querySelector("#admin_Category").value.toUpperCase();
-      let getCategory = createCategory(id, name);
-      categoryData.push(getCategory);
-      updateLocalStorage(categoryData);
-      //   console.log(getCategory);
-      displaySuccessMsg(
-        document.querySelector(".msgInsertBlog"),
-        "CATEGORY REGISTERED !!!"
-      );
-      setTimeout(() => {
-        window.location.href = "blogsCategory.html";
-      }, 2000);
-    } else {
-      categoryData = categoryObject;
-      let categoryLength = categoryData.length;
-      let id = categoryLength + 1;
-      let name = document.querySelector("#admin_Category").value.toUpperCase();
-      console.log(categoryData);
-      for (const checkData of categoryData) {
-        if (checkData.c_name === name) {
-          displayFailMessage(
+    const category = document.querySelector("#admin_Category").value;
+    fetch("https://my-brand-andre-be.onrender.com/category", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // corrected header name
+        Authorization: `bearer ${getToken}`, // corrected authorization header format
+      },
+      body: JSON.stringify({
+        category,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data.message);
+        if (data.status === 200) {
+          displaySuccessMsg(
             document.querySelector(".msgInsertBlog"),
-            "THIS CATEGORY IS ALREADY REGISTERED !!"
+            data.message
           );
           setTimeout(() => {
             window.location.href = "blogsCategory.html";
           }, 2000);
-          return;
+        } else {
+          displayFailMessage(
+            document.querySelector(".msgInsertBlog"),
+            data.message
+          );
         }
-      }
-      let getCategory = createCategory(id, name);
-      categoryData.push(getCategory);
-      updateLocalStorage(categoryData);
-      //   console.log(getCategory);
-      displaySuccessMsg(
-        document.querySelector(".msgInsertBlog"),
-        "CATEGORY REGISTERED !!!"
-      );
-      setTimeout(() => {
-        window.location.href = "blogsCategory.html";
-      }, 2000);
-    }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   }
 };
 
-let displayCategory = readLocalStorageCategory();
-if (displayCategory !== null) {
-  let num = 0;
-  for (const items of displayCategory) {
-    num += 1;
-    console.log(items);
-    document.querySelector(".category_body").innerHTML += `
-        <tr>
-        <td>${num}</td>
-        <td>${items.c_name}</td>
-        <td><button type="button" onclick="remove(${items.c_id})"><img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete"></button></td>
-        </tr>
-        
-        `;
-  }
+const fetchCategory = () => {
+  fetch("https://my-brand-andre-be.onrender.com/categories", {
+    headers: {
+      Authorization: `bearer ${getToken}`,
+    },
+  })
+    .then((Response) => Response.json())
+    .then((data) => {
+      // console.log(data);
+      updateLocalStorage(data);
+      let num = 0;
+      if (data.length > 0) {
+        for (const items of data) {
+          num += 1;
+          let c_id = items._id;
+          document.querySelector(".category_body").innerHTML += `
+          <tr>
+          <td>${num}</td>
+          <td>${items.category}</td>
+          <td>
+          <button type="button" 
+          onclick="remove('${c_id}')">
+          <img src="ASSETS/IMAGES/Delete_52px_1.png" alt="delete">
+          </button></td>
+          </tr>
+          
+          `;
+        }
+      }
+    });
+};
+remove = (c_id) => {
+  const url = `https://my-brand-andre-be.onrender.com/category/${c_id}`;
+  fetch(url, {
+    method: "delete",
+    headers: {
+      Authorization: `bearer ${getToken}`,
+    },
+  })
+    .then((Response) => Response.json())
+    .then((data) => {
+      console.log(data);
+      setTimeout(() => {
+        window.location.href = "blogsCategory.html";
+      }, 500);
+    });
+};
 
-  filter = (c_id) => {
-    displayCategory = displayCategory.filter((rec) => rec.c_id === c_id);
-    console.log(displayCategory);
-  };
-
-  remove = (c_id) => {
-    const categoryToDelete = displayCategory.find((rec) => rec.c_id === c_id);
-    console.log(categoryToDelete);
-    const index = displayCategory.indexOf(categoryToDelete);
-    console.log(index);
-    displayCategory.splice(index, 1);
-    updateLocalStorage(displayCategory);
-    location.reload();
-  };
-}
+fetchCategory();
 
 /*================================================================
                                 EVENT 
