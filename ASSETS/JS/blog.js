@@ -45,7 +45,7 @@ const fetchBlogs = () => {
                 </div>
                 <h1>${items.blogTitle}</h1>
                 <p>${items.blogDescription}</p>
-                <button class="blog_btn"  onclick="viewBlog(${items._id})">Learn More</button>
+                <button class="blog_btn"  onclick="viewBlog('${items._id}')">Learn More</button>
             </div>
         </div>
     `;
@@ -53,11 +53,12 @@ const fetchBlogs = () => {
     });
 };
 fetchBlogs();
-let loggedId = window.localStorage.getItem("loggedUser");
-if (logged !== null) {
+let loggedId = window.localStorage.getItem("current_user");
+if (loggedId !== null) {
   console.log(loggedId);
   viewBlog = (b_id) => {
-    window.sessionStorage.setItem("blogDetails", b_id);
+    window.sessionStorage.setItem("blogDetails", JSON.stringify(b_id));
     window.location.href = "blogDetail.html";
+    console.log(b_id);
   };
 }
