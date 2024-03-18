@@ -99,7 +99,7 @@ const createBlog = (e) => {
     return;
   } else {
     const userData = readLocalStorageUser();
-    let userId = `'${userData._id}'`;
+    let userId = `${userData._id}`;
     console.log(userId);
     let blogTitle = document.querySelector("#admin_BloTitle").value;
     let blogCategoryId = document.querySelector("#admin_Category").value;
