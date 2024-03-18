@@ -8,50 +8,51 @@ const readLocalStorageBlog = () => {
 };
 
 const readLocalStorageUser = () => {
-  let getData = window.localStorage.getItem("users");
+  let getData = window.localStorage.getItem("current_user");
   let db = JSON.parse(getData);
   return db;
 };
-
 // display blog
+const blogCreator = readLocalStorageUser();
+console.log(blogCreator);
+const fetchBlogs = () => {
+  const url = "https://my-brand-andre-be.onrender.com/fetchBlogs";
+  fetch(url)
+    .then((Response) => Response.json())
+    .then((data) => {
+      console.log(data);
+      let num = 0;
+      for (const items of data) {
+        num += 1;
+        let blog_id = items._id;
 
-const displayBlog = readLocalStorageBlog();
-
-if (displayBlog !== null) {
-  let displayUser = readLocalStorageUser();
-  for (const items of displayBlog) {
-    console.log(items);
-    let user = displayUser.find((rec) => rec.u_id === items.u_id);
-    console.log(user.u_name);
-    document.querySelector(".blog_container").innerHTML += `
+        document.querySelector(".blog_container").innerHTML += `
             <div class="blog_items">
             <div class="blog1_items_img" id="blog_picture">
-                 <img src="${items.b_pic}" alt="like">
+                 <img src="${items.blogImg}" alt="like">
             </div>
             <div class="blog1_item_details">
                 <div class="item_title">
                     <div class="left_item_title">
-                        <img src="${user.u_pic}" alt="blog_title" id="user_pic">
-                        <span>${user.u_name}</span>
+                        <img src="${blogCreator.picture}" alt="blog_title" id="user_pic">
+                        <span>${blogCreator.FullName}</span>
                     </div>
                     <div class="right_item_title">
                         <img src="ASSETS/IMAGES/Grid 2_48px.png" alt="blog_title">
-                        <span>${items.b_category}</span>
+                        <span>${items.blogCategoryId}</span>
 
                     </div>
                 </div>
-                <h1>${items.b_title}</h1>
-                <p>${items.b_desc}</p>
-                <button class="blog_btn"  onclick="viewBlog(${items.b_id})">Learn More</button>
+                <h1>${items.blogTitle}</h1>
+                <p>${items.blogDescription}</p>
+                <button class="blog_btn"  onclick="viewBlog(${items._id})">Learn More</button>
             </div>
         </div>
     `;
-    // document.querySelector(
-    //   ".blog_img"
-    // ).style.backgroundImage = `url(${items.b_pic})`;
-  }
-}
-
+      }
+    });
+};
+fetchBlogs();
 let loggedId = window.localStorage.getItem("loggedUser");
 if (logged !== null) {
   console.log(loggedId);

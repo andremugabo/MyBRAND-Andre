@@ -114,6 +114,7 @@ const createBlog = (e) => {
     fetch("https://my-brand-andre-be.onrender.com/createBlogs", {
       method: "POST",
       headers: {
+        "content-type": "application/json",
         Authorization: `bearer ${getToken}`,
       },
       body: JSON.stringify({
@@ -127,57 +128,75 @@ const createBlog = (e) => {
       }),
     })
       .then((Response) => Response.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        if (data.status === 200) {
+          displaySuccessMsg(document.querySelector(".msgBlog"), data.message);
+          setTimeout(() => {
+            window.location.href = "myBlogs.html";
+          }, 2000);
+        } else {
+          displayFailMessage(document.querySelector(".msgBlog"), data.message);
+        }
+      });
   }
 };
-displayBlog = readLocalStorageBlog();
 
-if (displayBlog !== null) {
-  deleteBlog = (b_id) => {
-    let currentBlog = displayBlog.find((rec) => rec.b_id === b_id);
-    let index = displayBlog.indexOf(currentBlog);
-    window.sessionStorage.setItem("blogEdit", b_id);
-    console.log(index);
-    displayBlog.splice(index, 1);
-    updateLocalStorage(displayBlog);
-    window.sessionStorage.clear();
-    location.reload();
-  };
-}
+deleteBlog = (b_id) => {
+  const url = `https://my-brand-andre-be.onrender.com/deleteBlogById/${b_id}`;
+  fetch(url, {
+    method: "delete",
+    headers: {
+      Authorization: `bearer ${getToken}`,
+    },
+  })
+    .then((Response) => Response.json())
+    .then((data) => {
+      console.log(data);
+      setTimeout(() => {
+        window.location.href = "myBlogs.html";
+      }, 500);
+    });
+};
 
 // display blog
+const blogCreator = readLocalStorageUser();
+console.log(blogCreator.FullName);
+const fetchBlogs = () => {
+  const url = "https://my-brand-andre-be.onrender.com/fetchBlogs";
+  fetch(url)
+    .then((Response) => Response.json())
+    .then((data) => {
+      console.log(data);
+      let num = 0;
+      for (const items of data) {
+        num += 1;
+        let blog_id = items._id;
 
-if (displayBlog !== null) {
-  let displayUser = readLocalStorageUser();
-  for (const items of displayBlog) {
-    console.log(items);
-    let user = displayUser.find((rec) => rec.u_id === items.u_id);
-    console.log(user.u_name);
-    document.querySelector(".blog_creation").innerHTML += `
+        document.querySelector(".blog_creation").innerHTML += `
             <div class="blogSelf">
-            <h4>Title: ${items.b_title}&nbsp;|&nbsp;Category: ${items.b_category}</h4> 
+            <h4>Title: ${items.blogTitle}&nbsp;|&nbsp;Category: ${items.blogCategoryId}</h4> 
             <div class="innerBlogSelf">
                 <div class="left_selfBlog">
-                <div class="blog_img"><img src="${items.b_pic}" alt="like"></div>
+                <div class="blog_img"><img src="${items.blogImg}" alt="like"></div>
                 <div class="blog_desciption">
-                    <p>${items.b_desc}</p>
-                    <h5 class="blog_author">Author :${user.u_name}</h5>
-                    <h6>Published : ${items.b_date}</h6>
+                    <p>${items.blogDescription}</p>
+                    <h5 class="blog_author">Author :${blogCreator.FullName}</h5>
+                    <h6>Published : ${items.blogDate}</h6>
                 </div>
                 </div>
                 <div class="right_selfBlog">
-                    <button type="button"  onclick="deleteBlog(${items.b_id})">Delete</button>
+                    <button type="button"  onclick="deleteBlog('${items._id}')">Delete</button>
                     
                 </div>
                
              </div>
              </div>
     `;
-    // document.querySelector(
-    //   ".blog_img"
-    // ).style.backgroundImage = `url(${items.b_pic})`;
-  }
-}
+      }
+    });
+};
+fetchBlogs();
 
 /*================================================================
                                 EVENT 

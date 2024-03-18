@@ -38,7 +38,7 @@ if (document.querySelector(".menu") || document.querySelector(".close_modal")) {
     });
 }
 
-let logged = window.localStorage.getItem("loggedUser");
+let logged = window.localStorage.getItem("current_user");
 // console.log(logged);
 if (logged !== null) {
   hide_login = () => {
@@ -50,7 +50,8 @@ if (logged !== null) {
 
 document.querySelector(".btn_logout").addEventListener("click", (e) => {
   e.preventDefault();
-  window.localStorage.removeItem("loggedUser");
+  window.localStorage.removeItem("current_user");
+  window.localStorage.removeItem("auth_token");
   document.querySelector(".btn_logout").classList.add("hide");
   document.querySelector(".btn_login").classList.remove("hide");
 });

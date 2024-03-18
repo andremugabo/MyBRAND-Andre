@@ -172,7 +172,9 @@
                  ========================================================== */
                  const logoutFunction = (e) => {
                 e.preventDefault();
-                window.localStorage.removeItem("loggedUser");
+                window.localStorage.removeItem("current_user");
+                window.localStorage.removeItem("auth_token");
+                window.localStorage.removeItem("category");
                 window.location.href = "login.html";
                 };
 

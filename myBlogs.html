@@ -160,7 +160,7 @@
 
         <script src="ASSETS/JS/myBlog.js"></script>
         <script>
-// DASHBOARD MENU
+        // DASHBOARD MENU
                     function display(element) {
                                         element.classList.remove("hide");
                                         // openMenu();
@@ -199,7 +199,9 @@
                  ========================================================== */
                  const logoutFunction = (e) => {
                 e.preventDefault();
-                window.localStorage.removeItem("loggedUser");
+                window.localStorage.removeItem("current_user");
+                window.localStorage.removeItem("auth_token");
+                window.localStorage.removeItem("category");
                 window.location.href = "login.html";
                 };
 
@@ -247,7 +249,7 @@
                 console.log(keys);
 
                             document.querySelector("#admin_Category").innerHTML +=`
-                                        <option value="${keys._id}">${keys.category}</option>
+                                        <option value="${keys.category}">${keys.category}</option>
                                        
                         `;
                     }
