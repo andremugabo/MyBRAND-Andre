@@ -107,7 +107,7 @@ const likeC = (id) => {
 };
 
 const fetchComment = () => {
-  const url = `https://my-brand-andre-be.onrender.com/comments`;
+  const url = `https://my-brand-andre-be.onrender.com/comment/${bId}`;
   fetch(url, {
     headers: {
       Authorization: `bearer ${getToken}`,
