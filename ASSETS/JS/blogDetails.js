@@ -118,29 +118,31 @@ const fetchComment = () => {
       console.log(data);
 
       let num = 0;
-      for (const items of data) {
-        num += 1;
-        document.querySelector(".comment_section").innerHTML += `
-        <div class="main_comment flex-center-items">
-        <div class="right_main_comment flex-center-center">
-            <img src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D" alt="comment_pic">
-        </div>
-        <div class="left_main_comment">
-            <div class="main_comment_content">
-                <div class="comment_title">
-                    <span class="bloger_name">${items.userId}</span>
-                    <span class="comment_like flex-center-items"><img src="ASSETS/IMAGES/Thumb Up_52px.png" alt="like" onclick="likeC(${items._id})"><div class="like_comm flex-center-center">${items.commentLike.length}</div></span>
-                </div>
-                <div class="comment_date flex-center-items">
-                    <img src="ASSETS/IMAGES/Tear Off Calendar_50px.png" alt="Calender"><span>${items.commentDate}</span>
-                </div>
-                <div class="comment_text">
-                    <p>${items.commentMsg}</p>
+      if (data.length > 0) {
+        for (const items of data) {
+          num += 1;
+          document.querySelector(".comment_section").innerHTML += `
+            <div class="main_comment flex-center-items">
+            <div class="right_main_comment flex-center-center">
+                <img src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D" alt="comment_pic">
+            </div>
+            <div class="left_main_comment">
+                <div class="main_comment_content">
+                    <div class="comment_title">
+                        <span class="bloger_name">${items.userId}</span>
+                        <span class="comment_like flex-center-items"><img src="ASSETS/IMAGES/Thumb Up_52px.png" alt="like" onclick="likeC(${items._id})"><div class="like_comm flex-center-center">${items.commentLike.length}</div></span>
+                    </div>
+                    <div class="comment_date flex-center-items">
+                        <img src="ASSETS/IMAGES/Tear Off Calendar_50px.png" alt="Calender"><span>${items.commentDate}</span>
+                    </div>
+                    <div class="comment_text">
+                        <p>${items.commentMsg}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        </div>
-`;
+            </div>
+    `;
+        }
       }
     });
 };
