@@ -57,7 +57,6 @@ const loginFormEvent = (e) => {
     document.querySelector("#lPassword").value.length >= 4
   ) {
     fetch("https://my-brand-andre-be.onrender.com/user", {
-      mode: "no-cors",
       method: "POST",
       headers: {
         "content-type": "application/json",
