@@ -57,6 +57,7 @@ const loginFormEvent = (e) => {
     document.querySelector("#lPassword").value.length >= 4
   ) {
     fetch("https://my-brand-andre-be.onrender.com/user", {
+      mode: "no-cors",
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -68,8 +69,8 @@ const loginFormEvent = (e) => {
     })
       .then((Response) => Response.json())
       .then((data) => {
-        const token = data.token;
-        window.localStorage.setItem("auth_token", JSON.stringify(token));
+        // console.log(data.token);
+        window.localStorage.setItem("auth_token", JSON.stringify(data.token));
         window.localStorage.setItem(
           "current_user",
           JSON.stringify(data.loginUser)

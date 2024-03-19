@@ -300,20 +300,7 @@ const validateCommentInput = () => {
   }
 };
 
-// create comment
-const createComment = (c_id,u_id,b_id,c_msg,c_date)=>{
-    comment = {
-        c_id: c_id,
-        u_id: u_id,
-        b_id: b_id,
-        c_msg: c_msg,
-        l_count:0,
-        dl_count:0,
-        c_date: c_date
-    }
 
-    return comment;
-}
 
 
 //COMMENT EVENT
@@ -324,33 +311,37 @@ const commentFormEvent = (e) => {
   e.preventDefault();
   validateCommentInput();
   if(document.querySelector("#comment_msg").value.trim() !== ""){
-    let u_idText = window.localStorage.getItem("loggedUser");
-    let u_id = JSON.parse(u_idText);
-    console.log(u_id);
-    let getComment = window.localStorage.getItem("comment");
-    let theComment = JSON.parse(getComment);
-    if(theComment === null){
-        let c_id = 1;
+        let u_idText = window.localStorage.getItem("current_user");
+        let u_id = JSON.parse(u_idText);
+        console.log(u_id._id);
+        const userId = u_id.FullName;
+        const blogId = bIdI;
+        const commentMsg = document.querySelector("#comment_msg").value;
         const today = new Date();
         const formattedDate = today.toLocaleDateString();
-        let c_date = formattedDate;
-        let c_message = document.querySelector("#comment_msg").value;
-        let createC = createComment(c_id,u_id,bIdI,c_message,c_date);
-        dbComment.push(createC);
-        updateLocalStorage(dbComment);
-        location.reload();
-    }else{
-        dbComment = theComment;
-        let c_id = dbComment.length + 1;
-        const today = new Date();
-        const formattedDate = today.toLocaleDateString();
-        console.log(formattedDate);
-        let c_date = formattedDate;
-        let c_message = document.querySelector("#comment_msg").value;
-        let createC = createComment(c_id,u_id,bIdI,c_message,c_date);
-        dbComment.push(createC);
-        updateLocalStorage(dbComment);
-        location.reload();
+        const commentLike = [];
+        let commentDate = formattedDate;
+
+
+        fetch('https://my-brand-andre-be.onrender.com/comments',{
+            method: "POST",
+        headers: {
+            "content-type": "application/json",
+            Authorization: `bearer ${getToken}`,
+        },
+        body: JSON.stringify({
+            userId,
+            blogId,
+            commentMsg,
+            commentLike,
+            commentDate
+            }),
+        })
+        .then((Response)=>Response.json())
+        .then((data)=>console.log(data))
+    
+    
+    
     }
 
 
@@ -359,7 +350,7 @@ const commentFormEvent = (e) => {
 
 
 
-  }
+  
 };
 
 if (document.getElementById("commentForm")) {

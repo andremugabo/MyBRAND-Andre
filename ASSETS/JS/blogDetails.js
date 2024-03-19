@@ -1,21 +1,25 @@
+const getToken = JSON.parse(window.localStorage.getItem("auth_token"));
 let blogId = window.sessionStorage.getItem("blogDetails");
 let bId = JSON.parse(blogId);
 console.log(blogId);
-let currentBlog;
-let getBlogDetails = window.localStorage.getItem("blog");
-let dataBase = JSON.parse(getBlogDetails);
-if (dataBase !== null) {
-  console.log(dataBase);
-  currentBlog = dataBase.find((rec) => rec.b_id === bId);
-  console.log(currentBlog);
-
-  document.querySelector(".blog_details_to_display").innerHTML = `
+console.log(bId);
+console.log(getToken);
+const fetchOneBlog = () => {
+  const url = `https://my-brand-andre-be.onrender.com/fetchBlogById/${bId}`;
+  fetch(url, {
+    headers: {
+      Authorization: `bearer ${getToken}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      document.querySelector(".blog_details_to_display").innerHTML = `
 
             <div class="individual_blog_category">
-            <h2>${currentBlog.b_title}</h2>
+            <h2>${data.blogTitle}</h2>
             </div>
             <div class="individual_blog_title">
-            <h4>${currentBlog.b_desc}</h4>
+            <h4>${data.blogDescription}</h4>
             </div>
             <div class="item_title">
             <div class="left_item_title">
@@ -24,23 +28,26 @@ if (dataBase !== null) {
             </div>
             <div class="right_item_title">
                 <img src="ASSETS/IMAGES/Grid 2_48px.png" alt="blog_title">
-                <span>${currentBlog.b_category}</span>
+                <span>${data.blogCategoryId}</span>
             </div>
             </div>
             <div class="proper_blog_image">
-            <img src="${currentBlog.b_pic}" alt="blog_image">  
+            <img src="${data.blogImg}" alt="blog_image">  
             </div>
             <div class="blog_description">
-            <p>${currentBlog.b_container}</p>
+            <p>${data.blogContent}</p>
             </div>
             
        
         `;
-}
+    })
+    .catch((error) => console.error("Error fetching blog:", error));
+};
+fetchOneBlog();
 
 const readLocalStorageUser = () => {
-  let getData = window.localStorage.getItem("users");
-  let db = JSON.parse(getData);
+  let getUserData = window.localStorage.getItem("current_user");
+  let db = JSON.parse(getUserData);
   return db;
 };
 let getComments = window.localStorage.getItem("comment");
@@ -98,6 +105,18 @@ const likeC = (id) => {
     }
   }
 };
+
+const fetchComment = () => {
+  const url = `https://my-brand-andre-be.onrender.com/comment/${bId}`;
+  fetch(url, {
+    headers: {
+      Authorization: `bearer ${getToken}`,
+    },
+  })
+    .then((Response) => Response.json())
+    .then((data) => console.log(data));
+};
+fetchComment();
 
 if (dataComment !== null) {
   console.log(dataComment);

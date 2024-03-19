@@ -34,7 +34,7 @@ const fetchBlogs = () => {
             <div class="blog1_item_details">
                 <div class="item_title">
                     <div class="left_item_title">
-                        <img src="${blogCreator.picture}" alt="blog_title" id="user_pic">
+                        <img src="${blogCreator.picture}" alt="blog_pic" id="user_pic">
                         <span>${blogCreator.FullName}</span>
                     </div>
                     <div class="right_item_title">
