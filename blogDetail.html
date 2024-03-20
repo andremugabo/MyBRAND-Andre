@@ -192,6 +192,9 @@
                     <form action="" id="commentForm">
                         <textarea name="" id="comment_msg" cols="30" rows="10" placeholder="Write Comment"></textarea>
                         <h6 class="error error11 hide" id="comment_msg_error">4</h6>
+                        <div class="msgComment">
+                                
+                        </div>
                         <button type="submit">SUBMIT NOW</button>
                     </form>
                 </div>
@@ -338,7 +341,18 @@ const commentFormEvent = (e) => {
             }),
         })
         .then((Response)=>Response.json())
-        .then((data)=>console.log(data))
+        .then((data)=>{
+            console.log(data)
+            if(data.status === 200){
+                displaySuccessMsg(document.querySelector('.msgComment'),data.message);
+                setTimeout(()=>{
+                    window.location.href="blogDetail.html";
+                },500)
+                
+            }else{
+                displayFailMessage(document.querySelector('.msgComment'),data.message);
+            }
+        })
     
     
     
