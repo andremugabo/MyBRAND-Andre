@@ -20,7 +20,7 @@ const fetchBlogs = () => {
   fetch(url)
     .then((Response) => Response.json())
     .then((data) => {
-      console.log(data);
+      console.log(data.blogs);
       let num = 0;
       for (const items of data.blogs) {
         num += 1;
