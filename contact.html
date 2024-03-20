@@ -158,7 +158,7 @@
             <div class="footer-card">
                 <hr>
                 <hr>
-                <h6>UI/UX Desigm / Web Development</h6>
+                <h6>UI/UX Design / Web Development</h6>
                 <h5>Newsletter</h5>
                 <p>Subscribe newsletter to get updates</p>
                 <form action="">
@@ -242,21 +242,39 @@ const contactFormEvent = (e) => {
     const name = document.querySelector("#contact_name").value;
     const email = document.querySelector("#contact_email").value;
     const msg = document.querySelector("#contact_msg").value;
-    const url = `https://my-brand-andre-be.onrender.com/contactMsgs`;
-    fetch(url,{
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString();
+    let date = formattedDate;
+    fetch('https://my-brand-andre-be.onrender.com/contactMsgs',{
         method:'POST',
         headers:{
-            'mode':'no-cors',
-            'Content-Type':'application/json',
-            'body':JSON.stringify({
+            'Content-Type':'application/json'
+        },
+        'body':JSON.stringify({
                 name,
                 email,
-                msg
+                msg,
+                date
             })
-        }
     })
     .then((Response)=>Response.json())
-    .then((data)=>console.log(data))
+    .then((data)=>{
+        console.log(data.message);
+        if(data.status === 200){
+            resetInput();
+            displaySuccessMsg(
+          document.querySelector(".msgContact"),
+          data.message
+        );
+
+        }else{
+            resetInput();
+            displayFailMessage(
+          document.querySelector(".msgContact"),
+          data.message
+        );
+        }
+    })
     
 
   }

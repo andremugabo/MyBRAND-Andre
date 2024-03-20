@@ -270,29 +270,61 @@
                     window.location.href = "readMessage.html";
                 }
                 let getMassages = readLocalStorageContact();
-                if(getMassages !== null){
-                        for(const key of getMassages){
-                        console.log(key);
-                        if(key.readStatus === 0){
-                            document.querySelector('.contactTableBody').innerHTML +=`
-                            <tr>
-                                <td>${key.name}</td>
-                                <td>${key.email}</td>
-                                <td>${key.date}</td>
-                                <td><button onclick="readMessage(${key.msgID})"><img src="ASSETS/IMAGES/Reading Confirmation_52px_1.png" alt="readMsg"></button></td>
-                            </tr>
-                            `;
+                const getToken = JSON.parse(window.localStorage.getItem("auth_token"));
+                const fetchContactMsg = ()=>{
+                    fetch('https://my-brand-andre-be.onrender.com/contactMsgs',{
+                        headers:{
+                            Authorization: `bearer ${getToken}`,
                         }
-                        
-                    }
-                    
-                }else{
-                    document.querySelector('.contactTableBody').innerHTML =`
+                    })
+                    .then((Response)=>Response.json())
+                    .then((data)=>{
+                        console.log(data);
+                        for(let key of data){
+                            console.log(key.read);
+                            if(key.read === '0'){
+                                document.querySelector('.contactTableBody').innerHTML +=`
+                                <tr>
+                                    <td>${key.name}</td>
+                                    <td>${key.email}</td>
+                                    <td>${key.date}</td>
+                                    <td><button onclick="readMessage('${key._id}')"><img src="ASSETS/IMAGES/Reading Confirmation_52px_1.png" alt="readMsg"></button></td>
+                                </tr>
+                            `;
+                            }else{
+                                document.querySelector('.contactTableBody').innerHTML =`
                                  <tr><td colspan="4" id="noMsg">NO NEW MESSAGES TO DISPLAY</td></tr>
                     `;
+                            }
+                        }
+                    })
+
+                }
+                fetchContactMsg();
+
+                // if(getMassages !== null){
+                //         for(const key of getMassages){
+                //         console.log(key);
+                //         if(key.readStatus === 0){
+                //             document.querySelector('.contactTableBody').innerHTML +=`
+                //             <tr>
+                //                 <td>${key.name}</td>
+                //                 <td>${key.email}</td>
+                //                 <td>${key.date}</td>
+                //                 <td><button onclick="readMessage(${key.msgID})"><img src="ASSETS/IMAGES/Reading Confirmation_52px_1.png" alt="readMsg"></button></td>
+                //             </tr>
+                //             `;
+                //         }
+                        
+                //     }
+                    
+                // }else{
+                //     document.querySelector('.contactTableBody').innerHTML =`
+                //                  <tr><td colspan="4" id="noMsg">NO NEW MESSAGES TO DISPLAY</td></tr>
+                //     `;
                        
                     
-                }
+                // }
                 
 
 

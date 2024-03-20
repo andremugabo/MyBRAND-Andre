@@ -169,7 +169,7 @@ const fetchBlogs = () => {
     .then((data) => {
       console.log(data);
       let num = 0;
-      for (const items of data) {
+      for (const items of data.blogs) {
         num += 1;
         let blog_id = items._id;
 
