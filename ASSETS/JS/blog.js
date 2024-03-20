@@ -25,7 +25,7 @@ const fetchBlogs = () => {
       for (const items of data.blogs) {
         num += 1;
         let blog_id = items._id;
-
+        console.log(items.creator.fullName);
         document.querySelector(".blog_container").innerHTML += `
             <div class="blog_items">
             <div class="blog1_items_img" id="blog_picture">
@@ -34,8 +34,8 @@ const fetchBlogs = () => {
             <div class="blog1_item_details">
                 <div class="item_title">
                     <div class="left_item_title">
-                        <img src="${blogCreator.picture}" alt="blog_pic" id="user_pic">
-                        <span>${blogCreator.FullName}</span>
+                        <img src="${items.creator.picture}" alt="blog_pic" id="user_pic">
+                        <span>${items.creator.fullName}</span>
                     </div>
                     <div class="right_item_title">
                         <img src="ASSETS/IMAGES/Grid 2_48px.png" alt="blog_title">

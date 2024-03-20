@@ -212,13 +212,7 @@ const displayFailMessage = (element, message) => {
   }, 2000);
 };
 
-// const validateCommentInput = () => {
-//   if (document.querySelector("#comment_msg").value.trim() === "") {
-//     setError("comment_msg_error", "Your Comment is require");
-//   } else {
-//     document.querySelector(".error11").classList.add("hide");
-//   }
-// };
+
 const validateContactInput = () => {
   if (document.querySelector("#contact_name").value.trim() === "") {
     setError("contact_name_error", "Your name is require");
@@ -245,44 +239,25 @@ const contactFormEvent = (e) => {
   if(document.querySelector("#contact_name").value.length >=3 &&
   document.querySelector("#contact_email").value.length >=3 &&
   document.querySelector("#contact_msg").value.length >= 3){
-    let getMsg = readLocalStorageContact();
-    if(getMsg === null){
-        let msgID = 1;
-        let name = document.querySelector("#contact_name").value;
-        let email = document.querySelector("#contact_email").value;
-        let msg = document.querySelector("#contact_msg").value;
-        const today = new Date();
-        const formattedDate = today.toLocaleDateString();
-        let date = formattedDate;
-        let newMsg = createMsg(msgID,name,email,msg,date);
-        contactDb.push(newMsg);
-        updateLocalStorageContact(contactDb);
-        resetInput();
-        displaySuccessMsg(
-          document.querySelector(".msgContact"),
-          "YOUR MESSAGE SENT SUCCESS THANK YOU !! "
-        );
-
-    }else{
-        let getMsg = readLocalStorageContact();
-        let count = getMsg.length;
-        contactDb = getMsg;
-        let msgID = count + 1;
-        let name = document.querySelector("#contact_name").value;
-        let email = document.querySelector("#contact_email").value;
-        let msg = document.querySelector("#contact_msg").value;
-        const today = new Date();
-        const formattedDate = today.toLocaleDateString();
-        let date = formattedDate;
-        let newMsg = createMsg(msgID,name,email,msg,date);
-        contactDb.push(newMsg);
-        updateLocalStorageContact(contactDb);
-        resetInput();
-        displaySuccessMsg(
-          document.querySelector(".msgContact"),
-          "YOUR MESSAGE SENT SUCCESS THANK YOU !! "
-        );
-    }
+    const name = document.querySelector("#contact_name").value;
+    const email = document.querySelector("#contact_email").value;
+    const msg = document.querySelector("#contact_msg").value;
+    const url = `https://my-brand-andre-be.onrender.com/contactMsgs`;
+    fetch(url,{
+        method:'POST',
+        headers:{
+            'mode':'no-cors',
+            'Content-Type':'application/json',
+            'body':JSON.stringify({
+                name,
+                email,
+                msg
+            })
+        }
+    })
+    .then((Response)=>Response.json())
+    .then((data)=>console.log(data))
+    
 
   }
 };
@@ -300,17 +275,7 @@ if (document.getElementById("contactForm")) {
     .addEventListener("submit", contactFormEvent);
 }
 
-const createMsg = (msgID,name,email,msg,date) =>{
-    message = {
-        msgID:msgID,
-        name:name,
-        email:email,
-        msg:msg,
-        date:date,
-        readStatus:0,
-    }
-    return message;
-}
+
 
 const readLocalStorageContact = () => {
   let getData = window.localStorage.getItem("contacts");
