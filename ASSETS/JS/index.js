@@ -56,17 +56,20 @@ if (document.querySelector(".menu") || document.querySelector(".close_modal")) {
     });
 }
 
-document.querySelector(".btn_logout").addEventListener("click", (e) => {
-  e.preventDefault();
-  window.localStorage.removeItem("current_user");
-  window.localStorage.removeItem("auth_token");
-  // Hide logout buttons
-  document.querySelectorAll(".btn_logout").forEach((button) => {
-    button.classList.add("hide");
-  });
+document.querySelectorAll(".btn_logout").forEach((button) => {
+  button.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.localStorage.removeItem("current_user");
+    window.localStorage.removeItem("auth_token");
 
-  // Show login buttons
-  document.querySelectorAll(".btn_login").forEach((button) => {
-    button.classList.remove("hide");
+    // Hide logout buttons
+    document.querySelectorAll(".btn_logout").forEach((button) => {
+      button.classList.add("hide");
+    });
+
+    // Show login buttons
+    document.querySelectorAll(".btn_login").forEach((button) => {
+      button.classList.remove("hide");
+    });
   });
 });
