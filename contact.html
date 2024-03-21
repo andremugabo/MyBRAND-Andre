@@ -184,6 +184,30 @@
     </footer>
     <script src="ASSETS/JS/index.js"></script>
     <script>
+        /*================================================================
+                              PRELOADER START
+==================================================================*/
+// Create the preloader element
+const preloader = document.createElement("div");
+preloader.classList.add("preloader");
+preloader.style.zIndex = "5";
+preloader.innerHTML = `
+    <img src="ASSETS/IMAGES/loading.gif" alt="preloader">
+`;
+
+document.body.appendChild(preloader);
+
+const displayPreloader = () => {
+  preloader.classList.add("show");
+};
+
+const hidePreloader = () => {
+  preloader.classList.remove("show");
+};
+
+/*================================================================
+                              PRELOADER END
+==================================================================*/
   let contactDb = [];
   const setError = (idError, message) => {
   document.getElementById(idError).classList.remove("hide");
