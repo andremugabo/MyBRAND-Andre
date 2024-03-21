@@ -100,31 +100,31 @@
                 let msgId = window.sessionStorage.getItem("messageID");
                 let idMsg = JSON.parse(msgId);
                 console.log(idMsg);
-                let messages = readLocalStorageContact();
-                console.log(messages);
-                if(messages !== null){
-                   let currentMessage = messages.find(rec => rec.msgID === idMsg);
-                   console.log(currentMessage);
-                   currentMessage.readStatus = 1;
-                   updateLocalStorageContact(messages);
 
+                
+
+
+
+                let message = readLocalStorageContact();
+                console.log(message);
+                if(message !== null){
                    document.querySelector(".displayMsg_tbody").innerHTML = `
                         <thead>
                             <tr>
                                 <th>Sender:</th>
-                                <th>${currentMessage.name}</th>
+                                <th>${message.name}</th>
                             </tr>
                                 <th>Email:</th>
-                                <th>${currentMessage.email}</th>
+                                <th>${message.email}</th>
                             </tr>    
                             <tr>
                                 <th>Sent on:</th>
-                                <th>${currentMessage.date}</th>
+                                <th>${message.date}</th>
                             </tr>                                
                         </thead>
                         <tbody>
                             <tr>
-                                <td colspan="4"><p>${currentMessage.msg}</p></td>
+                                <td colspan="4"><p>${message.msg}</p></td>
                             </tr>
                         </tbody>
                    `;

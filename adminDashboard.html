@@ -252,11 +252,10 @@
                 document.querySelector(".user_logo").innerHTML = `
                     <img src="${theLoggedUser.picture}" alt="user"><span>${theLoggedUser.FullName}</span>
                     `;
-                const readLocalStorage = () => {
-                let getData = window.localStorage.getItem("users");
-                let db = JSON.parse(getData);
-                return db;
-                };
+                    const updateLocalStorageContact = (data) => {
+                    let dataBaseText = JSON.stringify(data);
+                    window.localStorage.setItem("contacts", dataBaseText);
+                    };
 
                 const readLocalStorageContact = () => {
                 let getData = window.localStorage.getItem("contacts");
@@ -265,10 +264,25 @@
                 };
 
                 const readMessage = (id)=>{
-                    let idText = JSON.stringify(id);
-                    const setMessageId = window.sessionStorage.setItem("messageID",idText);
-                    window.location.href = "readMessage.html";
+                    console.log(id)
+                    const url = `https://my-brand-andre-be.onrender.com/readMsg/${id}`;
+                    fetch(url,{
+                        method:'PATCH',
+                        headers:{
+                            Authorization: `bearer ${getToken}`,
+                        }
+                        
+                    })
+                    .then((Response)=>Response.json())
+                    .then((data)=>{
+                        console.log(data)
+                        updateLocalStorageContact(data);
+                        window.location.href = "readMessage.html";
+                    })
+                    
+                    
                 }
+                // readMessage();
                 let getMassages = readLocalStorageContact();
                 const getToken = JSON.parse(window.localStorage.getItem("auth_token"));
                 const fetchContactMsg = ()=>{
@@ -291,42 +305,19 @@
                                     <td><button onclick="readMessage('${key._id}')"><img src="ASSETS/IMAGES/Reading Confirmation_52px_1.png" alt="readMsg"></button></td>
                                 </tr>
                             `;
-                            }else{
-                                document.querySelector('.contactTableBody').innerHTML =`
-                                 <tr><td colspan="4" id="noMsg">NO NEW MESSAGES TO DISPLAY</td></tr>
-                    `;
                             }
+                    //         else{
+                    //             document.querySelector('.contactTableBody').innerHTML =`
+                    //              <tr><td colspan="4" id="noMsg">NO NEW MESSAGES TO DISPLAY</td></tr>
+                    // `;
+                    //         }
                         }
                     })
 
                 }
                 fetchContactMsg();
 
-                // if(getMassages !== null){
-                //         for(const key of getMassages){
-                //         console.log(key);
-                //         if(key.readStatus === 0){
-                //             document.querySelector('.contactTableBody').innerHTML +=`
-                //             <tr>
-                //                 <td>${key.name}</td>
-                //                 <td>${key.email}</td>
-                //                 <td>${key.date}</td>
-                //                 <td><button onclick="readMessage(${key.msgID})"><img src="ASSETS/IMAGES/Reading Confirmation_52px_1.png" alt="readMsg"></button></td>
-                //             </tr>
-                //             `;
-                //         }
-                        
-                //     }
-                    
-                // }else{
-                //     document.querySelector('.contactTableBody').innerHTML =`
-                //                  <tr><td colspan="4" id="noMsg">NO NEW MESSAGES TO DISPLAY</td></tr>
-                //     `;
-                       
-                    
-                // }
                 
-
 
 
         </script>
