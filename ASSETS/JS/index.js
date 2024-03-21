@@ -1,6 +1,7 @@
 /* ==============================================================
                       NAVBAR MODAL
 =================================================================*/
+
 document.getElementsByTagName("body")[0].innerHTML += `
 <div class="hide modal_menu flex-center-center">
     <ul class="flex-center-center w-50">
@@ -16,6 +17,23 @@ document.getElementsByTagName("body")[0].innerHTML += `
     <div class="close_modal flex-center-center"><img src="ASSETS/IMAGES/Close Window_52px.png" alt="close"></div>
 </div>
 `;
+// console.log(document.querySelectorAll(".btn_logout"));
+let logged = window.localStorage.getItem("current_user");
+console.log(logged);
+if (logged !== null) {
+  hide_login = () => {
+    const loginButtons = document.querySelectorAll(".btn_login");
+    loginButtons.forEach((button) => {
+      button.classList.add("hide");
+    });
+    const logoutButtons = document.querySelectorAll(".btn_logout");
+    logoutButtons.forEach((button) => {
+      button.classList.remove("hide");
+    });
+  };
+  hide_login();
+}
+
 function display(element) {
   element.classList.remove("hide");
 }
@@ -36,16 +54,6 @@ if (document.querySelector(".menu") || document.querySelector(".close_modal")) {
       e.preventDefault();
       hide(document.querySelector(".modal_menu"));
     });
-}
-
-let logged = window.localStorage.getItem("current_user");
-// console.log(logged);
-if (logged !== null) {
-  hide_login = () => {
-    document.querySelector(".btn_login").classList.add("hide");
-    document.querySelector(".btn_logout").classList.remove("hide");
-  };
-  hide_login();
 }
 
 document.querySelector(".btn_logout").addEventListener("click", (e) => {
