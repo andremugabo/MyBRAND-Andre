@@ -60,6 +60,13 @@ document.querySelector(".btn_logout").addEventListener("click", (e) => {
   e.preventDefault();
   window.localStorage.removeItem("current_user");
   window.localStorage.removeItem("auth_token");
-  document.querySelector(".btn_logout").classList.add("hide");
-  document.querySelector(".btn_login").classList.remove("hide");
+  // Hide logout buttons
+  document.querySelectorAll(".btn_logout").forEach((button) => {
+    button.classList.add("hide");
+  });
+
+  // Show login buttons
+  document.querySelectorAll(".btn_login").forEach((button) => {
+    button.classList.remove("hide");
+  });
 });
