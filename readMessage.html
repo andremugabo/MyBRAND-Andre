@@ -97,34 +97,34 @@
                 window.localStorage.setItem("contacts", dataBaseText);
                 };
 
-                let msgId = window.sessionStorage.getItem("messageID");
-                let idMsg = JSON.parse(msgId);
-                console.log(idMsg);
+                // let msgId = window.sessionStorage.getItem("messageID");
+                // let idMsg = JSON.parse(msgId);
+                // console.log(idMsg);
 
                 
 
 
 
                 let message = readLocalStorageContact();
-                console.log(message);
-                if(message !== null){
+                console.log(message.readMsg);
+                if(message.readMsg !== null){
                    document.querySelector(".displayMsg_tbody").innerHTML = `
                         <thead>
                             <tr>
                                 <th>Sender:</th>
-                                <th>${message.name}</th>
+                                <th>${message.readMsg.name}</th>
                             </tr>
                                 <th>Email:</th>
-                                <th>${message.email}</th>
+                                <th>${message.readMsg.email}</th>
                             </tr>    
                             <tr>
                                 <th>Sent on:</th>
-                                <th>${message.date}</th>
+                                <th>${message.readMsg.date}</th>
                             </tr>                                
                         </thead>
                         <tbody>
                             <tr>
-                                <td colspan="4"><p>${message.msg}</p></td>
+                                <td colspan="4"><p>${message.readMsg.msg}</p></td>
                             </tr>
                         </tbody>
                    `;
