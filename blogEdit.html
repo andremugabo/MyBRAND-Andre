@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin DashBoard</title>
+    <link rel="stylesheet" href="ASSETS/CSS/style.css">
+    <script>
+        let logged = "";
+        logged = window.localStorage.getItem("current_user");
+        const theLoggedUser = JSON.parse(logged);
+        if(logged === null || theLoggedUser.isAdmin === false){
+            window.location.href="login.html";
+        }
+        let id = theLoggedUser._id;
+
+    </script>
+</head>
+<body>
+        <div class="inner_maind">
+            <div class="left_inner_main_d">
+                <div class="logo flex-center-center"><a href="index.html">My&nbsp;Brand&nbsp;Andre</a></div>
+                <div class="side_nav_btn flex-center-center">
+                    <ul>
+                        <li><button type="button" onclick="window.location.href='adminDashboard.html'">Dashboard</button></li>
+                        <li><button type="button" onclick="window.location.href='blogsCategory.html'">Blog&nbsp;Categories</button></li>
+
+                        <li><button type="button" onclick="window.location.href='myBlogs.html'">My&nbsp;Blogs</button></li>
+                        <li><button type="button" onclick="window.location.href='blogger.html'">Bloggers</button></li>
+                        <li><button type="button" onclick="window.location.href='profile.html'">Profile</button></li>
+                        <li><button type="button" class="logout_btn flex-center-center logoutDash"><img src="ASSETS/IMAGES/Shutdown_52px.png" alt="shutdown">Logout</button></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right_inner_main_d">
+                <div class="dash_title flex-between-center">
+                    <div class="logo flex-center-center" id="logd"><a href="index.html">My&nbsp;Brand&nbsp;Andre</a></div>
+
+                    <div class="leftDash flex-between-center">
+                        <span class="dashboardT">DASHBOARD</span>
+                        <span class="dashboardUser">Admin</span>
+                    </div>
+                    <div class="rightDash flex-between-center">
+                        <div class="user_logo flex-center-center">
+                            <img src="ASSETS/IMAGES/Circled User Male_50px.png" alt="user"><span>Andre</span>
+                        </div>
+                        <button type="button" class="logoutDash">Logout</button>
+                    </div>
+                    <div class="dashMenu" id="menud" onclick="openMenu()"><img src="ASSETS/IMAGES/Menu_50px.png" alt="menuPic"></div>
+
+                </div>
+                <div class="innerDashboard_title">
+                    <h3>Edit&nbsp;Blog</h3>
+                </div>
+                <div class="filter">
+                   
+                    <Button onclick="window.location.href='myBlogs.html'">Back</Button>
+                    
+                </div>
+                <div class="table_dash">
+                    <h6>Blog to Edit</h6>
+                        
+                        <div class="cardProfile  flex-center-center editBlogSection">
+                            
+                        </div>
+            
+                   
+                </div>
+               
+            </div>
+        </div>
+
+        <!-- DASHBOARD MENU -->
+        <div class="dashboard_modal hide">
+            <div class="dashMenu_Close">
+                <button type="button" class="close_dashMenu" onclick="closeMenu()"><img src="ASSETS/IMAGES/Multiply_52px.png" alt="close"></button>
+            </div>
+            <div class="side_nav_btn flex-center-center">
+                <ul>
+                    <li><button type="button" onclick="window.location.href='adminDashboard.html'">Dashboard</button></li>
+                    <li><button type="button" onclick="window.location.href='blogsCategory.html'">Blog&nbsp;Categories</button></li>
+                    <li><button type="button" onclick="window.location.href='myBlogs.html'">My&nbsp;Blogs</button></li>
+                    <li><button type="button" onclick="window.location.href='blogger.html'">Bloggers</button></li>
+                    <li><button type="button" onclick="window.location.href='profile.html'">Profile</button></li>
+                    <li><button type="button" class="logout_btn flex-center-center logoutDash"><img src="ASSETS/IMAGES/Shutdown_52px.png" alt="shutdown">Logout</button></li>
+                </ul>
+            </div>
+        </div>
+
+        <script>
+        const getToken = JSON.parse(window.localStorage.getItem("auth_token"));
+        const readLocalStorageBlog = () => {
+        let getData = window.localStorage.getItem("blog");
+        let db = JSON.parse(getData);
+        return db;
+        };
+
+        const readLocalStorageUser = () => {
+        let getData = window.localStorage.getItem("current_user");
+        let db = JSON.parse(getData);
+        return db;
+        };
+
+/*#####################################################################
+                      BLOG CATEGORY FUNCTIONALITY
+#######################################################################*/
+
+            const setError = (idError, message) => {
+            document.getElementById(idError).classList.remove("hide");
+            document.getElementById(idError).innerText = message;
+            };
+            const resetError = (idError) => {
+            document.getElementById(idError).classList.add("hide");
+            };
+
+            // display msg
+            const displaySuccessMsg = (element, message) => {
+            const header6 = document.createElement("h6");
+            element.classList.remove("hide");
+            element.style.background = "#4cb54cb5";
+            element.appendChild(header6).innerText = `${message}`;
+            setTimeout(() => {
+                element.classList.add("hide");
+            }, 2000);
+            };
+
+            const displayFailMessage = (element, message) => {
+            const header6 = document.createElement("h6");
+            element.classList.remove("hide");
+            element.style.background = "#770a0afc";
+            element.appendChild(header6).innerText = `${message}`;
+            setTimeout(() => {
+                element.classList.add("hide");
+            }, 2000);
+            };
+
+            const displayBlogEdit = () =>{
+                const blogId = JSON.parse(window.sessionStorage.getItem('blogToEdit'));
+                console.log(blogId);
+                const url = `https://my-brand-andre-be.onrender.com/fetchBlogById/${blogId}`
+                fetch(url,{
+                    headers:{
+                        Authorization: `bearer ${getToken}`,
+                    }
+                })
+                .then((Response)=>Response.json())
+                .then((data)=>{
+                    console.log(data)
+                    document.querySelector('.editBlogSection').innerHTML = `
+                    <h4>My&nbsp;Blog</h4>
+                            <div class="card_bodyProfile">
+                                <form action="" enctype="multipart/form-data" id="editBlogById">
+                                    <label for="admin_Blog">Blog&nbsp;Title:</label>
+                                    <div class="input_textProfile">
+                                        <input type="text" value="${data.blogTitle}" id="admin_BloTitle" placeholder="Enter Blog Title">
+                                    </div>
+                                    <h6 class="error error20 hide" id="admin_BlogTitle_error">4</h6>
+            
+                                    <label for="admin_Category">Blog&nbsp;Category:</label>
+                                    <div class="input_textProfile">
+                                        <select name="" id="admin_Category">
+                                            <option value="" selected disabled>${data.blogCategoryId}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <h6 class="error error21 hide" id="admin_BlogCategory_error">4</h6>
+            
+                                    <label for="admin_BlogDescription">Blog&nbsp;Description:</label>
+                                    <div class="input_textProfile">
+                                        <input type="text"  value="${data.blogDescription}" id="admin_BlogDescription" placeholder="Enter a Short Description">
+                                    </div>
+                                    <h6 class="error error22 hide" id="admin_BlogDesc_error">4</h6>
+            
+                                    <label for="admin_BlogContainer">Blog&nbsp;Container:</label>
+                                    <div class="input_textProfile">
+                                        <textarea   id="admin_BlogContainer" placeholder="Write your Blog">${data.blogContent}</textarea>
+                                    </div>
+                                    <h6 class="error error23 hide" id="admin_BlogContainer_error">4</h6>
+            
+                                    <label for="admin_BlogPicture">Blog&nbsp;Picture:</label>
+                                    <div class="input_textProfile">
+                                        <input type="text"  value="${data.blogImg}" id="admin_BlogPicture" placeholder="Enter a Short Description">
+                                    </div>
+                                    <h6 class="error error24 hide" id="admin_BlogPic_error">4</h6>
+                                    <div class="msgBlog">
+            
+                                    </div>
+            
+                                    <div class="input_textProfile">
+                                        <button type="submit">Edit&nbsp;Blog</button>
+                                    </div>
+                                </form>
+                            </div>
+                    `;
+                    let categoryData = [];
+                const readLocalStorageCategory = () => {
+                let getData = window.localStorage.getItem("category");
+                let db = JSON.parse(getData);
+                return db;
+                };
+
+                categoryData = readLocalStorageCategory();
+                if(categoryData !== null){
+                    for(const keys of categoryData){
+                console.log(keys);
+
+                            document.querySelector("#admin_Category").innerHTML +=`
+                                        <option value="${keys.category}">${keys.category}</option>
+                                       
+                        `;
+                    }
+                        
+                }
+                    console.log(document.querySelector("#editBlogById"))
+                    document.querySelector("#editBlogById").addEventListener("submit", editBlog);
+                })
+                
+
+            }
+            displayBlogEdit();
+
+
+            const validateInsertBlogForm = () => {
+            if (document.querySelector("#admin_BloTitle").value.trim() === "") {
+                setError("admin_BlogTitle_error", "Blog Title  is required !!!");
+            } else {
+                document.querySelector(".error20").classList.add("hide");
+            }
+
+            if (document.querySelector("#admin_Category").value.trim() === "") {
+                setError("admin_BlogCategory_error", "Blog Category is required !!!");
+            } else {
+                document.querySelector(".error21").classList.add("hide");
+            }
+
+            if (document.querySelector("#admin_BlogDescription").value.trim() === "") {
+                setError("admin_BlogDesc_error", "Blog Description is required !!!");
+            } else {
+                document.querySelector(".error22").classList.add("hide");
+            }
+
+            if (document.querySelector("#admin_BlogContainer").value.trim() === "") {
+                setError("admin_BlogContainer_error", "Blog is required !!!");
+            } else {
+                document.querySelector(".error23").classList.add("hide");
+            }
+
+            if (document.querySelector("#admin_BlogPicture").value.trim() === "") {
+                setError("admin_BlogPic_error", "Blog is required !!!");
+            } else {
+                document.querySelector(".error24").classList.add("hide");
+            }
+            };
+
+
+
+            // DASHBOARD MENU
+                const readLocalStorageContact = () => {
+                let getData = window.localStorage.getItem("contacts");
+                let db = JSON.parse(getData);
+                return db;
+                };
+
+                const updateLocalStorageContact = (data) => {
+                let dataBaseText = JSON.stringify(data);
+                window.localStorage.setItem("contacts", dataBaseText);
+                };
+
+
+            const editBlog = (e) => {
+            e.preventDefault();
+            document.querySelector(".msgBlog").innerHTML = "";
+            validateInsertBlogForm();
+
+            if (
+                document.querySelector("#admin_BloTitle").value.trim() === "" ||
+                document.querySelector("#admin_Category").value.trim() === "" ||
+                document.querySelector("#admin_BlogDescription").value.trim() === "" ||
+                document.querySelector("#admin_BlogContainer").value.trim() === "" ||
+                document.querySelector("#admin_BlogPicture").value.trim() === ""
+            ) {
+                displayFailMessage(
+                document.querySelector(".msgBlog"),
+                "FILL OUT CATEGORY ALL FIELD !!!"
+                );
+                return;
+            } else {
+                const userData = readLocalStorageUser();
+                let userId = `${userData._id}`;
+                console.log(userId);
+                let blogTitle = document.querySelector("#admin_BloTitle").value;
+                let blogCategoryId = document.querySelector("#admin_Category").value;
+                let blogDescription = document.querySelector(
+                "#admin_BlogDescription"
+                ).value;
+                let blogContent = document.querySelector("#admin_BlogContainer").value;
+                let blogImg = document.querySelector("#admin_BlogPicture").value;
+                const today = new Date();
+                const formattedDate = today.toLocaleDateString();
+                let blogDate = formattedDate;
+                const blogId = JSON.parse(window.sessionStorage.getItem('blogToEdit'));
+                const url = `https://my-brand-andre-be.onrender.com/patchBlogById/${blogId}`;
+                fetch(url, {
+                method: "PATCH",
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `bearer ${getToken}`,
+                },
+                body: JSON.stringify({
+                    userId,
+                    blogCategoryId,
+                    blogTitle,
+                    blogDescription,
+                    blogContent,
+                    blogImg,
+                    blogDate,
+                }),
+                })
+                .then((Response) => Response.json())
+                .then((data) => {
+                    console.log(data);
+                    if (data.status === 200) {
+                    displaySuccessMsg(document.querySelector(".msgBlog"), data.message);
+                    setTimeout(() => {
+                        window.location.href = "myBlogs.html";
+                    }, 2000);
+                    } else {
+                    displayFailMessage(document.querySelector(".msgBlog"), data.message);
+                    }
+                });
+            }
+            };
+                
+
+                
+
+
+
+                
+                
+                /** ========================================================
+                 *                        LOGOUT
+                 ========================================================== */
+                 const logoutFunction = (e) => {
+                e.preventDefault();
+                window.localStorage.removeItem("loggedUser");
+                window.location.href = "login.html";
+                };
+
+                if (document.querySelectorAll(".logoutDash")) {
+                document.querySelectorAll(".logoutDash").forEach((btn) => {
+                    btn.addEventListener("click", logoutFunction);
+                });
+                }
+
+                
+
+                             
+                document.querySelector(".user_logo").innerHTML = `
+                    <img src="${theLoggedUser.picture}" alt="user"><span>${theLoggedUser.FullName}</span>
+                    `;
+
+                    const editBlogElement = document.querySelector("#editBlogById")
+                console.log(editBlogElement);
+
+
+
+                     /*=============================================
+                                CATEGORY
+                ===============================================*/ 
+               
+                
+        </script>
+</body>
+</html>

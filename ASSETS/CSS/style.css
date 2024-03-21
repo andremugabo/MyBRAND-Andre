@@ -1613,6 +1613,11 @@ background-color: #1058C3;
     color: #1058C3;
     font-weight: bold;
 }
+.editBlogSection{
+    background: #1058C3;
+    height: 100%;
+    padding: 20px;
+}
 .input_textProfile{
     width: 95%;
     margin-bottom: 5px;

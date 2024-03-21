@@ -187,6 +187,7 @@ const fetchBlogs = () => {
                 </div>
                 <div class="right_selfBlog">
                     <button type="button"  onclick="deleteBlog('${items._id}')">Delete</button>
+                    <button type="button"  onclick="editBlog('${items._id}')">Edit</button>
                     
                 </div>
                
@@ -198,8 +199,15 @@ const fetchBlogs = () => {
 };
 fetchBlogs();
 
+const editBlog = (blogId) => {
+  const _id = JSON.stringify(blogId);
+  console.log(_id);
+  window.sessionStorage.setItem("blogToEdit", _id);
+  window.location.href = "blogEdit.html";
+};
+
 /*================================================================
                                 EVENT 
 ==================================================================*/
 document.querySelector("#createBlog").addEventListener("submit", createBlog);
-document.querySelector("#createBlog").addEventListener("submit", editBlog);
+// document.querySelector("#createBlog").addEventListener("submit", editBlog);
