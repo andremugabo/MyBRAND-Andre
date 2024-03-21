@@ -17,7 +17,7 @@ document.getElementsByTagName("body")[0].innerHTML += `
     <div class="close_modal flex-center-center"><img src="ASSETS/IMAGES/Close Window_52px.png" alt="close"></div>
 </div>
 `;
-// console.log(document.querySelectorAll(".btn_logout"));
+
 let logged = window.localStorage.getItem("current_user");
 console.log(logged);
 if (logged !== null) {

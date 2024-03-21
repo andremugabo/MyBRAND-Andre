@@ -325,7 +325,7 @@ const commentFormEvent = (e) => {
         const commentLike = [];
         let commentDate = formattedDate;
 
-
+        displayPreloader();
         fetch('https://my-brand-andre-be.onrender.com/comments',{
             method: "POST",
         headers: {
@@ -342,6 +342,7 @@ const commentFormEvent = (e) => {
         })
         .then((Response)=>Response.json())
         .then((data)=>{
+            hidePreloader();
             console.log(data)
             if(data.status === 200){
                 displaySuccessMsg(document.querySelector('.msgComment'),data.message);

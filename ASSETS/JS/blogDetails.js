@@ -1,3 +1,27 @@
+/*================================================================
+                              PRELOADER START
+==================================================================*/
+// Create the preloader element
+const preloader = document.createElement("div");
+preloader.classList.add("preloader");
+preloader.style.zIndex = "5";
+preloader.innerHTML = `
+    <img src="ASSETS/IMAGES/loading.gif" alt="preloader">
+`;
+
+document.body.appendChild(preloader);
+
+const displayPreloader = () => {
+  preloader.classList.add("show");
+};
+
+const hidePreloader = () => {
+  preloader.classList.remove("show");
+};
+
+/*================================================================
+                              PRELOADER END
+==================================================================*/
 const getToken = JSON.parse(window.localStorage.getItem("auth_token"));
 let blogId = window.sessionStorage.getItem("blogDetails");
 let bId = JSON.parse(blogId);
@@ -5,6 +29,8 @@ console.log(blogId);
 console.log(bId);
 console.log(getToken);
 const fetchOneBlog = () => {
+  displayPreloader();
+
   const url = `https://my-brand-andre-be.onrender.com/fetchBlogById/${bId}`;
   fetch(url, {
     headers: {
@@ -13,6 +39,8 @@ const fetchOneBlog = () => {
   })
     .then((response) => response.json())
     .then((data) => {
+      hidePreloader();
+
       document.querySelector(".blog_details_to_display").innerHTML = `
 
             <div class="individual_blog_category">
@@ -57,6 +85,8 @@ let dataLike = [];
 let dataDLike = [];
 
 const likeC = (id) => {
+  displayPreloader();
+
   const url = `https://my-brand-andre-be.onrender.com/commentLike/${id}`;
   fetch(url, {
     method: "PATCH",
@@ -66,12 +96,16 @@ const likeC = (id) => {
   })
     .then((Response) => Response.json())
     .then((data) => {
+      hidePreloader();
+
       console.log(data);
       window.location.href = "blogDetail.html";
     });
 };
 
 const fetchComment = () => {
+  displayPreloader();
+
   const url = `https://my-brand-andre-be.onrender.com/comment/${bId}`;
   fetch(url, {
     headers: {
@@ -80,6 +114,8 @@ const fetchComment = () => {
   })
     .then((Response) => Response.json())
     .then((data) => {
+      hidePreloader();
+
       console.log(data);
 
       let num = 0;

@@ -200,6 +200,33 @@
                 }
             });
 
+
+            /*================================================================
+                              PRELOADER START
+            ==================================================================*/
+            // Create the preloader element
+            const preloader = document.createElement("div");
+            preloader.classList.add("preloader");
+            preloader.style.zIndex = "5";
+            preloader.innerHTML = `
+                <img src="ASSETS/IMAGES/loading.gif" alt="preloader">
+            `;
+
+            document.body.appendChild(preloader);
+
+            const displayPreloader = () => {
+            preloader.classList.add("show");
+            };
+
+            const hidePreloader = () => {
+            preloader.classList.remove("show");
+            };
+
+            /*================================================================
+                                        PRELOADER END
+            ==================================================================*/
+
+
             function display(element) {
                                         element.classList.remove("hide");
                                         // openMenu();
@@ -266,6 +293,7 @@
                 const readMessage = (id)=>{
                     console.log(id)
                     const url = `https://my-brand-andre-be.onrender.com/readMsg/${id}`;
+                    displayPreloader();
                     fetch(url,{
                         method:'PATCH',
                         headers:{
@@ -275,6 +303,7 @@
                     })
                     .then((Response)=>Response.json())
                     .then((data)=>{
+                        hidePreloader();
                         console.log(data)
                         updateLocalStorageContact(data);
                         window.location.href = "readMessage.html";
@@ -286,6 +315,7 @@
                 let getMassages = readLocalStorageContact();
                 const getToken = JSON.parse(window.localStorage.getItem("auth_token"));
                 const fetchContactMsg = ()=>{
+                    displayPreloader();
                     fetch('https://my-brand-andre-be.onrender.com/contactMsgs',{
                         headers:{
                             Authorization: `bearer ${getToken}`,
@@ -293,6 +323,7 @@
                     })
                     .then((Response)=>Response.json())
                     .then((data)=>{
+                        hidePreloader();
                         console.log(data);
                         for(let key of data){
                             console.log(key.read);

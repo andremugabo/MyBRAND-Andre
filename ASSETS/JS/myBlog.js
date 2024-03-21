@@ -1,3 +1,28 @@
+/*================================================================
+                              PRELOADER START
+==================================================================*/
+// Create the preloader element
+const preloader = document.createElement("div");
+preloader.classList.add("preloader");
+preloader.style.zIndex = "5";
+preloader.innerHTML = `
+    <img src="ASSETS/IMAGES/loading.gif" alt="preloader">
+`;
+
+document.body.appendChild(preloader);
+
+const displayPreloader = () => {
+  preloader.classList.add("show");
+};
+
+const hidePreloader = () => {
+  preloader.classList.remove("show");
+};
+
+/*================================================================
+                              PRELOADER END
+==================================================================*/
+
 let blogData = [];
 const getToken = JSON.parse(window.localStorage.getItem("auth_token"));
 /*#######################################################################
@@ -111,6 +136,8 @@ const createBlog = (e) => {
     const today = new Date();
     const formattedDate = today.toLocaleDateString();
     let blogDate = formattedDate;
+    displayPreloader();
+
     fetch("https://my-brand-andre-be.onrender.com/createBlogs", {
       method: "POST",
       headers: {
@@ -129,6 +156,8 @@ const createBlog = (e) => {
     })
       .then((Response) => Response.json())
       .then((data) => {
+        hidePreloader();
+
         console.log(data);
         if (data.status === 200) {
           displaySuccessMsg(document.querySelector(".msgBlog"), data.message);
@@ -144,6 +173,8 @@ const createBlog = (e) => {
 
 deleteBlog = (b_id) => {
   const url = `https://my-brand-andre-be.onrender.com/deleteBlogById/${b_id}`;
+  displayPreloader();
+
   fetch(url, {
     method: "delete",
     headers: {
@@ -152,6 +183,8 @@ deleteBlog = (b_id) => {
   })
     .then((Response) => Response.json())
     .then((data) => {
+      hidePreloader();
+
       console.log(data);
       setTimeout(() => {
         window.location.href = "myBlogs.html";
@@ -164,9 +197,13 @@ const blogCreator = readLocalStorageUser();
 console.log(blogCreator.FullName);
 const fetchBlogs = () => {
   const url = "https://my-brand-andre-be.onrender.com/fetchBlogs";
+  displayPreloader();
+
   fetch(url)
     .then((Response) => Response.json())
     .then((data) => {
+      hidePreloader();
+
       console.log(data);
       let num = 0;
       for (const items of data.blogs) {

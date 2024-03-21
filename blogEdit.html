@@ -138,6 +138,7 @@
                 const blogId = JSON.parse(window.sessionStorage.getItem('blogToEdit'));
                 console.log(blogId);
                 const url = `https://my-brand-andre-be.onrender.com/fetchBlogById/${blogId}`
+                displayPreloader();
                 fetch(url,{
                     headers:{
                         Authorization: `bearer ${getToken}`,
@@ -145,6 +146,7 @@
                 })
                 .then((Response)=>Response.json())
                 .then((data)=>{
+                    hidePreloader();
                     console.log(data)
                     document.querySelector('.editBlogSection').innerHTML = `
                     <h4>My&nbsp;Blog</h4>
@@ -300,6 +302,7 @@
                 let blogDate = formattedDate;
                 const blogId = JSON.parse(window.sessionStorage.getItem('blogToEdit'));
                 const url = `https://my-brand-andre-be.onrender.com/patchBlogById/${blogId}`;
+                displayPreloader();
                 fetch(url, {
                 method: "PATCH",
                 headers: {
@@ -318,6 +321,7 @@
                 })
                 .then((Response) => Response.json())
                 .then((data) => {
+                    hidePreloader();
                     console.log(data);
                     if (data.status === 200) {
                     displaySuccessMsg(document.querySelector(".msgBlog"), data.message);

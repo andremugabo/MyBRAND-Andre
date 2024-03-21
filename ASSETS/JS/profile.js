@@ -1,3 +1,28 @@
+/*================================================================
+                              PRELOADER START
+==================================================================*/
+// Create the preloader element
+const preloader = document.createElement("div");
+preloader.classList.add("preloader");
+preloader.style.zIndex = "5";
+preloader.innerHTML = `
+    <img src="ASSETS/IMAGES/loading.gif" alt="preloader">
+`;
+
+document.body.appendChild(preloader);
+
+const displayPreloader = () => {
+  preloader.classList.add("show");
+};
+
+const hidePreloader = () => {
+  preloader.classList.remove("show");
+};
+
+/*================================================================
+                              PRELOADER END
+==================================================================*/
+
 /*#######################################################################
                           LOCALHOST FUNCTIONALITY
 #########################################################################*/
@@ -106,6 +131,7 @@ const editProfile = (e) => {
     const description = document.querySelector("#admin_desc").value;
     const picture = document.querySelector("#admin_pic").value;
     const getToken = JSON.parse(window.localStorage.getItem("auth_token"));
+    displayPreloader();
     const url = `https://my-brand-andre-be.onrender.com/user/${userData._id}`;
     fetch(url, {
       method: "PATCH",
@@ -120,6 +146,8 @@ const editProfile = (e) => {
     })
       .then((Response) => Response.json())
       .then((data) => {
+        hidePreloader();
+
         if (data.status === 200) {
           window.localStorage.setItem(
             "current_user",

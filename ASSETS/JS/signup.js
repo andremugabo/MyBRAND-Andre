@@ -1,3 +1,28 @@
+/*================================================================
+                              PRELOADER START
+==================================================================*/
+// Create the preloader element
+const preloader = document.createElement("div");
+preloader.classList.add("preloader");
+preloader.style.zIndex = "5";
+preloader.innerHTML = `
+    <img src="ASSETS/IMAGES/loading.gif" alt="preloader">
+`;
+
+document.body.appendChild(preloader);
+
+const displayPreloader = () => {
+  preloader.classList.add("show");
+};
+
+const hidePreloader = () => {
+  preloader.classList.remove("show");
+};
+
+/*================================================================
+                              PRELOADER END
+==================================================================*/
+
 let userDB = [];
 let loginUser = null;
 const signUpForm = document.getElementById("signUpForm");
@@ -79,6 +104,7 @@ const signUpFormEvent = (e) => {
       const FullName = document.getElementById("setNames").value;
       const email = document.querySelector("#setUserEmail").value;
       const password = document.querySelector("#setPassword").value;
+      displayPreloader();
       fetch("https://my-brand-andre-be.onrender.com/users", {
         method: "POST",
         headers: {
@@ -92,6 +118,8 @@ const signUpFormEvent = (e) => {
       })
         .then((Response) => Response.json())
         .then((data) => {
+          hidePreloader();
+
           console.log(data);
           if (data.status === 200) {
             displaySuccessMsg(

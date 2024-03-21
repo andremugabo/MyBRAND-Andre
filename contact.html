@@ -245,6 +245,7 @@ const contactFormEvent = (e) => {
     const today = new Date();
     const formattedDate = today.toLocaleDateString();
     let date = formattedDate;
+    displayPreloader();
     fetch('https://my-brand-andre-be.onrender.com/contactMsgs',{
         method:'POST',
         headers:{
@@ -259,6 +260,7 @@ const contactFormEvent = (e) => {
     })
     .then((Response)=>Response.json())
     .then((data)=>{
+        hidePreloader();
         console.log(data.message);
         if(data.status === 200){
             resetInput();

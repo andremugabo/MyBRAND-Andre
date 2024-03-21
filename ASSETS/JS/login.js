@@ -1,3 +1,28 @@
+/*================================================================
+                              PRELOADER START
+==================================================================*/
+// Create the preloader element
+const preloader = document.createElement("div");
+preloader.classList.add("preloader");
+preloader.style.zIndex = "5";
+preloader.innerHTML = `
+    <img src="ASSETS/IMAGES/loading.gif" alt="preloader">
+`;
+
+document.body.appendChild(preloader);
+
+const displayPreloader = () => {
+  preloader.classList.add("show");
+};
+
+const hidePreloader = () => {
+  preloader.classList.remove("show");
+};
+
+/*================================================================
+                              PRELOADER END
+==================================================================*/
+
 let loggedId = null;
 const setError = (idError, message) => {
   document.getElementById(idError).classList.remove("hide");
@@ -56,6 +81,8 @@ const loginFormEvent = (e) => {
     document.querySelector("#userName").value.length >= 4 &&
     document.querySelector("#lPassword").value.length >= 4
   ) {
+    displayPreloader();
+
     fetch("https://my-brand-andre-be.onrender.com/user", {
       method: "POST",
       headers: {
@@ -68,6 +95,8 @@ const loginFormEvent = (e) => {
     })
       .then((Response) => Response.json())
       .then((data) => {
+        hidePreloader();
+
         // console.log(data.token);
         window.localStorage.setItem("auth_token", JSON.stringify(data.token));
         window.localStorage.setItem(

@@ -1,3 +1,28 @@
+/*================================================================
+                              PRELOADER START
+==================================================================*/
+// Create the preloader element
+const preloader = document.createElement("div");
+preloader.classList.add("preloader");
+preloader.style.zIndex = "5";
+preloader.innerHTML = `
+    <img src="ASSETS/IMAGES/loading.gif" alt="preloader">
+`;
+
+document.body.appendChild(preloader);
+
+const displayPreloader = () => {
+  preloader.classList.add("show");
+};
+
+const hidePreloader = () => {
+  preloader.classList.remove("show");
+};
+
+/*================================================================
+                              PRELOADER END
+==================================================================*/
+
 let categoryData = [];
 const getToken = JSON.parse(window.localStorage.getItem("auth_token"));
 /*#######################################################################
@@ -78,6 +103,8 @@ const insertBlogCategory = (e) => {
     return;
   } else {
     const category = document.querySelector("#admin_Category").value;
+    displayPreloader();
+
     fetch("https://my-brand-andre-be.onrender.com/category", {
       method: "POST",
       headers: {
@@ -90,6 +117,8 @@ const insertBlogCategory = (e) => {
     })
       .then((response) => response.json())
       .then((data) => {
+        hidePreloader();
+
         // console.log(data.message);
         if (data.status === 200) {
           displaySuccessMsg(
@@ -113,6 +142,8 @@ const insertBlogCategory = (e) => {
 };
 
 const fetchCategory = () => {
+  displayPreloader();
+
   fetch("https://my-brand-andre-be.onrender.com/categories", {
     headers: {
       Authorization: `bearer ${getToken}`,
@@ -120,6 +151,8 @@ const fetchCategory = () => {
   })
     .then((Response) => Response.json())
     .then((data) => {
+      hidePreloader();
+
       // console.log(data);
       updateLocalStorage(data);
       let num = 0;
@@ -144,6 +177,8 @@ const fetchCategory = () => {
     });
 };
 remove = (c_id) => {
+  displayPreloader();
+
   const url = `https://my-brand-andre-be.onrender.com/category/${c_id}`;
   fetch(url, {
     method: "delete",
@@ -153,6 +188,8 @@ remove = (c_id) => {
   })
     .then((Response) => Response.json())
     .then((data) => {
+      hidePreloader();
+
       console.log(data);
       setTimeout(() => {
         window.location.href = "blogsCategory.html";

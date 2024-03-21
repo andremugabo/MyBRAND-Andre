@@ -1,6 +1,30 @@
 /*#######################################################################
-                          LOCALHOST FUNCTIONALITY
+                          BACKEND FUNCTIONALITY
 #########################################################################*/
+/*================================================================
+                              PRELOADER START
+==================================================================*/
+// Create the preloader element
+const preloader = document.createElement("div");
+preloader.classList.add("preloader");
+preloader.style.zIndex = "5";
+preloader.innerHTML = `
+    <img src="ASSETS/IMAGES/loading.gif" alt="preloader">
+`;
+
+document.body.appendChild(preloader);
+
+const displayPreloader = () => {
+  preloader.classList.add("show");
+};
+
+const hidePreloader = () => {
+  preloader.classList.remove("show");
+};
+
+/*================================================================
+                              PRELOADER END
+==================================================================*/
 const readLocalStorageBlog = () => {
   let getData = window.localStorage.getItem("blog");
   let db = JSON.parse(getData);
@@ -16,10 +40,12 @@ const readLocalStorageUser = () => {
 const blogCreator = readLocalStorageUser();
 console.log(blogCreator);
 const fetchBlogs = () => {
+  displayPreloader();
   const url = "https://my-brand-andre-be.onrender.com/fetchBlogs";
   fetch(url)
     .then((Response) => Response.json())
     .then((data) => {
+      hidePreloader();
       console.log(data.blogs);
       let num = 0;
       for (const items of data.blogs) {
